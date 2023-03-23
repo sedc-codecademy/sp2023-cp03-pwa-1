@@ -1,0 +1,8 @@
+1. git clone [url] - clone git project
+2. git checkout [name of branch] - navigate to specific branch
+3. git checkout -b [name of branch] - create new branch
+4. git add . - stage changes
+5. git commit -m "some message here" - commit changes
+6. git push - push your commited changes on the selected branch
+7. git pull - pull latest changes from your current branch
+8. git pull origin master - pull latest changes from master branch into your current branch
