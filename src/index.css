@@ -3,6 +3,7 @@ nav{
 }
 #body {
     background-color: rgb(17, 54, 3);
+    font-family: Arial, Helvetica, sans-serif;
 }
 .offcanvas-body{
     background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
@@ -21,4 +22,171 @@ nav{
 }
 .offcanvas-header{
     background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+
+.container {
+    margin-top: 100px !important;
+    background-color: rgb(17, 54, 3);
+    width: 600px !important;
+    border: 0.5px solid lightgray;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    /* Add this line */
+}
+
+.taskbar {
+    text-align: right;
+    padding: 10px;
+    color:white;
+}
+
+.add-task-btn {
+    margin-left: 10px;
+}
+
+.modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    font-family: Helvetica, sans-serif;
+    border-radius: 10px;
+    color: white !important;
+    background-color: rgb(17, 54, 3) !important;
+    margin: 15% auto;
+    padding: 25px;
+    border: 1px solid black;
+    width: 25% !important;
+}
+
+    .modal-content > h1 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+
+    .modal-content input {
+        border: 1px solid black;
+        margin-top: px;
+        margin-bottom: 5px;
+        justify-content: flex-end;
+        display: flex;
+        height:30px;;
+        width: 250px;
+        border-radius: 5px;
+    }
+
+    .modal-content label {
+        font-size: 16px;
+        font-family: Verdana, sans-serif;
+    }
+
+.modal-buttons {
+    margin-top: 20px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: inherit;
+    font-family: Verdana, sans-serif;
+}
+.modal-buttons button {
+    width: 150px;
+}
+
+
+.settingsButton {
+    line-height: 40px;
+    transition: ease-in-out .2s;
+    padding: 0 16px;
+}
+
+#tasks {
+    display: none;
+    margin-top: 10px;
+}
+
+#taskList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.actionButtons {
+    display:flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 35rem;
+}
+    #taskList li span {
+        margin-right: 10px;
+        color: white;
+        max-width: 300px;
+    }
+    #taskList li p {
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+#taskName {
+    font-weight: bold;
+}
+
+#taskDesc {
+    color: lightgray;
+    font-size: 15px;
+    text-align:left !important;
+}
+
+#taskEst {
+    font-weight: bold;
+    font-size:17px;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 3px 7px 3px 7px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    color: white;
+    font-size: 15px;
+    background-color: #121a21;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+}
+
+.hover-text:hover .tooltip-text {
+    visibility: visible;
+}
+
+.hover-text {
+    position: relative;
+    display: inline-block;
+    font-family: Arial;
+    text-align: center;
 }
