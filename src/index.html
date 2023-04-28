@@ -12,6 +12,13 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -163,5 +170,133 @@
         </div>
       </div>
     </nav>
+    <!-- Start of Music Player -->
+    <div id="music_player_container">
+      <div id="top_part_container">
+        <div id="top_part_content">
+          <div id="main_icon_container">
+            <div id="main_icon_child">
+              <button id="note_btn">
+                <i class="fa fa-music" aria-hidden="true" id="note_icon"></i>
+              </button>
+            </div>
+          </div>
+          <div id="main_controls_container">
+            <div id="main_buttons_container">
+              <div class="button_container">
+                <button class="mp_btn" id="prev_btn">
+                  <i
+                    class="fa fa-step-backward"
+                    aria-hidden="true"
+                    id="prev_btn_content"
+                  ></i>
+                </button>
+              </div>
+              <div class="button_container">
+                <button class="mp_btn" id="play_btn">
+                  <i
+                    class="fa fa-play"
+                    aria-hidden="true"
+                    id="play_btn_content"
+                  ></i>
+                </button>
+              </div>
+              <div class="button_container">
+                <button class="mp_btn" id="next_btn">
+                  <i
+                    class="fa fa-step-forward"
+                    aria-hidden="true"
+                    id="next_btn_content"
+                  ></i>
+                </button>
+              </div>
+              <div id="expand_btn_container">
+                <div id="expand_btn_child">
+                  <button id="expand_btn">
+                    <i
+                      class="fa fa-caret-down"
+                      aria-hidden="true"
+                      id="expand_btn_content"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="scale">
+              <div id="song_time_container">
+                <input
+                  id="song_time_range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                />
+              </div>
+              <div id="volume_container">
+                <div id="volume_icon_container">
+                  <i
+                    class="fa fa-volume-up"
+                    aria-hidden="true"
+                    id="volume_icon"
+                  ></i>
+                </div>
+                <div id="volume_range_container">
+                  <input
+                    id="volume_range"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="90"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="bottom_part_container">
+        <div id="currently_playing_container">
+          <div id="currently_playing_child">
+            <p class="p_mp" id="p_currently_playing">Currently Playing:</p>
+          </div>
+          <div id="loop_btn_container">
+            <button id="loop_btn">
+              Loop
+              <i class="fa fa-repeat" aria-hidden="true" id="loop_icon"></i>
+            </button>
+          </div>
+        </div>
+        <div id="current_song_container"></div>
+        <div id="up_next_container">
+          <div id="up_next_Text_container">
+            <p class="p_mp" id="p_up_next">Up Next:</p>
+          </div>
+          <div id="shuffle_btn_container">
+            <button id="shuffle_btn">
+              Shuffle
+              <i class="fa fa-random" aria-hidden="true" id="shuffleIcon"></i>
+            </button>
+          </div>
+        </div>
+        <div id="up_next_songs_container">
+          <div id="songs_container">
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+            <div class="test1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Music Player -->
+    <script src="index.js"></script>
   </body>
 </html>
