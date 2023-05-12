@@ -1,0 +1,27 @@
+nav{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+#body {
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-body{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.nav-link.dropdown-toggle:hover
+{
+    background-color: rgb(17, 54, 3);
+}
+.nav-link.dropdown-toggle:focus,
+.nav-link.dropdown-toggle:active
+{
+    background-color: rgb(17, 54, 3);
+}
+.dropdown-menu.dropdown-menu-dark{
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-header{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.modal-backdrop {
+    z-index: 9 !important;
+}
