@@ -189,3 +189,6 @@ button {
     display: inline-block;
     font-family: Arial;
 }
+.modal-backdrop {
+    z-index: 9 !important;
+}
