@@ -8,14 +8,24 @@ const settingsButtons = {
 
 openModal = function (li) {
     if (li) {
+        i = li.id
         const taskName = li.querySelector('#taskName');
         const taskDesc = li.querySelector('#taskDesc');
         const taskEst = li.querySelector('#taskEst');
+        var taskDescText = "";
+        const bottomText = li.querySelector('#bottom');
+        if(bottomText)
+        {
+            taskDescText = bottomText.innerHTML
+        }
+        else
+        {
+            taskDescText = taskDesc.innerHTML;
+        }
 
         document.getElementById("taskName").value = taskName.innerHTML;
-        document.getElementById("taskDesc").value = taskDesc.innerHTML;
+        document.getElementById("taskDesc").value = taskDescText;
         document.getElementById("taskEst").value = taskEst.innerHTML;
-        i--;
     }
     document.getElementById("modal").style.display = "block";
 }
@@ -33,26 +43,11 @@ addTask = function () {
     const taskEst = document.getElementById("taskEst");
     const taskDesc = document.getElementById("taskDesc");
 
-
     const text = taskDesc.value;
 
     let spanName = createElement("span", taskName);
     let spanEst = createElement("span", taskEst);
     let spanDesc = createElement("div", taskDesc);
-
-    if (text.length > 30) {
-        spanDesc.classList = "hover-text";
-        let fullTooltipText = createElement("span", text);
-        fullTooltipText.innerHTML = text;
-        fullTooltipText.classList = "tooltip-text";
-        fullTooltipText.id = "bottom";
-        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30);
-        spanDesc.appendChild(fullTooltipText);
-    }
-    let hr = document.createElement("hr");
-    hr.style.width = "300px";
-
-    spanDesc.appendChild(hr);
     let div = createElement("div");
     
     div.appendChild(spanName);
@@ -60,6 +55,21 @@ addTask = function () {
     div.appendChild(createElement("br"));
     div.appendChild(spanDesc);
 
+    if (text.length > 30) {
+        div.classList = "hover-text";
+        let fullTooltipText = createElement("span", text);
+        fullTooltipText.innerHTML = text;
+        fullTooltipText.classList = "tooltip-text";
+        fullTooltipText.id = "bottom";
+        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30);
+        div.appendChild(fullTooltipText);
+    }
+    let hr = document.createElement("hr");
+    hr.style.width = "300px";
+    hr.style.color = "white";
+
+    div.appendChild(hr);
+    
     let li = createElement("li");
     let taskList = document.getElementById("taskList");
     removeItemIfExists(taskList);
@@ -129,6 +139,7 @@ addButton = function (li, buttonType) {
             button.onclick = function () {
                 let ul = li.parentNode;
                 ul.removeChild(li);
+                i--;
                 if (ul.childElementCount == 0) {
                     displayList(false);
                 }
