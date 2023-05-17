@@ -192,3 +192,130 @@ button {
 .modal-backdrop {
     z-index: 9 !important;
 }
+
+nav{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+#body {
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-body{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.nav-link.dropdown-toggle:hover
+{
+    background-color: rgb(17, 54, 3);
+}
+.nav-link.dropdown-toggle:focus,
+.nav-link.dropdown-toggle:active
+{
+    background-color: rgb(17, 54, 3);
+}
+.dropdown-menu.dropdown-menu-dark{
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-header{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.modal {
+    z-index: 9999;
+}
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.mainOutput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    
+}
+/* timer */
+#workSession{
+    box-shadow: 7px 7px 8px -2px #1c1d1b;
+	background-color:transparent;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:9px 36px;
+	text-decoration:none;
+    border:#0c5900
+}
+#workSession:hover {
+	background-color:transparent;
+}
+#workSession:active {
+	position:relative;
+	top:1px;
+}
+#shortBreakSession{
+    box-shadow: 0px 7px 8px 1px #1c1d1b;
+	background-color:transparent;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:9px 36px;
+	text-decoration:none;
+    border:#0c5900
+}
+#shortBreakSession:hover {
+	background-color:transparent;
+}
+#shortBreakSession:active {
+	position:relative;
+	top:1px;
+}
+#longBreakSession {
+    box-shadow: -7px 7px 8px -2px #1c1d1b;
+	background-color:transparent;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:9px 36px;
+	text-decoration:none;
+    border:#0c5900
+}
+#longBreakSession:hover {
+	background-color:transparent;
+}
+#longBreakSession:active {
+	position:relative;
+	top:1px;
+}
+.timer {
+    font-size: 100px;
+    text-align: center;
+    color:#ffffff;
+}
+#start {
+    box-shadow: 0px 7px 8px 1px #1c1d1b;
+	background-color:transparent;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:9px 36px;
+	text-decoration:none;
+    border:#0c5900;
+    width: 180px;
+    text-align: center;
+    align-self: center;
+}
+#start:hover {
+	background-color:transparent;
+}
+#start:active {
+	position:relative;
+	top:1px;
+}
