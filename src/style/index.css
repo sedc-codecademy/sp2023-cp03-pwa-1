@@ -1,0 +1,63 @@
+nav{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+#body {
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-body{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.nav-link.dropdown-toggle:hover
+{
+    background-color: rgb(17, 54, 3);
+}
+.nav-link.dropdown-toggle:focus,
+.nav-link.dropdown-toggle:active
+{
+    background-color: rgb(17, 54, 3);
+}
+.dropdown-menu.dropdown-menu-dark{
+    background-color: rgb(17, 54, 3);
+}
+.offcanvas-header{
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+}
+.modal {
+    z-index: 9999;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  footer ul li:last-child {
+    margin-right: 0;
+  }
+  
+  footer ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  footer ul li a:hover {
+    color: #ccc;
+  }
+
+
+  
