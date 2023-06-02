@@ -173,3 +173,110 @@ toggleAddButton = function (toggle) {
 
     document.getElementById("taskBtn").disabled = toggle;
 }
+
+//Nikola logic for login to store pass/user
+document.addEventListener('DOMContentLoaded', function() {
+    var loginButton = document.getElementById('loginButton');
+    loginButton.addEventListener('click', function() {
+        
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        matchCredentials(username, password);     
+
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+
+        hideBootstrapModal('loginModal');
+        
+    });
+});
+
+function hideBootstrapModal(modalId) {
+    var modalElement = document.getElementById(modalId);
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+}
+
+//test credentials
+var testCredentials = [
+    {username: 'Nikola', password: 'password123'},
+    {username: 'Aleksandar', password: 'password456'},
+    {username: 'Kire', password: 'password789'},
+    {username: 'Albert', password: 'password012'},
+]
+
+function matchCredentials(username, password){
+var matchedUser = null;
+var j = 0;
+
+    for(j = 0; j < testCredentials.length; j++){
+        if(testCredentials[j].username === username && testCredentials[j].password === password){
+            matchedUser = testCredentials[j];       
+            break;
+        }
+    }
+    if (matchedUser) {
+        console.log('Matched credentials:', matchedUser.username, matchedUser.password);
+    } 
+    else {
+        console.log('Error: Incorrect username or password');
+    }
+}
+
+//Nikola logic for sessions
+
+//test sessions
+var sessions = [
+    {
+      name: 'Session One',
+      date: '2023-06-01',
+      duration: '2 hours'
+    },
+    {
+      name: 'Session Two',
+      date: '2023-06-02',
+      duration: '1.5 hours'
+    },
+    {
+      name: 'Session Three',
+      date: '2023-06-03',
+      duration: '3 hours'
+    }
+  ];
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var currentSessionBtn = document.getElementById('allSessionsBtn');
+  
+
+    //redo this with list items or make them all into one element
+    //so i can border them all together instead of separate items
+    currentSessionBtn.addEventListener('click', function() {
+      sessions.forEach(function(session) {
+        var sessionElement = createElement('div');
+        sessionElement.classList.add('session');
+  
+        var nameElement = createElement('h3');
+        nameElement.textContent = session.name;
+        nameElement.classList.add('session-text');
+        sessionElement.appendChild(nameElement);
+  
+        var dateElement = createElement('p');
+        dateElement.textContent = 'Date: ' + session.date;
+        dateElement.classList.add('session-text');
+        sessionElement.appendChild(dateElement);
+  
+        var durationElement = createElement('p');
+        durationElement.textContent = 'Duration: ' + session.duration;
+        durationElement.classList.add('session-text');
+        sessionElement.appendChild(durationElement);
+  
+        
+        document.body.appendChild(sessionElement);
+      });
+    });
+  });
+  
+  
+  

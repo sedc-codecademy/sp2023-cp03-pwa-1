@@ -31,31 +31,31 @@
                 Log in
             </button>
             <!--TODO REDO LOGIN PART-->
-            <!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="loginModalLabel">Log in</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <div class="mb-3">
-                          <label for="username" class="col-form-label">Username:</label>
-                          <input type="text" class="form-control" id="username">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">Log in</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                          <label for="password" class="col-form-label">Password:</label>
-                          <input type="password" class="form-control" id="password">
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="col-form-label">Username:</label>
+                                    <input type="text" class="form-control" id="username">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="col-form-label">Password:</label>
+                                    <input type="password" class="form-control" id="password">
+                                </div>
+                            </form>
                         </div>
-                      </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="loginButton">Log in</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Log in</button>
-                    </div>
-                  </div>
                 </div>
-              </div> -->
+            </div>
             <span class="navbar-brand mx-auto text-center" id="titleNavBar">Productivity App</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
@@ -72,21 +72,20 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="containSession" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                My Sessions
+                            <a class="nav-link dropdown-toggle" id="containSession" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              My Sessions
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><button class="dropdown-item" href="#">Current sessions</button></li>
-                                <li><button class="dropdown-item" href="#">Next session</button></li>
-                                <div class="dropdown-divider"></div>
-                                <li><button class="dropdown-item" href="#">All sessions</button></li>
+                              <li><button class="dropdown-item" id="currentSessionBtn" href="#">Current sessions</button></li>
+                              <li><button class="dropdown-item" id="nextSessionBtn" href="#">Next session</button></li>
+                              <div class="dropdown-divider"></div>
+                              <li><button class="dropdown-item" id="allSessionsBtn" href="#">All sessions</button></li>
                             </ul>
-                        </li>
+                          </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="statistics" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                My statistics
+                                My Statistics
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><button class="dropdown-item" href="#">Today</button></li>
@@ -98,7 +97,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="calendar" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                My calendar
+                                My Calendar
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><button class="dropdown-item" href="#">Today</button></li>
