@@ -176,18 +176,26 @@ toggleAddButton = function (toggle) {
 
 
 // REMINDERS
+let reminders = [];
+
+function removeReminder(id) {
+    reminders = reminders.filter(el => el.id !== id)
+    console.log(reminders);
+    renderReminders(reminders)
+}
 
 //REMINDER ITEM
-function createReminderItem(text) {
+function createReminderItem(reminder) {
     let reminderItem = document.createElement('div');
     reminderItem.className = 'reminderDivElement';
-    reminderItem.textContent = text;
+    reminderItem.textContent = reminder.value;
+    reminderItem.attributes.id = reminder.id;
   
     //DELETE BUTTON TODO!!!!! WHY WHEN I CLIICK ON THE SAME BUTTON IT DOES SHOW THE DELETED DIVS
     let deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', function() {
-      reminderItem.remove();
+      removeReminder(reminder.id)
     });
   
     //edit button
@@ -220,13 +228,14 @@ function createReminderItem(text) {
   
     if (reminderText !== '') {
       // Create a new reminder item with delete and edit buttons
-      var reminderItem = createReminderItem(reminderText);
+    //   var reminderItem = createReminderItem(reminderText);
   
-      // Add the reminder item to the list
-       document.getElementById("allReminders").addEventListener("click", () => {
-        let reminderList = document.getElementById('reminderList');
-        reminderList.appendChild(reminderItem); 
-      })  
+    //   // Add the reminder item to the list
+    //    document.getElementById("allReminders").addEventListener("click", () => {
+    //     let reminderList = document.getElementById('reminderList');
+    //     reminderList.appendChild(reminderItem); 
+    //   }) 
+        reminders.push({id: Math.random().toString(), value: reminderText})
   
   
       // Clear the input field
@@ -234,6 +243,21 @@ function createReminderItem(text) {
     }
   
   });
+//   // Add the reminder item to the list
+    document.getElementById("allReminders").addEventListener("click", () => {
+        renderReminders()
+       
+    })
+
+    function renderReminders() {
+        document.getElementById('reminderList').innerHTML= ""
+        reminders.forEach(el => {
+            var reminderItem = createReminderItem(el);
+            let reminderList = document.getElementById('reminderList');
+            reminderList.appendChild(reminderItem); 
+        })
+    }
+  
 
   //Add Menu reminder to show main div when the button from mennu is clicked
   document.getElementById('addMenuReminder').addEventListener('click', function(){
