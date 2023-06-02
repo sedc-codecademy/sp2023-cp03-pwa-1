@@ -192,3 +192,58 @@ button {
 .modal-backdrop {
     z-index: 9 !important;
 }
+
+/* REMINDERS */
+
+#displayReminders{
+    margin-top: 100px !important;
+    background-color: rgb(17, 54, 3);
+    width: 600px !important;
+    border: 0.5px solid lightgray;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    display: none; 
+}
+
+#reminderHeader {
+    text-align: center;
+    background-color: rgb(17, 54, 3);
+    color: aqua;
+  }
+  
+#reminderForm {
+    text-align: center;
+    background-color: rgb(17, 54, 3);
+  }
+  
+#reminderInput[type="text"] {
+    padding: 5px;
+    width: 200px;
+    background-color: rgb(17, 54, 3);
+    color: aqua;
+  }
+  
+#addReminder{
+    padding: 5px 10px;
+    background-color: rgb(17, 54, 3);
+    color: aqua;
+  }
+  
+#reminderList {
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 2px;
+  }
+
+.reminderDivElement{
+    background-color: lightgreen;
+    color: #000000;
+    padding: 20px;
+    margin-top: 20px;
+}

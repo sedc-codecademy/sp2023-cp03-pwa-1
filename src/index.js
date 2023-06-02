@@ -173,3 +173,71 @@ toggleAddButton = function (toggle) {
 
     document.getElementById("taskBtn").disabled = toggle;
 }
+
+
+// REMINDERS
+
+//REMINDER ITEM
+function createReminderItem(text) {
+    let reminderItem = document.createElement('div');
+    reminderItem.className = 'reminderDivElement';
+    reminderItem.textContent = text;
+  
+    //DELETE BUTTON TODO!!!!! WHY WHEN I CLIICK ON THE SAME BUTTON IT DOES SHOW THE DELETED DIVS
+    let deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+      reminderItem.remove();
+    });
+  
+    //edit button
+    let editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', function() {
+      //updated reminder text
+      let updatedText = prompt('Enter updated reminder:', reminderItem.textContent);
+      
+      // Update the reminder text if user provides valid input
+      if (updatedText !== null && updatedText !== '') {
+        reminderItem.textContent = updatedText;
+      }
+    });
+  
+    // Append delete and edit buttons to the reminder item
+    reminderItem.appendChild(deleteButton);
+    reminderItem.appendChild(editButton);
+  
+    return reminderItem;
+  }
+  
+  // Event listener for form submission
+    document.getElementById('reminderForm').addEventListener('submit', function(event) {
+    // event.preventDefault(); // Prevent form submission
+  
+    //reminder input value
+    let reminderInput = document.getElementById('reminderInput');
+    let reminderText = reminderInput.value;
+  
+    if (reminderText !== '') {
+      // Create a new reminder item with delete and edit buttons
+      var reminderItem = createReminderItem(reminderText);
+  
+      // Add the reminder item to the list
+       document.getElementById("allReminders").addEventListener("click", () => {
+        let reminderList = document.getElementById('reminderList');
+        reminderList.appendChild(reminderItem); 
+      })  
+  
+  
+      // Clear the input field
+      reminderInput.value = '';
+    }
+  
+  });
+
+  document.getElementById('addMenuReminder').addEventListener('click', function(){
+    let displayMainDiv = document.getElementById('displayReminders');
+    displayMainDiv.style.display = "block"
+  });
+  
+  

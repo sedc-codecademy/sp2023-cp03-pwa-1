@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
-    <script src="./index.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <!-- jQuery -->
@@ -107,12 +106,12 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="reminders" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Reminders
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><button class="dropdown-item" href="#">Set/Edit reminder</button></li>
-                                <li><button class="dropdown-item" href="#">View reminders</button></li>
+                                <li><button class="dropdown-item" id="addMenuReminder">Set/Edit reminder</button></li>
+                                <li><button class="dropdown-item" id="allReminders">View reminders</button></li>
                             </ul>
                         </li>
                     </ul>
@@ -150,5 +149,17 @@
         <ul id="taskList" style="list-style:none">
         </ul>
     </div>
+
+    <!-- REMINDERS -->
+    <div id="displayReminders">
+        <h1 id="reminderHeader">Reminder</h1>
+        <form id="reminderForm">
+          <input type="text" id="reminderInput" placeholder="Enter reminder">
+          <button type="submit" id="addReminder">Add Reminder</button>
+      </div>
+    <div id="reminderList"></div>
+
+
+    <script src="index.js"></script>
 </body>
 </html>
