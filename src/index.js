@@ -235,6 +235,7 @@ function createReminderItem(text) {
   
   });
 
+  //Add Menu reminder to show main div when the button from mennu is clicked
   document.getElementById('addMenuReminder').addEventListener('click', function(){
     let displayMainDiv = document.getElementById('displayReminders');
     displayMainDiv.style.display = "block"
