@@ -38,6 +38,13 @@ nav{
     
 }
 
+.my-sessions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+}
+
 .taskbar {
     text-align: right;
     padding: 10px;
@@ -69,7 +76,6 @@ nav{
   
   .session-text {
     color: white;
-    border: 1px solid white;
     margin-top: 5px;
     margin-bottom: 5px;
     justify-content: flex-start;
@@ -91,7 +97,10 @@ nav{
     margin-bottom: 3px;
   }
   
-  
+
+.modal-content-new-task {
+    width: 25% !important;
+}
   
 .modal-content {
     font-family: Helvetica, sans-serif;

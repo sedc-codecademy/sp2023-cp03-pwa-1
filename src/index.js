@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sessions.forEach(function(session) {
         var sessionElement = createElement('div');
         sessionElement.classList.add('session');
+        sessionElement.classList.add('my-sessions-container');
   
         var nameElement = createElement('h3');
         nameElement.textContent = session.name;
