@@ -212,7 +212,7 @@ function createReminderItem(text) {
   
   // Event listener for form submission
     document.getElementById('reminderForm').addEventListener('submit', function(event) {
-    // event.preventDefault(); // Prevent form submission
+    event.preventDefault(); // Prevent form submission
   
     //reminder input value
     let reminderInput = document.getElementById('reminderInput');
