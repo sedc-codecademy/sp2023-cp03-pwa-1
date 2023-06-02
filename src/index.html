@@ -184,7 +184,7 @@
           <div id="main_controls_container">
             <div id="main_buttons_container">
               <div class="button_container">
-                <button class="mp_btn" id="prev_btn">
+                <button class="mp_btn" id="prev_btn" onclick="previous_song()">
                   <i
                     class="fa fa-step-backward"
                     aria-hidden="true"
@@ -193,7 +193,7 @@
                 </button>
               </div>
               <div class="button_container">
-                <button class="mp_btn" id="play_btn">
+                <button class="mp_btn" id="play_btn" onclick="justplay()">
                   <i
                     class="fa fa-play"
                     aria-hidden="true"
@@ -202,7 +202,7 @@
                 </button>
               </div>
               <div class="button_container">
-                <button class="mp_btn" id="next_btn">
+                <button class="mp_btn" id="next_btn" onclick="next_song()">
                   <i
                     class="fa fa-step-forward"
                     aria-hidden="true"
@@ -230,6 +230,7 @@
                   min="0"
                   max="100"
                   value="0"
+                  onchange="change_duration()"
                 />
               </div>
               <div id="volume_container">
@@ -238,6 +239,7 @@
                     class="fa fa-volume-up"
                     aria-hidden="true"
                     id="volume_icon"
+                    onclick="mute_song()"
                   ></i>
                 </div>
                 <div id="volume_range_container">
@@ -247,6 +249,7 @@
                     min="0"
                     max="100"
                     value="90"
+                    onchange="volume_change()"
                   />
                 </div>
               </div>
