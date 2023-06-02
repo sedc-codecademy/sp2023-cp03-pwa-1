@@ -263,8 +263,8 @@ function createReminderItem(reminder) {
   document.getElementById('addMenuReminder').addEventListener('click', function(){
     let displayMainDiv = document.getElementById('displayReminders');
     displayMainDiv.style.display = "block"
-    let taskBarMainDiv = document.getElementsByClassName('container');
-    taskBarMainDiv.style.display = 'none'
+    // let taskBarMainDiv = document.getElementsByClassName('container');
+    // taskBarMainDiv.style.display = 'none'
   });
   
   
