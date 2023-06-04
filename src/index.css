@@ -1,26 +1,30 @@
-nav{
+nav {
     background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
 }
+
 #body {
     background-color: rgb(17, 54, 3);
     font-family: Arial, Helvetica, sans-serif;
 }
-.offcanvas-body{
+
+.offcanvas-body {
     background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
 }
-.nav-link.dropdown-toggle:hover
-{
+
+.nav-link.dropdown-toggle:hover {
     background-color: rgb(17, 54, 3);
 }
+
 .nav-link.dropdown-toggle:focus,
-.nav-link.dropdown-toggle:active
-{
+.nav-link.dropdown-toggle:active {
     background-color: rgb(17, 54, 3);
 }
-.dropdown-menu.dropdown-menu-dark{
+
+.dropdown-menu.dropdown-menu-dark {
     background-color: rgb(17, 54, 3);
 }
-.offcanvas-header{
+
+.offcanvas-header {
     background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
 }
 
@@ -41,7 +45,7 @@ nav{
 .taskbar {
     text-align: right;
     padding: 10px;
-    color:white;
+    color: white;
 }
 
 .add-task-btn {
@@ -70,27 +74,28 @@ nav{
     width: 25% !important;
 }
 
-    .modal-content > h1 {
-        text-align: center;
-        margin-bottom: 25px;
-    }
+.modal-content>h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
 
 
-    .modal-content input {
-        border: 1px solid black;
-        margin-top: px;
-        margin-bottom: 5px;
-        justify-content: flex-end;
-        display: flex;
-        height:30px;;
-        width: 250px;
-        border-radius: 5px;
-    }
+.modal-content input {
+    border: 1px solid black;
+    margin-top: px;
+    margin-bottom: 5px;
+    justify-content: flex-end;
+    display: flex;
+    height: 30px;
+    ;
+    width: 250px;
+    border-radius: 5px;
+}
 
-    .modal-content label {
-        font-size: 16px;
-        font-family: Verdana, sans-serif;
-    }
+.modal-content label {
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+}
 
 .modal-buttons {
     margin-top: 20px;
@@ -101,6 +106,7 @@ nav{
     display: inherit;
     font-family: Verdana, sans-serif;
 }
+
 .modal-buttons button {
     width: 150px;
 }
@@ -122,8 +128,9 @@ nav{
     margin: 0;
     padding: 0;
 }
+
 .actionButtons {
-    display:flex;
+    display: flex;
     width: 200px;
     justify-content: space-between;
     align-items: center;
@@ -136,15 +143,17 @@ nav{
     margin-bottom: 10px;
     width: 35rem;
 }
-    #taskList li span {
-        margin-right: 10px;
-        color: white;
-        max-width: 300px;
-    }
-    #taskList li p {
-        width: -moz-fit-content;
-        width: fit-content;
-    }
+
+#taskList li span {
+    margin-right: 10px;
+    color: white;
+    max-width: 300px;
+}
+
+#taskList li p {
+    width: -moz-fit-content;
+    width: fit-content;
+}
 
 #taskName {
     font-weight: bold;
@@ -153,12 +162,12 @@ nav{
 #taskDesc {
     color: lightgray;
     font-size: 15px;
-    text-align:left !important;
+    text-align: left !important;
 }
 
 #taskEst {
     font-weight: bold;
-    font-size:17px;
+    font-size: 17px;
     border: 2px solid white;
     border-radius: 10px;
     padding: 3px 7px 3px 7px;
@@ -189,13 +198,14 @@ button {
     display: inline-block;
     font-family: Arial;
 }
+
 .modal-backdrop {
     z-index: 9 !important;
 }
 
 /* REMINDERS */
 
-#displayReminders{
+#displayReminders {
     margin-top: 100px !important;
     background-color: rgb(17, 54, 3);
     width: 600px !important;
@@ -206,44 +216,198 @@ button {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    display: none; 
+    display: none;
 }
 
 #reminderHeader {
     text-align: center;
     background-color: rgb(17, 54, 3);
-    color: aqua;
-  }
-  
+    color: white;
+}
+
 #reminderForm {
     text-align: center;
     background-color: rgb(17, 54, 3);
-  }
-  
+}
+
 #reminderInput[type="text"] {
     padding: 5px;
     width: 200px;
     background-color: rgb(17, 54, 3);
-    color: aqua;
-  }
-  
-#addReminder{
-    padding: 5px 10px;
-    background-color: rgb(17, 54, 3);
-    color: aqua;
-  }
-  
-#reminderList {
-    text-align: center;
     color: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 2px;
-  }
+}
 
-.reminderDivElement{
-    background-color: lightgreen;
-    color: #000000;
+#addReminder {
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    background-color: #57dd42;
+}
+
+#addReminder:hover {
+    background-color: #25a511;
+}
+
+#reminderList {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reminderDivElement:hover {
+    box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2)
+}
+
+.reminderDivElement {
+    width: 50%;
+    height: 50%;
+    margin: 5px;
+    display: flex;
     padding: 20px;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgb(17, 54, 3);
+}
+
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.headerText {
+    display: flex;
+    white-space: normal;
+    align-items: center;
+    color: white;
+}
+
+.deleteButton {
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.deleteButton:hover {
+    background-color: rgb(158, 39, 34);
+}
+
+.deleteButton:active {
+    background-color: rgb(158, 39, 34);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.editButton {
+    background-color: yellow;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.editButton:hover {
+    background-color: rgb(139, 139, 16);
+}
+
+.editButton:active {
+    background-color: rgb(139, 139, 16);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.modalReminder {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(17, 54, 3);
+}
+
+.mainDivForModalReminder{
+    background-color: rgb(17, 54, 3);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px;
+    height: 200px;
+    display: grid;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    justify-items: stretch;
+    color: white;
+}
+
+#saveButton{
+    background-color: green;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+}
+#saveButton:hover{
+    background-color: #27d110;
+}
+
+#cancelButton{
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+}
+
+#cancelButton:hover {
+    background-color: rgb(158, 39, 34);
 }
