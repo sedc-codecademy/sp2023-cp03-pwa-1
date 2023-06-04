@@ -28,7 +28,7 @@ openModal = function (li) {
         document.getElementById("taskEst").value = taskEst.innerHTML;
     }
     document.getElementById("modal").style.display = "block";
-    sessions.push({name: "GOCE", date: "ASDASDAS", duration: "ASDSD"})
+    sessions.push({name: currentUser, taskDescription:"Testing" , duration: "testing hours"})
 }
 
 closeModal = function () {
@@ -175,23 +175,52 @@ toggleAddButton = function (toggle) {
     document.getElementById("taskBtn").disabled = toggle;
 }
 
+var currentUser = null;
 //Nikola logic for login to store pass/user
 document.addEventListener('DOMContentLoaded', function() {
-    var loginButton = document.getElementById('loginButton');
-    loginButton.addEventListener('click', function() {
+    var innerLoginButton = document.getElementById('innerLoginButton');
+    innerLoginButton.addEventListener('click', function() {
         
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        matchCredentials(username, password);     
+        if(!matchCredentials(username, password)){
+            showWrongLoginMessage();
+            hideBootstrapModal('loginModal');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            return;
+        }
+        
+        
 
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
 
         hideBootstrapModal('loginModal');
-        
+        hideButtonById('loginButton');
+        hideButtonById('registerButton');
+        showButtonById('signOutButton');
+        showButtonById('navBarButton');
+        showButtonById('timerDisplay');
+        showButtonById('taskBar');
+        currentUser = username;
     });
 });
+
+//sign out button logic
+document.addEventListener('DOMContentLoaded',function(){
+    var signOutButton = document.getElementById('signOutButton');
+    signOutButton.addEventListener('click',function(){
+        showButtonById('loginButton');
+        showButtonById('registerButton');
+        hideButtonById('signOutButton');
+        hideButtonById('navBarButton');
+        hideButtonById('timerDisplay');
+        hideButtonById('taskBar');
+        signOutMessage();
+    })
+})
 
 function hideBootstrapModal(modalId) {
     var modalElement = document.getElementById(modalId);
@@ -199,12 +228,21 @@ function hideBootstrapModal(modalId) {
     modalInstance.hide();
 }
 
+function hideButtonById(button){
+    var hideButton = document.getElementById(button);
+    hideButton.style.display = 'none';
+}
+function showButtonById(button){
+    var showButton = document.getElementById(button);
+    showButton.style.display = 'block';
+}
+
 //test credentials
 var testCredentials = [
-    {username: 'Nikola', password: 'password123'},
-    {username: 'Aleksandar', password: 'password456'},
-    {username: 'Kire', password: 'password789'},
-    {username: 'Albert', password: 'password012'},
+    {username: 'Nikola', password: 'password123',firstName: 'Nikola', lastName: 'Jovanovski'},
+    {username: 'Aleksandar', password: 'password456',firstName: 'Aleksandar', lastName: 'Aleksandrovski'},
+    {username: 'Kire', password: 'password789',firstName: 'Kire', lastName: 'Kirovski'},
+    {username: 'Albert', password: 'password012',firstName: 'Albert', lastName: 'Albertovski'},
 ]
 
 function matchCredentials(username, password){
@@ -218,13 +256,174 @@ var j = 0;
         }
     }
     if (matchedUser) {
-        console.log('Matched credentials:', matchedUser.username, matchedUser.password);
+        console.log('Matched credentials:', "Full Name: "+ matchedUser.firstName,matchedUser.lastName,"Username: " + matchedUser.username, "Password: " + matchedUser.password);
+        return true;
     } 
     else {
         console.log('Error: Incorrect username or password');
+        return false;
     }
 }
+//Nikola logic for register
+document.addEventListener('DOMContentLoaded', function() {
+    var innerRegisterButton = document.getElementById('innerRegisterButton');
+    innerRegisterButton.addEventListener('click',function(){
 
+        var firstName = document.getElementById('firstname').value;
+        var lastName = document.getElementById('lastname').value;
+        var username = document.getElementById('registerUsername').value;
+        var password = document.getElementById('registerPassword').value;
+        var confirmPassword = document.getElementById('confirmpassword').value;
+        
+        if(!isFirstNameFilled(firstName)){
+            return;
+        }
+        if(!isLastNameFilled(lastName)){
+            return;
+        }
+        if(!isUserAvailable(username)){
+            return;
+        }
+        if(!isPasswordLongEnough(password)){
+            return;
+        }
+        if(!isPasswordMatching(password,confirmPassword)){
+            return;
+        }
+        addUserToCredentials(firstName,lastName,username,password);
+    })
+})
+
+function isFirstNameFilled(firstName) {
+    firstName = firstName.trim();
+  
+    if (typeof firstName !== 'string') {
+      alert("Please enter a valid first name!");
+      document.getElementById('firstname').value = '';
+      return false;
+    }
+  
+    if (firstName === '' || firstName.length < 2) {
+      alert("First name must be at least 2 characters long!");
+      document.getElementById('firstname').value = '';
+      return false;
+    }
+  
+    if (!/^[a-zA-Z '-]+$/.test(firstName)) {
+        alert("First name must contain only letters, spaces, hyphens, and apostrophes!");
+        document.getElementById('firstname').value = '';
+        return false;
+    } 
+    return true;
+}
+function isLastNameFilled(lastName){
+    lastName = lastName.trim();
+
+    if (typeof lastName !== 'string') {
+        alert("Please enter a valid Last name!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+
+    if (lastName === '' || lastName.length < 2) {
+        alert("Last name must be at least 2 characters long!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+
+    if (!/^[a-zA-Z '-]+$/.test(lastName)) {
+        alert("Last name must contain only letters, spaces, hyphens, and apostrophes!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+    return true;
+}
+
+function isUserAvailable(username) {
+    for (var i = 0; i < testCredentials.length; i++) {
+        if (testCredentials[i].username === username) {
+            alert("That username is already in use!");
+            document.getElementById('registerUsername').value = '';
+            return false;
+        }
+    }
+    return true;
+}
+
+function isPasswordLongEnough(password){
+    if(password.length < 5){
+        alert("Your password is not long enough!");
+        return false;
+    }
+    return true;
+}
+function isPasswordMatching(password,confirmPassword){
+    console.log(password + "hi from isPasswordMatching")
+    console.log(confirmPassword)
+
+    if(password !== confirmPassword){
+        alert("Passwords do not match!");
+        document.getElementById('registerPassword').value = '';
+        document.getElementById('confirmpassword').value = '';
+        return false;
+    }
+    return true;
+}
+
+function addUserToCredentials(firstName, lastName, username, password) {
+    var newUser = {
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    };
+  
+    testCredentials.push(newUser);
+  
+    showSignupSuccessMessage();
+    document.getElementById('firstname').value = '';
+    document.getElementById('lastname').value = '';
+    document.getElementById('registerUsername').value = '';
+    document.getElementById('registerPassword').value = '';
+    document.getElementById('confirmpassword').value = '';
+    hideBootstrapModal('registerModal');
+}
+//wrong login message
+
+function showWrongLoginMessage(){
+    var wrongLoginToast = new bootstrap.Toast(document.getElementById('wrongLoginToast'));
+    wrongLoginToast.show();
+
+    setTimeout(function() {
+        wrongLoginToast.hide();
+    }, 5000);
+}
+
+//sucessful signout message
+
+function signOutMessage(){
+    var signOutMessage = new bootstrap.Toast(document.getElementById('signOutToast'));
+    signOutMessage.show();
+
+    setTimeout(function(){
+        signOutMessage.hide();
+    }, 5000);
+}
+
+//user already exits message
+
+function showSignupSuccessMessage() {
+    var signupToast = new bootstrap.Toast(document.getElementById('signupToast'));
+    signupToast.show();
+
+    setTimeout(function() {
+        signupToast.hide();
+    }, 5000);
+}
+
+
+
+  
 //Nikola logic for sessions
 
 //test sessions
@@ -234,36 +433,33 @@ var sessions = [];
 document.addEventListener('DOMContentLoaded', function() {
     var currentSessionBtn = document.getElementById('allSessionsBtn');
   
-
-    //redo this with list items or make them all into one element
-    //so i can border them all together instead of separate items
     currentSessionBtn.addEventListener('click', function() {
       sessions.forEach(function(session) {
-        var sessionElement = createElement('div');
+        var sessionElement = document.createElement('div');
         sessionElement.classList.add('session');
         sessionElement.classList.add('my-sessions-container');
   
-        var nameElement = createElement('h3');
-        nameElement.textContent = session.name;
+        var nameElement = document.createElement('h3');
+        nameElement.textContent = "User: " + session.name;
         nameElement.classList.add('session-text');
         sessionElement.appendChild(nameElement);
   
-        var dateElement = createElement('p');
-        dateElement.textContent = 'Date: ' + session.date;
+        var dateElement = document.createElement('p');
+        dateElement.textContent = 'Date: ' + session.taskDescription;
         dateElement.classList.add('session-text');
         sessionElement.appendChild(dateElement);
   
-        var durationElement = createElement('p');
+        var durationElement = document.createElement('p');
         durationElement.textContent = 'Duration: ' + session.duration;
         durationElement.classList.add('session-text');
         sessionElement.appendChild(durationElement);
   
-        
         document.body.appendChild(sessionElement);
       });
     });
   });
 
+//fix this part
 let elements = {
     page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
     min: document.querySelector("#minutes"),
@@ -334,6 +530,7 @@ function convertFromSeconds() {
     elements.min.textContent = minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
 }
-  
+
+
   
   
