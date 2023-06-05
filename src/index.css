@@ -91,7 +91,8 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-      flex: 2.8;
+    width: 221px;
+      /* flex: 2.8; */
     text-align: center;
   }
   #song_time_range{
@@ -102,20 +103,26 @@ nav{
     accent-color: #6e60ba;
    
   }
-  #volume_container{
-      flex:1;
+  /* #volume_container{
+    width: 93.57px;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   #volume_icon_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-right: 5px; 
       color:white;
+    width: 23.57px;   
   }
   #volume_range_container{
     display:flex;
     justify-content: center;
     align-items: center;
+    width: 60px;
+    padding-left: 5px;
   }
   #volume_range{
     width: 70px;
@@ -167,6 +174,9 @@ nav{
   #expand_btn:hover #expand_btn_content{
     color: #c3afc7d9;
   }
+  #expand_btn:hover #expand_btn_content2{
+    color: #c3afc7d9;
+  }
   #expand_btn:active{
     transform: scale(0.9);
   }
@@ -194,13 +204,35 @@ nav{
     background-color: transparent;
     border: none;
     cursor: pointer;
-      color:white;
+    color:white;
+    padding-bottom: 5px;
   }
   #expand_btn_content{
     font-size: 45px;
   }
+  #expand_btn_content2{
+    font-size: 45px;
+  }
   #volume_icon{
     font-size: 20px;
+  }
+  #volume_icon:hover{
+    color: #b2afb4;
+    cursor: pointer;
+  }
+  #volume_icon2{
+    font-size: 20px;
+  }
+  #volume_icon2:hover{
+    color: #b2afb4;
+    cursor: pointer;
+  }
+  #volume_icon3{
+    font-size: 20px;
+  }
+  #volume_icon3:hover{
+    color: #b2afb4;
+    cursor: pointer;
   }
   #prev_btn i ,#next_btn i{
       font-size:22px
@@ -232,10 +264,10 @@ nav{
   #p_currently_playing{
     width: 100%;
     margin: 0;
-    margin-bottom: 4px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: white;
-    /* font-family: fantasy; */
+    /* margin-bottom: 4px; */
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    /* color: white; */
+    font-family:fantasy;
   }
   #loop_btn_container{
     padding-right: 27px;
@@ -246,59 +278,91 @@ nav{
   }
   
   #loop_btn{
-    background-color: #00000054;
+    background-color: #00000096;
+    border-radius: 7px;
+    /* background-color: #00000054; */
     border: black;
     color: white;
     width: 66px;
+    height: 22px;
+    font-size: 13px;
   }
   #loop_btn:hover{
+    /* color: rgb(197, 168, 224); */
     color: rgb(199, 199, 199);
   }
   #loop_btn:active{
-    color: rgb(122, 78, 137);
+    color: rgb(255, 255, 255);
   }
   
-  #shuffle_btn:hover{
+  #autoplay_btn:hover{
     color: rgb(199, 199, 199);
   }
-  #shuffle_btn:active{
-    color: rgb(142, 123, 148);
+  #autoplay_btn:active{
+    color: rgb(255, 255, 255);
   }
-  #shuffle_btn_container{
+  #autoplay_btn_container{
     padding-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
   }
-  #shuffle_btn{
-    background-color: #00000054;
+  #autoplay_btn{
+    background-color: #00000096;
+    border-radius: 7px;
+    /* background-color: #00000054; */
     border: black;
     color: white;
     width: 82px;
+    height: 22px;
+    font-size: 13px;
   }
   #currently_playing_container{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    background: linear-gradient(180deg, rgba(86,59,129,1) 0%, rgb(94 44 107) 74%, rgb(98 41 157) 100%);
+    /* background: linear-gradient(180deg, rgba(86,59,129,1) 0%, rgb(94 44 107) 74%, rgb(98 41 157) 100%); */
     display: flex;
-    flex:0.5;
+    /* flex:0.5; */
     justify-content: space-between;
-    /* background: azure; */
+    background: azure;
   }
   #current_song_container{
     flex:1.2;
     display: flex;
-    background-color: #7c60ba;
+    /* background-color: #7c60ba; */
     /* background: indigo; */
   }
+  
+  #current_song_img{
+    background-color: #ffffff;
+    flex: 1;
+  }
+  
+  #song_img{
+    width: 84px;
+    height: 71.31px;
+    /* height: 68.31px; */
+  }
+
+  #current_song_name{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: linear-gradient(0deg, rgb(52 32 76) 0%, rgb(106 70 127) 100%);
+    /* background-color: #7c60ba; */
+    flex:4
+  }
+
+
   #up_next_container{
     justify-content: space-between;
     display: flex;
-    flex:0.5;
+    /* flex:0.5; */
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    background: linear-gradient(180deg, rgba(86,59,129,1) 0%, rgb(94 44 107) 74%, rgb(98 41 157) 100%);
+    background: azure;
+    /* background: linear-gradient(180deg, rgba(86,59,129,1) 0%, rgb(94 44 107) 74%, rgb(98 41 157) 100%); */
   }
   #up_next_Text_container{
     display: flex;
@@ -310,14 +374,16 @@ nav{
   #p_up_next{
     width: 100%;
     margin: 0;
-    margin-bottom: 4px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: white;
+    /* margin-bottom: 4px; */
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    font-family: fantasy;
+    /* color: white; */
   }
   #up_next_songs_container{
     overflow: hidden;
     overflow-y: scroll;
-    background-color: #7c60ba;
+    /* background-color: #7c60ba; */
+    background: linear-gradient(0deg, rgb(52 32 76) 0%, rgb(106 70 127) 100%);
     border-radius: 0px 0px 11px 11px;
     flex: 3;
   }
@@ -338,13 +404,37 @@ nav{
   }
   #up_next_songs_container::-webkit-scrollbar-thumb{
     border-radius: 10px;
-    background-color: #783c75;
+    /* background-color: #783c75; */
+    background-color: #e7e7e7;
+    border: 1px solid rgb(64, 64, 64);
   }
   #up_next_songs_container::-webkit-scrollbar-thumb:hover{
-    background-color: #6e3789;
+    background-color: #b0b0b0;
   }
-  .test1{
+  .songs_div{
+    align-items: center;
+    justify-content: center;
+    display: flex;
     height: 67.56px;
     border-bottom: 1px solid black;
+    border-right:  1px solid black;
+    /* background: linear-gradient(0deg, rgb(52 32 76) 0%, rgb(106 70 127) 100%); */
+  }
+  #p_song_name_id{
+    text-align: center;
+    margin: 0;
+    color:#ffffff;
+    font-size: 20px;
+    padding-bottom: 7px;
+  }
+
+  .p_song_name_class{
+    padding-bottom: 7px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    color:#ffffff;
+    font-size: 20px;
   }
   /* End of Music Player */

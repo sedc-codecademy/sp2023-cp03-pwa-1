@@ -7,19 +7,23 @@ let sliders = document.querySelector("#scale");
 let noteBtn = document.querySelector("#note_btn");
 let mainButtons = document.querySelector("#main_controls_container");
 let mp = document.querySelector("#music_player_container");
+let loopBtn = document.querySelector("#loop_btn");
+let songsContainer = document.querySelector("#songs_container")
+let pSongNameClass = document.querySelector("#p_song_name_class")
 //MP Click Events
 noteBtn.addEventListener("click", function(){
     if(mainButtons.style.display == "flex"){
-        console.log("if");
+        // console.log("if");
         mainButtons.style.display = "none";
         bottomContainer.style.display = "none";
         noteIconContainer.style.borderRadius = "40px";
         noteIconContainer.style.borderRight = "none";
         mp.style.width = "113.25px"
+        expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>'
         // mp.style.width = "9.35%";
     
     } else{
-        console.log("else");
+        // console.log("else");
         mainButtons.style.display = "flex";
         noteIconContainer.style.borderRadius = "11px 0px 0px 11px";
         noteIconContainer.style.borderRight = "1px solid black";
@@ -33,10 +37,13 @@ expandBtn.addEventListener("click", function(){
         bottomContainer.style.display = "none";
         noteIconContainer.style.borderRadius = "11px 0px 0px 11px";
         scale.style.borderRadius = "0px 0px 11px 0px";
+        expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>';
     } else{
         bottomContainer.style.display = "flex";
         noteIconContainer.style.borderRadius = "11px 0px 0px 0px";
         scale.style.borderRadius = "0px 0px 0px 0px";
+        expandBtn.innerHTML = '<i class="fa fa-caret-up" aria-hidden="true" id="expand_btn_content2"></i>';
+        // expandBtn.innerHTML = '<i class="fa fa-sort-asc" aria-hidden="true" id="expand_btn_content2"></i>';
     }
 });  
 //MP
@@ -45,6 +52,10 @@ let playBtn = document.querySelector("#play_btn");
 let nextBtn = document.querySelector("#next_btn");
 let volumeRange = document.querySelector("#volume_range");
 let songRange = document.querySelector("#song_time_range");
+let volumeIconContainer = document.querySelector("#volume_icon_container");
+let songImg = document.querySelector("#song_img");
+let currentSongName = document.querySelector("#p_song_name_id");
+let autoBtn = document.querySelector("#autoplay_btn");
 
 let timer;
 let autoplay = 0;
@@ -60,34 +71,50 @@ let track = document.createElement("audio");
 // src\music
 let all_songs = [
     {
-        name:"first song",
-        path: "../src/music/Hyakke - Kagefumi.mp3"
+        name:"Hyakke - Kagefumi",
+        path: "../src/music/Hyakke - Kagefumi.mp3",
+        img: "../src/img/a3145441046_5.jpg"
     },
     {
-        name:"second song",
-        path: "../src/music/Nujabes - Aruarian dance.mp3"
+        name:"Nujabes - Aruarian dance",
+        path: "../src/music/Nujabes - Aruarian dance.mp3",
+        img: "../src/img/artworks-000010633044-0pecn0-t500x500.jpg"
     },
     {
-        name:"third song",
-        path: "../src/music/Peacock Affect - Who Cares If You Exist (eisu remix).mp3"
+        name:"Peacock Affect - Who Cares If You Exist (eisu remix)",
+        path: "../src/music/Peacock Affect - Who Cares If You Exist (eisu remix).mp3",
+        img: "../src/img/artworks-000092286828-3ghmnl-t240x240.jpg"
+    },
+    {
+        name:"KOAN Sound - Lost In Thought",
+        path: "../src/music/KOAN Sound - Lost In Thought.mp3",
+        img: "../src/img/artworks-dblZ961xJv8n-0-t500x500.jpg"
     }
 ];
 //fncs
 // fnc load track
 function load_track(index){
-    //reset_slider();
+    reset_slider();
     track.src = all_songs[index].path
+    songImg.src = all_songs[index].img
+    currentSongName.innerHTML = all_songs[index].name
     track.load();
     timer = setInterval(range_slider, 1000);
 }
 load_track(index_no);
 
-//checking if the song is playing
+//reset song
+function reset_slider(){
+    songRange.value = 0;
+}
 
+//checking if the song is playing
 function justplay(){
     if(playing_song == false)
     {
         playsong();
+    }else if(songRange.value == 100){
+        playsong();                
     }else{
         pausesong();
     }
@@ -112,10 +139,12 @@ function next_song(){
     if(index_no < all_songs.length - 1){
         index_no += 1;
         load_track(index_no);
+        addSongs()
         playsong();
     }else{
         index_no = 0;
         load_track(index_no);
+        addSongs()
         playsong();
     }
 }
@@ -125,24 +154,76 @@ function previous_song(){
     if(index_no > 0){
         index_no -= 1;
         load_track(index_no);
+        addSongs()
         playsong(); 
     } else{
         index_no = all_songs.length - 1;
         load_track(index_no);
+        addSongs()
         playsong();
     }
 }
-
+let muted = false;
 //change volume
 function volume_change(){
    track.volume = volumeRange.value / 100;
+   console.log("track.volume = " + track.volume);
+   console.log("volumeRange.value = " + volumeRange.value);
+   if(volumeRange.value > 50){
+    volumeIconContainer.innerHTML = '<i class="fa fa-volume-up" aria-hidden="true" id="volume_icon" onclick="mute_sound()"></i>'
+    muted = false;
+   }
+   if(volumeRange.value > 0 && volumeRange.value <= 50){
+    volumeIconContainer.innerHTML = '<i class="fa fa-volume-down" aria-hidden="true" id="volume_icon2" onclick="mute_sound()"></i>';
+    muted = false;
+   }
+   if(volumeRange.value == 0){
+    volumeIconContainer.innerHTML = '<i class="fa fa-volume-off" aria-hidden="true" id="volume_icon3" onclick="mute_sound()"></i>';
+    muted = true;
+    console.log("muted = " + muted);
+   } 
 }
 
+
+
 // change song duration
-//function change_duration(){
+function change_duration(){
     //songRange.value = track.duartion * (songRange.value / 100);
-    //track.currentTime = songRange.value;
-//}
+    track.currentTime = songRange.value * (track.duration / 100);
+    console.log(songRange.value);
+}
+
+//autoplay
+function autoplay_switch(){
+    if(autoplay == 1){
+        autoplay = 0;
+        autoBtn.style.backgroundColor = "rgba(0, 0, 0, 0.59)";
+        // autoBtn.innerHTML = '<i class="fa fa-play-circle" aria-hidden="true"></i>'
+        autoBtn.innerHTML = 'Auto Play <i class="fa fa-pause-circle" aria-hidden="true" id="autoplayIcon"></i>'
+        // console.log("autoplay off");
+    }else{
+        autoplay = 1;
+        autoBtn.style.backgroundColor = "rgb(56, 12, 64)";
+        // autoBtn.innerHTML = '<i class="fa fa-pause-circle" aria-hidden="true" id="autoplayIcon"></i>'
+        autoBtn.innerHTML = 'Auto Play <i class="fa fa-play-circle" aria-hidden="true"></i>'
+        // console.log("autoplay on");
+    }
+}
+
+
+
+// function range_slider(){
+//     let position = 0;
+//     if(!isNaN(track.duration)){
+//         position = track.currentTime * (100 / track.duration);
+//         songRange.value = position
+
+//     }
+//     if(track.ended){
+//         playBtn.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+//         index_no += 1;
+//     }
+// }
 
 function range_slider(){
     let position = 0;
@@ -151,10 +232,121 @@ function range_slider(){
         songRange.value = position
 
     }
+    if(track.ended){
+        playBtn.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+        if(index_no == all_songs.length - 1){
+            index_no = 0;
+        } else{
+            index_no += 1;
+        }
+        if(autoplay == 1){
+            load_track(index_no);
+            addSongs();
+            playsong();
+
+        }
+    }
 }
 
-// reset song range
-//function reset_slider(){
- //   songRange.value = 0;
-//}
+let trackVolume = 0;
+let volumeRangeValue = 0;
+function mute_sound(){
+    if(track.volume > 0 && muted == false){
+        trackVolume = track.volume;
+        volumeRangeValue = volumeRange.value;
+        console.log("trackVolume = " + trackVolume);
+        console.log("volumeRangeValue = " + volumeRangeValue);
+	    track.volume = 0;
+	    volumeRange.value = 0;
+        volumeIconContainer.innerHTML = '<i class="fa fa-volume-off" aria-hidden="true" id="volume_icon3" onclick="mute_sound()"></i>';
+        setTimeout(() => {
+            muted = true;
+            console.log("muted = " + muted);
+        }, 20);
+    }
+    if(track.volume == 0 && muted == true){
+        track.volume = trackVolume;
+        volumeRange.value = volumeRangeValue
+        if(volumeRangeValue > 0 && volumeRangeValue <= 50){
+            volumeIconContainer.innerHTML = '<i class="fa fa-volume-down" aria-hidden="true" id="volume_icon2" onclick="mute_sound()"></i>';
+        }
+        if(volumeRangeValue > 50){
+            volumeIconContainer.innerHTML = '<i class="fa fa-volume-up" aria-hidden="true" id="volume_icon" onclick="mute_sound()"></i>'
+        } 
+        muted = false
+        console.log("muted = " + muted);
+    }
+}
+
+let loopSong = false;
+
+function loop_song(){
+   if(loopSong == false){
+    track.loop = true;
+    console.log("track.loop = " + track.loop);
+    loopBtn.style.backgroundColor = "rgb(56 12 64)";
+    setTimeout(() =>{
+      loopSong = true;
+    },20)
+   }
+   if(loopSong == true){
+    track.loop = false;
+    loopSong = false;
+    loopBtn.style.backgroundColor = "#00000096";
+    console.log("track.loop = " + track.loop);
+   }
+}
+
+function addSongs(){
+    songsContainer.innerHTML = "";
+    let i = 0;
+    let x = 1;
+    while (i <= index_no){
+        if(i == index_no){
+            if(i == 0){
+                for(let i = 1; i < all_songs.length; i++){
+                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[i].name}</p></div>`;
+                }
+            }
+            if(i == all_songs.length - 1){
+                for(let i = 0; i < all_songs.length - 1; i++){
+                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[i].name}</p></div>`;
+                }
+            }
+            if(i > 0 && i < all_songs.length - 1){
+                x = index_no;
+                y = index_no;
+                while(x < all_songs.length - 1){
+                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
+                    x++;
+                }
+                if(x = all_songs.length - 1){
+                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[0].name}</p></div>`;
+                    x = 0;
+                }
+                while(x < y - 1){
+                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
+                    x++;
+                }
+            }
+        }
+        i++
+    }
+}
+
+addSongs();
+
+// function addSongs(){
+//     songsContainer.innerHTML = "";
+//     for(let i = 0; i < all_songs.length; i++)
+//     {
+//         if(all_songs[i].name != currentSongName.innerHTML){
+//             songsContainer.innerHTML += `<div class="songs_div">${all_songs[i].name}</div>`
+//         }
+//     }
+// }
+// addSongs();
+//<i class="fa fa-bars" aria-hidden="true"></i>
 //End of Music Player
+
+
