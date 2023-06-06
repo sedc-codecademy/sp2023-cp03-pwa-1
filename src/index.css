@@ -51,13 +51,13 @@ nav{
   
 
 .taskbar {
-    text-align: right;
-    padding: 10px;
     color:white;
+    display: inline-block;
 }
 
 .add-task-btn {
     margin-left: 10px;
+    float: right;
 }
 
 .modal {

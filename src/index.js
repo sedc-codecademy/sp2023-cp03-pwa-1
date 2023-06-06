@@ -2,31 +2,10 @@ var i = 0;
 
 const settingsButtons = {
     DELETE: "Delete",
-    EDIT: "Edit",
-    START: "Start"
+    COMPLETE: "Complete"
 };
 
-openModal = function (li) {
-    if (li) {
-        i = li.id
-        const taskName = li.querySelector('#taskName');
-        const taskDesc = li.querySelector('#taskDesc');
-        const taskEst = li.querySelector('#taskEst');
-        var taskDescText = "";
-        const bottomText = li.querySelector('#bottom');
-        if(bottomText)
-        {
-            taskDescText = bottomText.innerHTML
-        }
-        else
-        {
-            taskDescText = taskDesc.innerHTML;
-        }
-
-        document.getElementById("taskName").value = taskName.innerHTML;
-        document.getElementById("taskDesc").value = taskDescText;
-        document.getElementById("taskEst").value = taskEst.innerHTML;
-    }
+openModal = function () {
     document.getElementById("modal").style.display = "block";
     sessions.push({name: currentUser, taskDescription:"Testing" , duration: "testing hours"})
 }
@@ -62,7 +41,7 @@ addTask = function () {
         fullTooltipText.innerHTML = text;
         fullTooltipText.classList = "tooltip-text";
         fullTooltipText.id = "bottom";
-        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30);
+        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30) + "...";
         div.appendChild(fullTooltipText);
     }
     let hr = document.createElement("hr");
@@ -73,7 +52,6 @@ addTask = function () {
     
     let li = createElement("li");
     let taskList = document.getElementById("taskList");
-    removeItemIfExists(taskList);
 
     li.id = i++;
     li.appendChild(div);
@@ -86,15 +64,6 @@ addTask = function () {
         toggleAddButton(true);
 
     }
-}
-
-removeItemIfExists = function (list) {
-    const listItems = list.querySelectorAll("li");
-    listItems.forEach((item) => {
-        if (item.id == i) {
-            list.removeChild(item);
-        }
-    });
 }
 
 createElement = function (element, input) {
@@ -113,12 +82,10 @@ appendSettingsButton = function (li) {
     buttonDiv.classList = "actionButtons";
 
     const button1 = addButton(li, settingsButtons.DELETE);
-    const button2 = addButton(li, settingsButtons.EDIT);
-    const button3 = addButton(li, settingsButtons.START);
+    const button2 = addButton(li, settingsButtons.COMPLETE);
 
     buttonDiv.appendChild(button1);
     buttonDiv.appendChild(button2);
-    buttonDiv.appendChild(button3);
 
     li.appendChild(buttonDiv);
 }
@@ -129,8 +96,7 @@ addButton = function (li, buttonType) {
     button.innerHTML = buttonType;
   
     const buttonClass = buttonType.toLowerCase() === "delete" ?
-        "btn btn-outline-danger" : buttonType.toLowerCase() === "edit" ?
-            "btn btn-outline-warning" : "btn btn-outline-success";
+        "btn btn-outline-danger" : "btn btn-outline-primary";
 
     button.classList = buttonClass;
 
@@ -147,19 +113,23 @@ addButton = function (li, buttonType) {
                 toggleAddButton(false);
             }
             break;
-        case settingsButtons.EDIT:
+       
+        case settingsButtons.COMPLETE:
             button.onclick = function () {
-                openModal(li);
-            }
-            break;
-        case settingsButtons.START:
-            button.onclick = function () {
-                //TODO: implement start logic
+                let checkImg = createElement("img");
+                checkImg.src = "./images/complete-icon.jpg";
+                checkImg.style.height = "30px";
+                checkImg.style.width = "30px";
+                checkImg.style.marginBottom = "50px";
+                li.prepend(checkImg);
+                li.querySelector("#taskName").style.textDecoration = "line-through";
+                button.style.display = "none";
             }
             break;
     }
     return button;
 }
+
 
 displayList = function (toggle) {
     if (toggle) {
@@ -170,8 +140,6 @@ displayList = function (toggle) {
 }
 
 toggleAddButton = function (toggle) {
-    let taskList = document.getElementById("taskList");
-
     document.getElementById("taskBtn").disabled = toggle;
 }
 
