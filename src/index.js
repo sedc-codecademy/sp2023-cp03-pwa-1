@@ -181,6 +181,7 @@ function removeReminder(id) {
     renderReminders(reminders)
 }
 
+
 //REMINDER ITEM
 function createReminderItem(reminder) {
     let reminderItem = document.createElement('div');
@@ -210,7 +211,7 @@ function createReminderItem(reminder) {
     editButton.className = 'editButton';
     editButton.addEventListener('click', function () {
         createEditButtonForModal(reminderItem, reminder)
-        
+
     });
 
     // Append delete and edit buttons to the reminder item
@@ -222,40 +223,46 @@ function createReminderItem(reminder) {
     return reminderItem;
 }
 
-function createEditButtonForModal(reminderItem, editReminder){
+//button edit on reminders to display modal and functionality
+function createEditButtonForModal(reminderItem, editReminder) {
     //Modal for edit button on reminders
-    console.log("ReminderItem", reminderItem)
-    console.log("Parametar", editReminder)
-    reminders.map(reminder => console.log("Reminders",reminder))
     let modalEdit = document.getElementById('editModal');
     modalEdit.style.display = 'block'
 
 
-    let reminderToUpdate = reminders.find(el => el.id == editReminder.id)
-    console.log("ReminderToUpdate",reminderToUpdate)
+    let reminderToUpdate = reminders.find(el => el.id === editReminder.id)
+    let updatedTextInput = document.getElementById('updatedText');
+    updatedTextInput.value = reminderToUpdate.value;
 
     let saveButton = document.getElementById('saveButton');
     saveButton.addEventListener('click', function () {
-        let updatedTextInput = document.getElementById('updatedText');
         let updatedTextValue = updatedTextInput.value;
-        console.log("UpdatedTextValue", updatedTextValue);
 
         // Update the reminder text if user provides valid input
-        if (updatedTextValue !== null && updatedTextValue !== '') {
+        if (reminderToUpdate !== null && updatedTextValue !== null && updatedTextValue !== '') {
             reminderToUpdate.value = updatedTextValue;
             let headerText = reminderItem.querySelector('.headerText');
             headerText.textContent = reminderToUpdate.value;
-            console.log("HeaderText",headerText.textContent);
         }
 
 
         modalEdit.style.display = 'none';
-            reminderToUpdate = "";
+        reminderToUpdate = null;
     });
 
     let cancelButton = document.getElementById("cancelButton");
     cancelButton.addEventListener('click', function () {
         modalEdit.style.display = 'none';
+    })
+}
+
+//all reminders to show
+function renderReminders() {
+    document.getElementById('reminderList').innerHTML = ""
+    reminders.forEach(el => {
+        var reminderItem = createReminderItem(el);
+        let reminderList = document.getElementById('reminderList');
+        reminderList.appendChild(reminderItem);
     })
 }
 
@@ -275,6 +282,10 @@ document.getElementById('reminderForm').addEventListener('submit', function (eve
     }
 
 });
+//Set/Edit reminder button 
+let addMenuReminder = document.getElementById('addMenuReminder');
+//View reminders button
+let displayMainDiv = document.getElementById('displayReminders');
 // Add the reminder item to the list
 let allReminders = document.getElementById("allReminders");
 allReminders.addEventListener("click", () => {
@@ -284,17 +295,8 @@ allReminders.addEventListener("click", () => {
 })
 let reminderList = document.getElementById('reminderList');
 
-function renderReminders() {
-    document.getElementById('reminderList').innerHTML = ""
-    reminders.forEach(el => {
-        var reminderItem = createReminderItem(el);
-        let reminderList = document.getElementById('reminderList');
-        reminderList.appendChild(reminderItem);
-    })
-}
 
-let addMenuReminder = document.getElementById('addMenuReminder');
-let displayMainDiv = document.getElementById('displayReminders');
+
 //Add Menu reminder to show main div when the button from mennu is clicked
 addMenuReminder.addEventListener('click', function () {
     displayMainDiv.style.display = "block"
