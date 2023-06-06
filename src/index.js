@@ -209,33 +209,8 @@ function createReminderItem(reminder) {
     editButton.textContent = 'Edit';
     editButton.className = 'editButton';
     editButton.addEventListener('click', function () {
-        //Modal for edit button on reminders
-        let modalEdit = document.getElementById('editModal');
-        modalEdit.style.display = 'block'
-        let updatedText = document.getElementById('updatedText');
-        updatedText = "";
-
-
-        let saveButton = document.getElementById('saveButton');
-        saveButton.addEventListener('click', function () {
-            let updatedTextInput = document.getElementById('updatedText');
-            let updatedText = updatedTextInput.value;
-
-            // Update the reminder text if user provides valid input
-            if (updatedText !== null && updatedText !== '') {
-                reminder.value = updatedText;
-                headerText.textContent = updatedText;
-            }
-
-
-            let modalEdit = document.getElementById('editModal');
-            modalEdit.style.display = 'none';
-        });
-
-        let cancelButton = document.getElementById("cancelButton");
-        cancelButton.addEventListener('click', function () {
-            modalEdit.style.display = 'none';
-        })
+        createEditButtonForModal(reminderItem, reminder)
+        
     });
 
     // Append delete and edit buttons to the reminder item
@@ -245,6 +220,43 @@ function createReminderItem(reminder) {
     reminderItem.appendChild(buttonDivForReminders)
 
     return reminderItem;
+}
+
+function createEditButtonForModal(reminderItem, editReminder){
+    //Modal for edit button on reminders
+    console.log("ReminderItem", reminderItem)
+    console.log("Parametar", editReminder)
+    reminders.map(reminder => console.log("Reminders",reminder))
+    let modalEdit = document.getElementById('editModal');
+    modalEdit.style.display = 'block'
+
+
+    let reminderToUpdate = reminders.find(el => el.id == editReminder.id)
+    console.log("ReminderToUpdate",reminderToUpdate)
+
+    let saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function () {
+        let updatedTextInput = document.getElementById('updatedText');
+        let updatedTextValue = updatedTextInput.value;
+        console.log("UpdatedTextValue", updatedTextValue);
+
+        // Update the reminder text if user provides valid input
+        if (updatedTextValue !== null && updatedTextValue !== '') {
+            reminderToUpdate.value = updatedTextValue;
+            let headerText = reminderItem.querySelector('.headerText');
+            headerText.textContent = reminderToUpdate.value;
+            console.log("HeaderText",headerText.textContent);
+        }
+
+
+        modalEdit.style.display = 'none';
+            reminderToUpdate = "";
+    });
+
+    let cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener('click', function () {
+        modalEdit.style.display = 'none';
+    })
 }
 
 
