@@ -130,14 +130,14 @@ function pausesong(){
 //next song
 function next_song(){
     if(index_no < all_songs.length - 1){
-        index_no += 1;
+        index_no = parseInt(index_no) + 1;
         load_track(index_no);
-        addSongs()
+        addSongs();
         playsong();
     }else{
         index_no = 0;
         load_track(index_no);
-        addSongs()
+        addSongs();
         playsong();
     }
 }
@@ -268,33 +268,41 @@ function addSongs(){
         if(i == index_no){
             if(i == 0){
                 for(let i = 1; i < all_songs.length; i++){
-                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[i].name}</p></div>`;
+                    songsContainer.innerHTML += `<div id="${i}" class="songs_div" onclick="idTarget(event)"><p id="${i}" class="p_song_name_class">${all_songs[i].name}</p></div>`;
                 }
             }
             if(i == all_songs.length - 1){
                 for(let i = 0; i < all_songs.length - 1; i++){
-                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[i].name}</p></div>`;
+                    songsContainer.innerHTML += `<div id="${i}" class="songs_div" onclick="idTarget(event)"><p id="${i}" class="p_song_name_class">${all_songs[i].name}</p></div>`;
                 }
             }
             if(i > 0 && i < all_songs.length - 1){
-                x = index_no;
-                y = index_no;
+                x = parseInt(index_no);
+                y = parseInt(index_no);
                 while(x < all_songs.length - 1){
-                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
+                    songsContainer.innerHTML += `<div id="${x + 1}" class="songs_div" onclick="idTarget(event)"><p id="${x + 1}" class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
                     x++;
                 }
                 if(x = all_songs.length - 1){
-                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[0].name}</p></div>`;
+                    songsContainer.innerHTML += `<div id="0" class="songs_div" onclick="idTarget(event)"><p id="0" class="p_song_name_class">${all_songs[0].name}</p></div>`;
                     x = 0;
                 }
                 while(x < y - 1){
-                    songsContainer.innerHTML += `<div class="songs_div"><p class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
+                    songsContainer.innerHTML += `<div id="${x + 1}" class="songs_div" onclick="idTarget(event)"><p id="${x + 1}" class="p_song_name_class">${all_songs[x + 1].name}</p></div>`;
                     x++;
                 }
             }
         }
         i++
     }
+}
+
+//event id target
+function idTarget(event){
+    index_no = event.target.id;
+    load_track(index_no);
+    addSongs();
+    playsong();
 }
 
 addSongs();

@@ -374,6 +374,7 @@ font-size:32px
   background-color: #b0b0b0;
 }
 .songs_div{
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -398,4 +399,6 @@ font-size:32px
   color:#ffffff;
   font-size: 20px;
 }
+
+
   /* End of Music Player */
