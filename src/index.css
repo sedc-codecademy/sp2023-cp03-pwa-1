@@ -325,7 +325,8 @@ nav{
 #music_player_container{
   position: absolute;
   left: 20px;
-  top: 75px;
+  top: 170px;
+  /* bottom: 640px; */
   /* margin-top: 70px; */
   display: inline-block;
   width: 113.25px;
@@ -355,6 +356,7 @@ nav{
   color:white;
 }
 #note_btn{
+  width: 100px;
   cursor: pointer;
   color: white;
   border: none;
@@ -388,7 +390,9 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
+  /*  */
   width: 221px;
+  /* flex: 11; */
   text-align: center;
 }
 #song_time_range{
@@ -402,19 +406,23 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 5px; 
+  /* padding-right: 5px;  */
   color:white;
-  width: 23.57px;   
+   /*  */
+  width: 23.57px;
+  /* flex: 1;    */
 }
 #volume_range_container{
   display:flex;
   justify-content: center;
   align-items: center;
+   /*  */
   width: 60px;
   padding-left: 5px;
+  /* flex:1; */
 }
 #volume_range{
-  width: 70px;
+  width: 60px;
   height:4px;
   outline: none;
   cursor: pointer;
@@ -617,8 +625,10 @@ font-size:32px
 }
   
 #song_img{
-  width: 84px;
+  /* width: 84px;*/
   height: 71.31px;
+  width: 100%;
+  /* height: 100%; */
 }
 
 #current_song_name{
@@ -681,6 +691,7 @@ font-size:32px
   background-color: #b0b0b0;
 }
 .songs_div{
+  padding: 0 20px 0 20px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -714,4 +725,14 @@ font-size:32px
 .songs_div:active{
   background-color: #5b26733f;
 }
+
+/* Smartphones (portrait and landscape) ----------- */
+/* @media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  #music_player_container{
+  }
+  #top_part_container{
+  }
+} */
   /* End of Music Player */
