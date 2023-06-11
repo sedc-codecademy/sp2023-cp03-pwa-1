@@ -271,17 +271,13 @@ let volumeIconContainer = document.querySelector("#volume_icon_container");
 let songImg = document.querySelector("#song_img");
 let currentSongName = document.querySelector("#p_song_name_id");
 let autoBtn = document.querySelector("#autoplay_btn");
+let main
 //MP Click Events
 let screenRatio = window.devicePixelRatio || 1;
 let screenWidth = screen.width * screenRatio;
 let screenHeight = screen.height * screenRatio;
 let navbar = document.querySelector("#navBarMain");
 let songTimerContainer = document.querySelector("#song_time_container");
-console.log(`navbar = ${navbar.offsetWidth}`);
-console.log(screenWidth);
-console.log(typeof(screenWidth));
-console.log(screenHeight);
-console.log(typeof(screenHeight));
 noteBtn.addEventListener("click", function(){
     if(mainButtons.style.display == "flex"){
         mp.style.position = "absolute";
@@ -290,29 +286,40 @@ noteBtn.addEventListener("click", function(){
         noteIconContainer.style.borderRadius = "40px";
         noteIconContainer.style.borderRight = "none";
         expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>'
-        console.log("width > 480px");
         mp.style.width = "113.25px"
         mp.style.left = "20px"; 
         mp.style.top = "170px";
+        mp.style.padding = "0px";
 
     
     } else{
-        console.log("else");
         mainButtons.style.display = "flex";
         noteIconContainer.style.borderRadius = "11px 0px 0px 11px";
         noteIconContainer.style.borderRight = "1px solid black";
-        console.log("width > 480px");
         mp.style.width = "420px"
+        songImg.style.height = "71.31px";
         if(window.matchMedia("(max-width: 1200px)").matches){
-            console.log("else-if");
             mp.style.top = "auto";
             mp.style.bottom = "0px";
             mp.style.left = "0px";
             mp.style.width = "100%";
+            mp.style.padding = "0px 300px 0px 300px";
             songTimerContainer.style.width = "72%";
             volumeIconContainer.style.width = "5%";
             volumeRangeContainer.style.width = "25%";
             volumeRange.style.width = "80%";
+            songImg.style.height = "71.31px";
+            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 986px)").matches){
+                mp.style.padding = "0px 200px 0px 200px";
+                songImg.style.height = "71.31px";
+                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 785px)").matches){
+                    mp.style.padding = "0px";
+                    songImg.style.height = "71.31px";
+                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
+                        songImg.style.height = "100%";
+                    }
+                }
+            }
         }
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             mp.style.position = "fixed";
@@ -325,6 +332,7 @@ noteBtn.addEventListener("click", function(){
             volumeRangeContainer.style.width = "25%";
             volumeRange.style.width = "100px";
             songImg.style.width = "100%"
+            mp.style.padding = "0px";
 
         }
     }
@@ -498,7 +506,7 @@ function range_slider(){
         if(index_no == all_songs.length - 1){
             index_no = 0;
         } else{
-            index_no += 1;
+            index_no = parseInt(index_no) + 1;
         }
         if(autoplay == 1){
             load_track(index_no);
@@ -602,22 +610,34 @@ addSongs();
 //match media
 window.addEventListener("resize", function(){
     if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1200px)").matches){
-        if(window.matchMedia("(max-width: 1200px)").matches){
-            console.log("size");
             mp.style.top = "auto";
             mp.style.bottom = "0px";
-            mp.style.left = "0px";
             mp.style.width = "100%";
+            mp.style.padding = "0px 300px 0px 300px";
+            mp.style.left = "0px";
             songTimerContainer.style.width = "72%";
             volumeIconContainer.style.width = "5%";
             volumeRangeContainer.style.width = "25%";
             volumeRange.style.width = "80%";
-        }
+            songImg.style.height = "71.31px";
+            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 986px)").matches){
+                mp.style.padding = "0px 200px 0px 200px";
+                songImg.style.height = "71.31px";
+                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 785px)").matches){
+                    mp.style.padding = "0px";
+                    songImg.style.height = "71.31px";
+                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
+                        songImg.style.height = "100%";
+                    }
+                }
+            }
     }
     if(mainButtons.style.display == "flex" && window.matchMedia("(min-width: 1201px)").matches){
         mp.style.width = "420px"
         mp.style.left = "20px"; 
         mp.style.top = "170px";
+        mp.style.padding = "0px";
+        songImg.style.height = "71.31px";
     }
 });
 //End of Music Player
