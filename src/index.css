@@ -358,3 +358,214 @@ button {
 	position:relative;
 	top:1px;
 }
+
+/* Reminders */
+
+#displayReminders {
+    margin-top: 100px !important;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    width: 600px !important;
+    border: 0.5px solid lightgray;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    display: none;
+}
+
+#reminderHeader {
+    text-align: center;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    color: white;
+}
+
+#reminderForm {
+    text-align: center;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+#reminderInput[type="text"] {
+    padding: 5px;
+    width: 200px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    color: white;
+}
+
+#addReminder {
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+#addReminder:hover {
+    background-color: #25a511;
+}
+
+#reminderList {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reminderDivElement:hover {
+    box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2)
+}
+
+.reminderDivElement {
+    width: 50%;
+    height: 50%;
+    margin: 5px;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.headerText {
+    display: flex;
+    white-space: normal;
+    align-items: center;
+    color: white;
+}
+
+.deleteButton {
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.deleteButton:hover {
+    background-color: rgb(158, 39, 34);
+}
+
+.deleteButton:active {
+    background-color: rgb(158, 39, 34);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.editButton {
+    background-color: yellow;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.editButton:hover {
+    background-color: rgb(139, 139, 16);
+}
+
+.editButton:active {
+    background-color: rgb(139, 139, 16);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.modalReminder {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 619px;
+    height: 387px;
+    overflow: auto;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    border: 1px solid #888;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+.mainDivForModalReminder{
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    margin: 15% auto;
+    padding: 20px;
+    width: 600px;
+    height: 200px;
+    display: grid;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    justify-items: stretch;
+    color: white;
+}
+
+#saveButton{
+    background-color: green;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+}
+#saveButton:hover{
+    background-color: #27d110;
+}
+
+#cancelButton{
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+}
+
+#cancelButton:hover {
+    background-color: rgb(158, 39, 34);
+}

@@ -500,5 +500,134 @@ function convertFromSeconds() {
 }
 
 
+
+// REMINDERS
+let reminders = [];
+
+function removeReminder(id) {
+    reminders = reminders.filter(el => el.id !== id)
+    renderReminders(reminders)
+}
+
+
+//REMINDER ITEM
+function createReminderItem(reminder) {
+    let reminderItem = document.createElement('div');
+    reminderItem.className = 'reminderDivElement';
+    reminderItem.attributes.id = reminder.id;
+
+
+    let buttonDivForReminders = document.createElement('div');
+    buttonDivForReminders.className = 'buttonDiv';
+
+    //text in the reminder
+    let headerText = document.createElement('h3');
+    headerText.className = 'headerText';
+    headerText.textContent = reminder.value;
+
+    //delete button
+    let deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'deleteButton';
+    deleteButton.addEventListener('click', function () {
+        removeReminder(reminder.id)
+    });
+
+    //edit button
+    let editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.className = 'editButton';
+    editButton.addEventListener('click', function () {
+        createEditButtonForModal(reminderItem, reminder)
+
+    });
+
+    // Append delete and edit buttons to the reminder item
+    reminderItem.appendChild(headerText);
+    buttonDivForReminders.appendChild(editButton);
+    buttonDivForReminders.appendChild(deleteButton);
+    reminderItem.appendChild(buttonDivForReminders)
+
+    return reminderItem;
+}
+
+//button edit on reminders to display modal and functionality
+function createEditButtonForModal(reminderItem, editReminder) {
+    //Modal for edit button on reminders
+    let modalEdit = document.getElementById('editModal');
+    modalEdit.style.display = 'block'
+
+
+    let reminderToUpdate = reminders.find(el => el.id === editReminder.id)
+    let updatedTextInput = document.getElementById('updatedText');
+    updatedTextInput.value = reminderToUpdate.value;
+
+    let saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function () {
+        let updatedTextValue = updatedTextInput.value;
+
+        // Update the reminder text if user provides valid input
+        if (reminderToUpdate !== null && updatedTextValue !== null && updatedTextValue !== '') {
+            reminderToUpdate.value = updatedTextValue;
+            let headerText = reminderItem.querySelector('.headerText');
+            headerText.textContent = reminderToUpdate.value;
+        }
+
+
+        modalEdit.style.display = 'none';
+        reminderToUpdate = null;
+    });
+
+    let cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener('click', function () {
+        modalEdit.style.display = 'none';
+    })
+}
+
+//all reminders to show
+function renderReminders() {
+    document.getElementById('reminderList').innerHTML = ""
+    reminders.forEach(el => {
+        var reminderItem = createReminderItem(el);
+        let reminderList = document.getElementById('reminderList');
+        reminderList.appendChild(reminderItem);
+    })
+}
+
+
+// Event listener for form submission
+document.getElementById('reminderForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    //reminder input value
+    let reminderInput = document.getElementById('reminderInput');
+    let reminderText = reminderInput.value;
+
+    if (reminderText !== '') {
+        reminders.push({ id: Math.random().toString(), value: reminderText })
+        // Clear the input
+        reminderInput.value = '';
+    }
+
+});
+//Set/Edit reminder button 
+let addMenuReminder = document.getElementById('addMenuReminder');
+//View reminders button
+let displayMainDiv = document.getElementById('displayReminders');
+// Add the reminder item to the list
+let allReminders = document.getElementById("allReminders");
+allReminders.addEventListener("click", () => {
+    renderReminders()
+    displayMainDiv.style.display = "none";
+    reminderList.style.display = 'flex';
+})
+let reminderList = document.getElementById('reminderList');
+//Add Menu reminder to show main div when the button from mennu is clicked
+addMenuReminder.addEventListener('click', function () {
+    displayMainDiv.style.display = "block"
+    reminderList.style.display = 'none';
+});
+
+
   
   
