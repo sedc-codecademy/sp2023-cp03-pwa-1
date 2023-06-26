@@ -2,32 +2,12 @@ var i = 0;
 
 const settingsButtons = {
     DELETE: "Delete",
-    EDIT: "Edit",
-    START: "Start"
+    COMPLETE: "Complete"
 };
 
-openModal = function (li) {
-    if (li) {
-        i = li.id
-        const taskName = li.querySelector('#taskName');
-        const taskDesc = li.querySelector('#taskDesc');
-        const taskEst = li.querySelector('#taskEst');
-        var taskDescText = "";
-        const bottomText = li.querySelector('#bottom');
-        if(bottomText)
-        {
-            taskDescText = bottomText.innerHTML
-        }
-        else
-        {
-            taskDescText = taskDesc.innerHTML;
-        }
-
-        document.getElementById("taskName").value = taskName.innerHTML;
-        document.getElementById("taskDesc").value = taskDescText;
-        document.getElementById("taskEst").value = taskEst.innerHTML;
-    }
+openModal = function () {
     document.getElementById("modal").style.display = "block";
+    sessions.push({name: currentUser, taskDescription:"Testing" , duration: "testing hours"})
 }
 
 closeModal = function () {
@@ -61,7 +41,7 @@ addTask = function () {
         fullTooltipText.innerHTML = text;
         fullTooltipText.classList = "tooltip-text";
         fullTooltipText.id = "bottom";
-        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30);
+        spanDesc.innerHTML = spanDesc.innerHTML.substr(0, 30) + "...";
         div.appendChild(fullTooltipText);
     }
     let hr = document.createElement("hr");
@@ -72,7 +52,6 @@ addTask = function () {
     
     let li = createElement("li");
     let taskList = document.getElementById("taskList");
-    removeItemIfExists(taskList);
 
     li.id = i++;
     li.appendChild(div);
@@ -85,15 +64,6 @@ addTask = function () {
         toggleAddButton(true);
 
     }
-}
-
-removeItemIfExists = function (list) {
-    const listItems = list.querySelectorAll("li");
-    listItems.forEach((item) => {
-        if (item.id == i) {
-            list.removeChild(item);
-        }
-    });
 }
 
 createElement = function (element, input) {
@@ -112,12 +82,10 @@ appendSettingsButton = function (li) {
     buttonDiv.classList = "actionButtons";
 
     const button1 = addButton(li, settingsButtons.DELETE);
-    const button2 = addButton(li, settingsButtons.EDIT);
-    const button3 = addButton(li, settingsButtons.START);
+    const button2 = addButton(li, settingsButtons.COMPLETE);
 
     buttonDiv.appendChild(button1);
     buttonDiv.appendChild(button2);
-    buttonDiv.appendChild(button3);
 
     li.appendChild(buttonDiv);
 }
@@ -128,8 +96,7 @@ addButton = function (li, buttonType) {
     button.innerHTML = buttonType;
   
     const buttonClass = buttonType.toLowerCase() === "delete" ?
-        "btn btn-outline-danger" : buttonType.toLowerCase() === "edit" ?
-            "btn btn-outline-warning" : "btn btn-outline-success";
+        "btn btn-outline-danger" : "btn btn-outline-primary";
 
     button.classList = buttonClass;
 
@@ -146,19 +113,23 @@ addButton = function (li, buttonType) {
                 toggleAddButton(false);
             }
             break;
-        case settingsButtons.EDIT:
+       
+        case settingsButtons.COMPLETE:
             button.onclick = function () {
-                openModal(li);
-            }
-            break;
-        case settingsButtons.START:
-            button.onclick = function () {
-                //TODO: implement start logic
+                let checkImg = createElement("img");
+                checkImg.src = "./images/complete-icon.jpg";
+                checkImg.style.height = "30px";
+                checkImg.style.width = "30px";
+                checkImg.style.marginBottom = "50px";
+                li.prepend(checkImg);
+                li.querySelector("#taskName").style.textDecoration = "line-through";
+                button.style.display = "none";
             }
             break;
     }
     return button;
 }
+
 
 displayList = function (toggle) {
     if (toggle) {
@@ -169,13 +140,298 @@ displayList = function (toggle) {
 }
 
 toggleAddButton = function (toggle) {
-    let taskList = document.getElementById("taskList");
-
     document.getElementById("taskBtn").disabled = toggle;
 }
 
-//#region  timer 
+let mpl = document.querySelector("#music_player_container");
+mpl.style.display = "none";
+var currentUser = null;
+//Nikola logic for login to store pass/user
+document.addEventListener('DOMContentLoaded', function() {
+    var innerLoginButton = document.getElementById('innerLoginButton');
+    innerLoginButton.addEventListener('click', function() {
+        
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        if(!matchCredentials(username, password)){
+            showWrongLoginMessage();
+            hideBootstrapModal('loginModal');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            return;
+        }
+        
+        
 
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+
+        hideBootstrapModal('loginModal');
+        hideButtonById('loginButton');
+        hideButtonById('registerButton');
+        showButtonById('signOutButton');
+        showButtonById('navBarButton');
+        showButtonById('timerDisplay');
+        showButtonById('taskBar');
+        currentUser = username;
+        mpl.style.display = "inline-block";
+    });
+});
+
+//sign out button logic
+document.addEventListener('DOMContentLoaded',function(){
+    var signOutButton = document.getElementById('signOutButton');
+    signOutButton.addEventListener('click',function(){
+        showButtonById('loginButton');
+        showButtonById('registerButton');
+        hideButtonById('signOutButton');
+        hideButtonById('navBarButton');
+        hideButtonById('timerDisplay');
+        hideButtonById('taskBar');
+        signOutMessage();
+        mpl.style.display = "none";
+    })
+})
+
+function hideBootstrapModal(modalId) {
+    var modalElement = document.getElementById(modalId);
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+}
+
+function hideButtonById(button){
+    var hideButton = document.getElementById(button);
+    hideButton.style.display = 'none';
+}
+function showButtonById(button){
+    var showButton = document.getElementById(button);
+    showButton.style.display = 'block';
+}
+
+//test credentials
+var testCredentials = [
+    {username: 'Nikola', password: 'password123',firstName: 'Nikola', lastName: 'Jovanovski'},
+    {username: 'Aleksandar', password: 'password456',firstName: 'Aleksandar', lastName: 'Aleksandrovski'},
+    {username: 'Kire', password: 'password789',firstName: 'Kire', lastName: 'Kirovski'},
+    {username: 'Albert', password: 'password012',firstName: 'Albert', lastName: 'Albertovski'},
+]
+
+function matchCredentials(username, password){
+var matchedUser = null;
+var j = 0;
+
+    for(j = 0; j < testCredentials.length; j++){
+        if(testCredentials[j].username === username && testCredentials[j].password === password){
+            matchedUser = testCredentials[j];       
+            break;
+        }
+    }
+    if (matchedUser) {
+        console.log('Matched credentials:', "Full Name: "+ matchedUser.firstName,matchedUser.lastName,"Username: " + matchedUser.username, "Password: " + matchedUser.password);
+        return true;
+    } 
+    else {
+        console.log('Error: Incorrect username or password');
+        return false;
+    }
+}
+//Nikola logic for register
+document.addEventListener('DOMContentLoaded', function() {
+    var innerRegisterButton = document.getElementById('innerRegisterButton');
+    innerRegisterButton.addEventListener('click',function(){
+
+        var firstName = document.getElementById('firstname').value;
+        var lastName = document.getElementById('lastname').value;
+        var username = document.getElementById('registerUsername').value;
+        var password = document.getElementById('registerPassword').value;
+        var confirmPassword = document.getElementById('confirmpassword').value;
+        
+        if(!isFirstNameFilled(firstName)){
+            return;
+        }
+        if(!isLastNameFilled(lastName)){
+            return;
+        }
+        if(!isUserAvailable(username)){
+            return;
+        }
+        if(!isPasswordLongEnough(password)){
+            return;
+        }
+        if(!isPasswordMatching(password,confirmPassword)){
+            return;
+        }
+        addUserToCredentials(firstName,lastName,username,password);
+    })
+})
+
+function isFirstNameFilled(firstName) {
+    firstName = firstName.trim();
+  
+    if (typeof firstName !== 'string') {
+      alert("Please enter a valid first name!");
+      document.getElementById('firstname').value = '';
+      return false;
+    }
+  
+    if (firstName === '' || firstName.length < 2) {
+      alert("First name must be at least 2 characters long!");
+      document.getElementById('firstname').value = '';
+      return false;
+    }
+  
+    if (!/^[a-zA-Z '-]+$/.test(firstName)) {
+        alert("First name must contain only letters, spaces, hyphens, and apostrophes!");
+        document.getElementById('firstname').value = '';
+        return false;
+    } 
+    return true;
+}
+function isLastNameFilled(lastName){
+    lastName = lastName.trim();
+
+    if (typeof lastName !== 'string') {
+        alert("Please enter a valid Last name!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+
+    if (lastName === '' || lastName.length < 2) {
+        alert("Last name must be at least 2 characters long!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+
+    if (!/^[a-zA-Z '-]+$/.test(lastName)) {
+        alert("Last name must contain only letters, spaces, hyphens, and apostrophes!");
+        document.getElementById('lastname').value = '';
+        return false;
+    }
+    return true;
+}
+
+function isUserAvailable(username) {
+    for (var i = 0; i < testCredentials.length; i++) {
+        if (testCredentials[i].username === username) {
+            alert("That username is already in use!");
+            document.getElementById('registerUsername').value = '';
+            return false;
+        }
+    }
+    return true;
+}
+
+function isPasswordLongEnough(password){
+    if(password.length < 5){
+        alert("Your password is not long enough!");
+        return false;
+    }
+    return true;
+}
+function isPasswordMatching(password,confirmPassword){
+    console.log(password + "hi from isPasswordMatching")
+    console.log(confirmPassword)
+
+    if(password !== confirmPassword){
+        alert("Passwords do not match!");
+        document.getElementById('registerPassword').value = '';
+        document.getElementById('confirmpassword').value = '';
+        return false;
+    }
+    return true;
+}
+
+function addUserToCredentials(firstName, lastName, username, password) {
+    var newUser = {
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    };
+  
+    testCredentials.push(newUser);
+  
+    showSignupSuccessMessage();
+    document.getElementById('firstname').value = '';
+    document.getElementById('lastname').value = '';
+    document.getElementById('registerUsername').value = '';
+    document.getElementById('registerPassword').value = '';
+    document.getElementById('confirmpassword').value = '';
+    hideBootstrapModal('registerModal');
+}
+//wrong login message
+
+function showWrongLoginMessage(){
+    var wrongLoginToast = new bootstrap.Toast(document.getElementById('wrongLoginToast'));
+    wrongLoginToast.show();
+
+    setTimeout(function() {
+        wrongLoginToast.hide();
+    }, 5000);
+}
+
+//sucessful signout message
+
+function signOutMessage(){
+    var signOutMessage = new bootstrap.Toast(document.getElementById('signOutToast'));
+    signOutMessage.show();
+
+    setTimeout(function(){
+        signOutMessage.hide();
+    }, 5000);
+}
+
+//user already exits message
+
+function showSignupSuccessMessage() {
+    var signupToast = new bootstrap.Toast(document.getElementById('signupToast'));
+    signupToast.show();
+
+    setTimeout(function() {
+        signupToast.hide();
+    }, 5000);
+}
+
+
+
+  
+//Nikola logic for sessions
+
+//test sessions
+var sessions = [];
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var currentSessionBtn = document.getElementById('allSessionsBtn');
+  
+    currentSessionBtn.addEventListener('click', function() {
+      sessions.forEach(function(session) {
+        var sessionElement = document.createElement('div');
+        sessionElement.classList.add('session');
+        sessionElement.classList.add('my-sessions-container');
+  
+        var nameElement = document.createElement('h3');
+        nameElement.textContent = "User: " + session.name;
+        nameElement.classList.add('session-text');
+        sessionElement.appendChild(nameElement);
+  
+        var dateElement = document.createElement('p');
+        dateElement.textContent = 'Date: ' + session.taskDescription;
+        dateElement.classList.add('session-text');
+        sessionElement.appendChild(dateElement);
+  
+        var durationElement = document.createElement('p');
+        durationElement.textContent = 'Duration: ' + session.duration;
+        durationElement.classList.add('session-text');
+        sessionElement.appendChild(durationElement);
+  
+        document.body.appendChild(sessionElement);
+      });
+    });
+  });
+
+//fix this part
 let elements = {
     page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
     min: document.querySelector("#minutes"),
@@ -247,7 +503,134 @@ function convertFromSeconds() {
     elements.sec.textContent = seconds.toString().padStart(2, 0);
 }
 
-//#endregion
+
+
+// REMINDERS
+let reminders = [];
+
+function removeReminder(id) {
+    reminders = reminders.filter(el => el.id !== id)
+    renderReminders(reminders)
+}
+
+
+//REMINDER ITEM
+function createReminderItem(reminder) {
+    let reminderItem = document.createElement('div');
+    reminderItem.className = 'reminderDivElement';
+    reminderItem.attributes.id = reminder.id;
+
+
+    let buttonDivForReminders = document.createElement('div');
+    buttonDivForReminders.className = 'buttonDiv';
+
+    //text in the reminder
+    let headerText = document.createElement('h3');
+    headerText.className = 'headerText';
+    headerText.textContent = reminder.value;
+
+    //delete button
+    let deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'deleteButton';
+    deleteButton.addEventListener('click', function () {
+        removeReminder(reminder.id)
+    });
+
+    //edit button
+    let editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.className = 'editButton';
+    editButton.addEventListener('click', function () {
+        createEditButtonForModal(reminderItem, reminder)
+
+    });
+
+    // Append delete and edit buttons to the reminder item
+    reminderItem.appendChild(headerText);
+    buttonDivForReminders.appendChild(editButton);
+    buttonDivForReminders.appendChild(deleteButton);
+    reminderItem.appendChild(buttonDivForReminders)
+
+    return reminderItem;
+}
+
+//button edit on reminders to display modal and functionality
+function createEditButtonForModal(reminderItem, editReminder) {
+    //Modal for edit button on reminders
+    let modalEdit = document.getElementById('editModal');
+    modalEdit.style.display = 'block'
+
+
+    let reminderToUpdate = reminders.find(el => el.id === editReminder.id)
+    let updatedTextInput = document.getElementById('updatedText');
+    updatedTextInput.value = reminderToUpdate.value;
+
+    let saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function () {
+        let updatedTextValue = updatedTextInput.value;
+
+        // Update the reminder text if user provides valid input
+        if (reminderToUpdate !== null && updatedTextValue !== null && updatedTextValue !== '') {
+            reminderToUpdate.value = updatedTextValue;
+            let headerText = reminderItem.querySelector('.headerText');
+            headerText.textContent = reminderToUpdate.value;
+        }
+
+
+        modalEdit.style.display = 'none';
+        reminderToUpdate = null;
+    });
+
+    let cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener('click', function () {
+        modalEdit.style.display = 'none';
+    })
+}
+
+//all reminders to show
+function renderReminders() {
+    document.getElementById('reminderList').innerHTML = ""
+    reminders.forEach(el => {
+        var reminderItem = createReminderItem(el);
+        let reminderList = document.getElementById('reminderList');
+        reminderList.appendChild(reminderItem);
+    })
+}
+
+
+// Event listener for form submission
+document.getElementById('reminderForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    //reminder input value
+    let reminderInput = document.getElementById('reminderInput');
+    let reminderText = reminderInput.value;
+
+    if (reminderText !== '') {
+        reminders.push({ id: Math.random().toString(), value: reminderText })
+        // Clear the input
+        reminderInput.value = '';
+    }
+
+});
+//Set/Edit reminder button 
+let addMenuReminder = document.getElementById('addMenuReminder');
+//View reminders button
+let displayMainDiv = document.getElementById('displayReminders');
+// Add the reminder item to the list
+let allReminders = document.getElementById("allReminders");
+allReminders.addEventListener("click", () => {
+    renderReminders()
+    displayMainDiv.style.display = "none";
+    reminderList.style.display = 'flex';
+})
+let reminderList = document.getElementById('reminderList');
+//Add Menu reminder to show main div when the button from mennu is clicked
+addMenuReminder.addEventListener('click', function () {
+    displayMainDiv.style.display = "block"
+    reminderList.style.display = 'none';
+});
 
 //Start of Music Player
 //MP DOM
@@ -271,18 +654,25 @@ let volumeIconContainer = document.querySelector("#volume_icon_container");
 let songImg = document.querySelector("#song_img");
 let currentSongName = document.querySelector("#p_song_name_id");
 let autoBtn = document.querySelector("#autoplay_btn");
-let main
-//MP Click Events
-let screenRatio = window.devicePixelRatio || 1;
-let screenWidth = screen.width * screenRatio;
-let screenHeight = screen.height * screenRatio;
+// let main
 let navbar = document.querySelector("#navBarMain");
 let songTimerContainer = document.querySelector("#song_time_container");
+//MP Click Events
+
 noteBtn.addEventListener("click", function(){
     if(mainButtons.style.display == "flex"){
         mp.style.position = "absolute";
+        mainButtons.style.opacity = "0";
         mainButtons.style.display = "none";
         bottomContainer.style.display = "none";
+        noteIconContainer.style.opacity = "0";
+        setTimeout(() => {
+            noteIconContainer.style.transition = "opacity .2s";
+            noteIconContainer.style.opacity = "1";
+            setTimeout(() => {
+                noteIconContainer.style.transition = "none";               
+            }, 210);
+        }, 200);
         noteIconContainer.style.borderRadius = "40px";
         noteIconContainer.style.borderRight = "none";
         expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>'
@@ -291,48 +681,69 @@ noteBtn.addEventListener("click", function(){
         mp.style.top = "170px";
         mp.style.padding = "0px";
 
+
     
     } else{
+        volumeRangeContainer.style.paddingLeft = "0px"
         mainButtons.style.display = "flex";
+        mainButtons.style.opacity = "0";
+        noteIconContainer.style.opacity = "0";
+        setTimeout(() => {
+            noteIconContainer.style.transition = "opacity .2s";
+            mainButtons.style.opacity = "1";
+            noteIconContainer.style.opacity = "1";
+            setTimeout(() => {
+                noteIconContainer.style.transition = "none";               
+            }, 210);
+        }, 200);
         noteIconContainer.style.borderRadius = "11px 0px 0px 11px";
         noteIconContainer.style.borderRight = "1px solid black";
         mp.style.width = "420px"
         songImg.style.height = "71.31px";
-        if(window.matchMedia("(max-width: 1200px)").matches){
+        if(window.matchMedia("(max-width: 1500px)").matches){
+            volumeRangeContainer.style.paddingLeft = "0px";
+            volumeRange.style.width = "100px";
+            mp.style.position = "fixed";
             mp.style.top = "auto";
             mp.style.bottom = "0px";
             mp.style.left = "0px";
             mp.style.width = "100%";
-            mp.style.padding = "0px 300px 0px 300px";
+            mp.style.padding = "0px 400px 0px 400px";
             songTimerContainer.style.width = "72%";
             volumeIconContainer.style.width = "5%";
             volumeRangeContainer.style.width = "25%";
             volumeRange.style.width = "80%";
             songImg.style.height = "71.31px";
-            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 986px)").matches){
-                mp.style.padding = "0px 200px 0px 200px";
+            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1300px)").matches){
+                mp.style.padding = "0px 300px 0px 300px";
                 songImg.style.height = "71.31px";
-                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 785px)").matches){
-                    mp.style.padding = "0px";
-                    songImg.style.height = "71.31px";
-                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
-                        songImg.style.height = "100%";
+                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1100px)").matches){
+                    mp.style.padding = "0px 250px 0px 250px";
+                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 900px)").matches){
+                        mp.style.padding = "0px 200px 0px 200px";
+                        if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 900px)").matches){
+                            mp.style.padding = "0px";
+                            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
+                            songImg.style.height = "100%";
+                            }
+                        }
                     }
                 }
             }
+            
         }
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             mp.style.position = "fixed";
             mp.style.top = "auto";
             mp.style.left = "0px";
-            mp.style.width = navbar.offsetWidth + "px";
+            mp.style.width = "100%"
             mp.style.bottom = "0px";
             songTimerContainer.style.width = "72%";
             volumeIconContainer.style.width = "5%";
-            volumeRangeContainer.style.width = "25%";
-            volumeRange.style.width = "100px";
+            volumeRangeContainer.style.width = "20%";
+            volumeRangeContainer.style.paddingLeft = "11px"
+            volumeRange.style.width = "100%";
             songImg.style.width = "100%"
-            mp.style.padding = "0px";
 
         }
     }
@@ -407,6 +818,7 @@ function justplay(){
     {
         playsong();
     }else if(songRange.value == 100){
+        songRange.value = 0;
         playsong();                
     }else{
         pausesong();
@@ -609,30 +1021,37 @@ addSongs();
 
 //match media
 window.addEventListener("resize", function(){
-    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1200px)").matches){
+    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1500px)").matches){
+            mp.style.position = "fixed";
             mp.style.top = "auto";
             mp.style.bottom = "0px";
             mp.style.width = "100%";
-            mp.style.padding = "0px 300px 0px 300px";
+            mp.style.padding = "0px 400px 0px 400px";
             mp.style.left = "0px";
             songTimerContainer.style.width = "72%";
             volumeIconContainer.style.width = "5%";
             volumeRangeContainer.style.width = "25%";
             volumeRange.style.width = "80%";
             songImg.style.height = "71.31px";
-            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 986px)").matches){
-                mp.style.padding = "0px 200px 0px 200px";
+            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1300px)").matches){
+                mp.style.padding = "0px 300px 0px 300px";
                 songImg.style.height = "71.31px";
-                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 785px)").matches){
-                    mp.style.padding = "0px";
-                    songImg.style.height = "71.31px";
-                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
-                        songImg.style.height = "100%";
+                if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 1100px)").matches){
+                    mp.style.padding = "0px 250px 0px 250px";
+                    if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 900px)").matches){
+                        mp.style.padding = "0px 200px 0px 200px";
+                        if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 790px)").matches){
+                            mp.style.padding = "0px";
+                            if(mainButtons.style.display == "flex" && window.matchMedia("(max-width: 313px)").matches){
+                                songImg.style.height = "100%";
+                            }
+                        }
                     }
                 }
             }
     }
-    if(mainButtons.style.display == "flex" && window.matchMedia("(min-width: 1201px)").matches){
+    if(mainButtons.style.display == "flex" && window.matchMedia("(min-width: 1501px)").matches){
+        mp.style.position = "absolute";
         mp.style.width = "420px"
         mp.style.left = "20px"; 
         mp.style.top = "170px";

@@ -1,323 +1,573 @@
 nav{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  border: 1px solid black;
+  border-top:none;
+  border-left: none;
+  border-right: none;
 }
 #body {
-    background-color: rgb(17, 54, 3);
-    font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  font-family: Arial, Helvetica, sans-serif;
 }
 .offcanvas-body{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 .nav-link.dropdown-toggle:hover
 {
-    background-color: rgb(17, 54, 3);
+  background-color: #134434;
 }
 .nav-link.dropdown-toggle:focus,
 .nav-link.dropdown-toggle:active
 {
-    background-color: rgb(17, 54, 3);
+  background-color: #134434;
 }
 .dropdown-menu.dropdown-menu-dark{
-    background-color: rgb(17, 54, 3);
-}
-.offcanvas-header{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+  background-color: #134434;
 }
 
-.container {
-    margin-top: 100px !important;
-    background-color: rgb(17, 54, 3);
-    width: 600px !important;
-    border: 0.5px solid lightgray;
-    border-radius: 5px !important;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    /* Add this line */
+
+.offcanvas-header{
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}  
+#titleNavBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+
+.my-sessions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  padding: 5px;
+  width: fit-content;
+  background-color:#134434 ;
+}
+
 
 .taskbar {
-    text-align: right;
-    padding: 10px;
-    color:white;
+  color:white;
+  display: inline-block;
 }
 
 .add-task-btn {
-    margin-left: 10px;
+  margin-left: 10px;
+  float: right;
 }
 
 .modal {
-    display: none;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    position: fixed;
-    background-color: rgb(0, 0, 0, 0.7);
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+
+/*TODO Make the session look like Kire's taskbar border/style*/
+.session {
+  font-family: Helvetica, sans-serif;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.session-text {
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  justify-content: flex-start;
+  display: flex;
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+}
+
+.session h3 {
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.session p {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+
+.btn-outline-success{
+  color: white !important;
+}
+.modal-content-new-task {
+  width: 25% !important;
+  background-color: #134434;
 }
 
 .modal-content {
-    font-family: Helvetica, sans-serif;
-    border-radius: 10px;
-    color: white !important;
-    background-color: rgb(17, 54, 3) !important;
-    margin: 15% auto;
-    padding: 25px;
-    border: 1px solid black;
-    width: 25% !important;
+  font-family: Helvetica, sans-serif;
+  border-radius: 10px;
+  color: white !important;
+  background-color: #134434 !important;
+  margin: 15% auto;
+  padding: 25px;
+  border: 1px solid black;
 }
 
-    .modal-content > h1 {
-        text-align: center;
-        margin-bottom: 25px;
-    }
+  .modal-content > h1 {
+      text-align: center;
+      margin-bottom: 25px;
+  }
 
+  .modal-content input {
+      border: 1px solid black;
+      margin-top: px;
+      margin-bottom: 5px;
+      justify-content: flex-end;
+      display: flex;
+      height:30px;;
+      width: 250px;
+      border-radius: 5px;
+  }
 
-    .modal-content input {
-        border: 1px solid black;
-        margin-top: px;
-        margin-bottom: 5px;
-        justify-content: flex-end;
-        display: flex;
-        height:30px;;
-        width: 250px;
-        border-radius: 5px;
-    }
-
-    .modal-content label {
-        font-size: 16px;
-        font-family: Verdana, sans-serif;
-    }
+  .modal-content label {
+      font-size: 16px;
+      font-family: Verdana, sans-serif;
+  }
 
 .modal-buttons {
-    margin-top: 20px;
-    text-align: right;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    display: inherit;
-    font-family: Verdana, sans-serif;
+  margin-top: 20px;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: inherit;
+  font-family: Verdana, sans-serif;
 }
 .modal-buttons button {
-    width: 150px;
+  width: 150px;
 }
 
 
 .settingsButton {
-    line-height: 40px;
-    transition: ease-in-out .2s;
-    padding: 0 16px;
+  line-height: 40px;
+  transition: ease-in-out .2s;
+  padding: 0 16px;
 }
 
 #tasks {
-    display: none;
-    margin-top: 10px;
+  display: none;
+  margin-top: 10px;
 }
 
 #taskList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 .actionButtons {
-    display:flex;
-    width: 200px;
-    justify-content: space-between;
-    align-items: center;
+  display:flex;
+  width: 200px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #taskList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    width: 35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 35rem;
 }
-    #taskList li span {
-        margin-right: 10px;
-        color: white;
-        max-width: 300px;
-    }
-    #taskList li p {
-        width: -moz-fit-content;
-        width: fit-content;
-    }
+  #taskList li span {
+      margin-right: 10px;
+      color: white;
+      max-width: 300px;
+  }
+  #taskList li p {
+      width: -moz-fit-content;
+      width: fit-content;
+  }
 
 #taskName {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #taskDesc {
-    color: lightgray;
-    font-size: 15px;
-    text-align:left !important;
+  color: lightgray;
+  font-size: 15px;
+  text-align:left !important;
 }
 
 #taskEst {
-    font-weight: bold;
-    font-size:17px;
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 3px 7px 3px 7px;
+  font-weight: bold;
+  font-size:17px;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 3px 7px 3px 7px;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .tooltip-text {
-    visibility: hidden;
-    position: absolute;
-    z-index: 1;
-    width: 400px;
-    color: white;
-    font-size: 15px;
-    background-color: #121a21;
-    border-radius: 10px;
-    padding: 10px 15px 10px 15px;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 400px;
+  color: white;
+  font-size: 15px;
+  background-color: #121a21;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
 }
 
 .hover-text:hover .tooltip-text {
-    visibility: visible;
+  visibility: visible;
 }
 
 .hover-text {
-    position: relative;
-    display: inline-block;
-    font-family: Arial;
+  position: relative;
+  display: inline-block;
+  font-family: Arial;
 }
 .modal-backdrop {
-    z-index: 9 !important;
+  z-index: 9 !important;
 }
 
-nav{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
+.centered-container {
+  margin-top: 100px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#body {
-    background-color: rgb(17, 54, 3);
+
+
+.container {
+  margin-top: 100px !important;
+  background-color: #134434;
+  width: 600px !important;
+  border: 0.5px solid lightgray;
+  border-radius: 5px !important;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto; 
 }
-.offcanvas-body{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
-}
-.nav-link.dropdown-toggle:hover
-{
-    background-color: rgb(17, 54, 3);
-}
-.nav-link.dropdown-toggle:focus,
-.nav-link.dropdown-toggle:active
-{
-    background-color: rgb(17, 54, 3);
-}
-.dropdown-menu.dropdown-menu-dark{
-    background-color: rgb(17, 54, 3);
-}
-.offcanvas-header{
-    background-image: linear-gradient(120deg, #000000 0%, #0c5900 100%);
-}
-.modal {
-    z-index: 9999;
-}
-.buttons {
-    display: flex;
-    justify-content: space-evenly;
-    
-}
-.mainOutput{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 600px;
-    height: 300px;
-    margin: auto;
-    
-}
+
 /* timer */
+#timerDisplay {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #134434;
+}
+
 #workSession{
-    box-shadow: 7px 7px 8px -2px #1c1d1b;
-	background-color:transparent;
-	border-radius:5px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:17px;
-	padding:9px 36px;
-	text-decoration:none;
-    border:#0c5900
+  box-shadow: 7px 7px 8px -2px #1c1d1b;
+background-color:transparent;
+border-radius:5px;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-size:17px;
+padding:9px 36px;
+text-decoration:none;
+  border:#ffffff
 }
 #workSession:hover {
-	background-color:transparent;
+background-color:transparent;
 }
 #workSession:active {
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
 }
 #shortBreakSession{
-    box-shadow: 0px 7px 8px 1px #1c1d1b;
-	background-color:transparent;
-	border-radius:5px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:17px;
-	padding:9px 36px;
-	text-decoration:none;
-    border:#0c5900
+  box-shadow: 0px 7px 8px 1px #1c1d1b;
+background-color:transparent;
+border-radius:5px;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-size:17px;
+padding:9px 36px;
+text-decoration:none;
+  border:#0c5900
 }
 #shortBreakSession:hover {
-	background-color:transparent;
+background-color:transparent;
 }
 #shortBreakSession:active {
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
 }
 #longBreakSession {
-    box-shadow: -7px 7px 8px -2px #1c1d1b;
-	background-color:transparent;
-	border-radius:5px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:17px;
-	padding:9px 36px;
-	text-decoration:none;
-    border:#0c5900
+  box-shadow: -7px 7px 8px -2px #1c1d1b;
+background-color:transparent;
+border-radius:5px;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-size:17px;
+padding:9px 36px;
+text-decoration:none;
+  border:#0c5900
 }
 #longBreakSession:hover {
-	background-color:transparent;
+background-color:transparent;
 }
 #longBreakSession:active {
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
 }
 .timer {
-    font-size: 100px;
-    text-align: center;
-    color:#ffffff;
+  font-size: 100px;
+  text-align: center;
+  color:#ffffff;
 }
 #start {
-    box-shadow: 0px 7px 8px 1px #1c1d1b;
-	background-color:transparent;
-	border-radius:5px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:17px;
-	padding:9px 36px;
-	text-decoration:none;
-    border:#0c5900;
-    width: 180px;
-    text-align: center;
-    align-self: center;
+  box-shadow: 0px 7px 8px 1px #1c1d1b;
+  background-color: transparent;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  padding: 9px 36px;
+  text-decoration: none;
+  border: #0c5900;
+  width: 180px;
+  margin: 0 auto;
 }
+
 #start:hover {
-	background-color:transparent;
+background-color:transparent;
 }
 #start:active {
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
+}
+
+/* Reminders */
+
+#displayReminders {
+  margin-top: 100px !important;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  width: 600px !important;
+  border: 0.5px solid lightgray;
+  border-radius: 5px !important;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  display: none;
+}
+
+#reminderHeader {
+  text-align: center;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  color: white;
+}
+
+#reminderForm {
+  text-align: center;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+#reminderInput[type="text"] {
+  padding: 5px;
+  width: 200px;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  color: white;
+}
+
+#addReminder {
+  padding: 5px 10px;
+  margin: 5px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: solid black;
+  border: none;
+  border-radius: 15px;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+#addReminder:hover {
+  background-color: #25a511;
+}
+
+#reminderList {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reminderDivElement:hover {
+  box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2)
+}
+
+.reminderDivElement {
+  width: 50%;
+  height: 50%;
+  margin: 5px;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.headerText {
+  display: flex;
+  white-space: normal;
+  align-items: center;
+  color: white;
+}
+
+.deleteButton {
+  background-color: red;
+  margin: 5px;
+  margin: 5px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: solid black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.deleteButton:hover {
+  background-color: rgb(158, 39, 34);
+}
+
+.deleteButton:active {
+  background-color: rgb(158, 39, 34);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.editButton {
+  background-color: yellow;
+  margin: 5px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: solid black;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.editButton:hover {
+  background-color: rgb(139, 139, 16);
+}
+
+.editButton:active {
+  background-color: rgb(139, 139, 16);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.modalReminder {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 619px;
+  height: 387px;
+  overflow: auto;
+  margin: auto;
+  transform: translate(-50%, -50%);
+  border: 1px solid #888;
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+}
+
+.mainDivForModalReminder{
+  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+  margin: 15% auto;
+  padding: 20px;
+  width: 600px;
+  height: 200px;
+  display: grid;
+  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  justify-items: stretch;
+  color: white;
+}
+
+#saveButton{
+  background-color: green;
+  margin: 5px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: solid black;
+  border: none;
+  border-radius: 15px;
+}
+#saveButton:hover{
+  background-color: #27d110;
+}
+
+#cancelButton{
+  background-color: red;
+  margin: 5px;
+  margin: 5px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: solid black;
+  border: none;
+  border-radius: 15px;
+}
+
+#cancelButton:hover {
+  background-color: rgb(158, 39, 34);
 }
 
 /* Start of Music Player */
@@ -339,13 +589,12 @@ nav{
   display: flex;
 }
 #main_icon_container{
+  opacity: 1;
   justify-content: center;
   align-items: center;
   flex: 1;
   display: flex;
   border-radius: 40px;
-  /* background: rgb(86,59,129); */
-  /* background: linear-gradient(180deg, rgba(86,59,129,1) 0%, rgb(94 44 107) 74%, rgb(98 41 157) 100%); */
   background: linear-gradient(180deg, rgba(86,59,129,0.9) 0%, rgba(94,44,107,0.9) 74%, rgba(98,41,157, 0.9) 1000%);
 }
 #main_icon_child{
@@ -364,9 +613,11 @@ nav{
   font-size: 60px;
 }
 #main_controls_container{
+  opacity: 0;
   flex: 3;
   display: none;
   flex-direction: column;
+  transition: opacity .2s;
 }
 #main_buttons_container{
   flex: 1;
@@ -379,7 +630,6 @@ nav{
 #scale{
   display: flex;
   flex: 1;
-  /* background-color: #43165e; */
   background-color: rgba(67, 22, 94,0.7);
   flex-direction: row;
   border-radius: 0px 0px 11px 0px;
@@ -603,7 +853,6 @@ font-size:32px
   display: flex;
   justify-content: space-between;
   background-color: rgba(240,255,255,0.9);
-  /* background: azure; */
 }
 #current_song_container{
   flex:1.2;
@@ -611,7 +860,6 @@ font-size:32px
 }
   
 #current_song_img{
-  /* background-color: #ffffff; */
   flex: 1;
 }
   
@@ -624,7 +872,6 @@ font-size:32px
   align-items: center;
   justify-content: center;
   display: flex;
-  /* background: linear-gradient(0deg, rgb(52 32 76) 0%, rgb(106 70 127) 100%); */
   background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
   flex:4
 }
@@ -634,7 +881,6 @@ font-size:32px
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   background-color: rgba(240,255,255,0.9);
-  /* background: azure; */
 }
 #up_next_Text_container{
   display: flex;
@@ -651,7 +897,6 @@ font-size:32px
 #up_next_songs_container{
   overflow: hidden;
   overflow-y: scroll;
-  /* background: linear-gradient(0deg, rgb(52 32 76) 0%, rgb(106 70 127) 100%); */
   background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
   border-radius: 0px 0px 11px 11px;
   flex: 3;
@@ -713,15 +958,5 @@ font-size:32px
 
 .songs_div:active{
   background-color: #5b26733f;
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-/* @media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-  #music_player_container{
-  }
-  #top_part_container{
-  }
-} */
+} 
   /* End of Music Player */
