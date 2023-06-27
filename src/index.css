@@ -24,8 +24,6 @@ nav{
 .dropdown-menu.dropdown-menu-dark{
     background-color: #134434;
 }
-
-
 .offcanvas-header{
     background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }  
@@ -438,6 +436,9 @@ button {
     border-radius: 10px;
     background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
+.reminderDivElement h3{
+    overflow-wrap: anywhere;
+}
 
 .buttonDiv {
     display: flex;
@@ -568,4 +569,34 @@ button {
 
 #cancelButton:hover {
     background-color: rgb(158, 39, 34);
+}
+
+#messageReminder{
+    color: #27d110;
+}
+
+/* SLIDESHOW */
+#carouselExampleAutoplaying {
+    position: fixed;
+    top: 5%;
+    width: 100%;
+}
+.pageInfo{
+    text-align: center;
+}
+
+.carousel-item {
+    height: 900px;
+    margin-top: 5px;
+}
+
+.carousel-item img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
 }
