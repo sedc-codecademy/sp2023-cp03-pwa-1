@@ -1,114 +1,180 @@
-let date = new Date();
+// Calendar Functions
 
-let renderCalendar = () => {
-  date.setDate(1);
+// Function to create a calendar
+function createCalendar() {
+  
+  const calendar = document.querySelector('.calendar');
+  const currentMonthElement = document.querySelector('.current-month');
+  const calendarDays = document.querySelector('.calendar-days');
+  const prevMonthBtn = document.querySelector('.prev.month-btn');
+  const nextMonthBtn = document.querySelector('.next.month-btn');
+  const prevYearBtn = document.querySelector('.prev-year');
+  const todayBtn = document.querySelector('.today');
+  const nextYearBtn = document.querySelector('.next-year');
+  const todayDate = document.getElementById('todayDate');
+  // const navbarToday = document.getElementById('today');
 
-  let monthDays = document.querySelector(".days");
+
+  // Get the current date
   let currentDate = new Date();
-
-  let lastDay = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDate();
-
-  let prevLastDay = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    0
-  ).getDate();
-
-  let firstDayIndex = date.getDay();
-
-  let lastDayIndex = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDay();
-
-  let nextDays = 7 - lastDayIndex - 1;
-
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  document.querySelector(".buttons h1").innerHTML = months[date.getMonth()];
-  document.querySelector(".date p").innerHTML = currentDate.toDateString();
-
-  let days = "";
-
-  for (let x = firstDayIndex; x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-  }
-  for (let i = 1; i <= lastDay; i++) {
-    if (i === currentDate.getDate() && date.getMonth() === currentDate.getMonth()) {
-      days += `<div class="today" onclick="selectDay(${i})">${i}</div>`;
-    } else {
-      days += `<div onclick="selectDay(${i})">${i}</div>`;
-    }
-  }
-  for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
-  }
-};
-
-function selectDay(day) {
-  const selectedDate = new Date(date.getFullYear(), date.getMonth(), day);
-  document.querySelector(".date p").innerHTML = selectedDate.toDateString();
-}
-
-document.querySelector(".prev").addEventListener("click", () => {
-  date.setMonth(date.getMonth() - 1);
-  renderCalendar();
-});
-document.querySelector(".next").addEventListener("click", () => {
-  date.setMonth(date.getMonth() + 1);
-  renderCalendar();
-});
-
-
-let thisWeekButton = document.getElementById("thisWeek");
-thisWeekButton.addEventListener("click", showAllWeekendDays);
-
-function showAllWeekendDays() {
-  let currentDate = new Date();
-  let currentDay = currentDate.getDate();
   let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
 
-  let firstDayOfWeek = new Date(currentDate.getFullYear(), currentMonth, currentDay - currentDate.getDay());
-  let lastDayOfWeek = new Date(currentDate.getFullYear(), currentMonth, currentDay - currentDate.getDay() + 6);
+  // Event listener for "thisWeek" button
+ let thisWeekButton = document.querySelector('.thisWeek');
+ thisWeekButton.addEventListener('click', showDaysOfWeek);
 
-  let daysOfWeek = [];
-  let options = { day: 'numeric' };
-  let dateFormat = new Intl.DateTimeFormat('en-US', options);
+  // Event listeners for month navigation buttons
+  prevMonthBtn.addEventListener('click', showPreviousMonth);
+  nextMonthBtn.addEventListener('click', showNextMonth);
 
-  for (let date = firstDayOfWeek; date <= lastDayOfWeek; date.setDate(date.getDate() + 1)) {
-    let formattedDate = dateFormat.format(date);
-    daysOfWeek.push(formattedDate);
+  // Event listeners for year navigation buttons
+  prevYearBtn.addEventListener('click', showPreviousYear);
+  todayBtn.addEventListener('click', showCurrentMonth);
+  todayBtn.addEventListener('click', toggleTodayDate);
+  nextYearBtn.addEventListener('click', showNextYear);
+  // navbarToday.addEventListener('click', createCalendar);
+
+  // Display the current month and year
+  displayCurrentMonth();
+
+  // Function to display the current month and year
+  function displayCurrentMonth() {
+    const monthNames = [
+      'January', 
+      'February',
+      'March', 
+      'April',
+      'May', 
+      'June',
+      'July', 
+      'August',
+      'September', 
+      'October', 
+      'November',
+      'December'
+    ];
+    
+  currentMonthElement.textContent = monthNames[currentMonth] + ' ' + currentYear;
+  
+  calendarDays.innerHTML = '';
+      
+  let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    // Create calendar days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const calendarDay = document.createElement('div');
+      calendarDay.classList.add('calendar-day');
+      calendarDay.textContent = day;
+      
+      calendarDays.appendChild(calendarDay);
+    }
+
+    // Add empty cells for the days before the first day of the month
+    for (let i = 0; i < firstDay; i++) {
+      const emptyCell = document.createElement('div');
+      emptyCell.classList.add('empty-cell');
+      calendarDays.appendChild(emptyCell);
+    }
   }
 
-  let monthDays = document.querySelector(".days");
-  monthDays.innerHTML = daysOfWeek.map(day => {
-    if (day === dateFormat.format(currentDate)) {
-      return `<div class="today">${day}</div>`;
-    } else {
-      return `<div>${day}</div>`;
+   //function to show only days of one week
+    
+   function showDaysOfWeek() {
+      
+      calendarDays.innerHTML = '';
+      
+      let currentDate = new Date();
+  
+      // Get the first day of the current week
+      let firstDayOfWeek = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate() - currentDate.getDay()
+      );
+  
+      // Get the days of the week
+      for (let i = 0; i < 7; i++) {
+        let date = new Date(
+          firstDayOfWeek.getFullYear(),
+          firstDayOfWeek.getMonth(),
+          firstDayOfWeek.getDate() + i
+        );
+        let calendarDay = document.createElement('div');
+        calendarDay.classList.add('calendar-day');
+        calendarDay.textContent = date.getDate();
+        calendarDays.appendChild(calendarDay);
+      }
     }
-  }).join('');
+  //Get today date
+  
+  function toggleTodayDate() {
+    let todayDateElement = document.getElementById('todayDate');
+    let currentDate = new Date();
+  
+    let currentDay = currentDate.getDate();
+    let currentMonth = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+    let currentYear = currentDate.getFullYear();
+  
+    let formattedDate = "Date:"+ ' ' + currentDay + '/' + currentMonth + '/' + currentYear;
+    todayDateElement.textContent = formattedDate;
+  }
+  
+  // Function to show the previous month
+  function showPreviousMonth() {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    displayCurrentMonth();
+  }
+
+  // Function to show the next month
+  function showNextMonth() {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    displayCurrentMonth();
+  }
+
+  // Function to show the previous year
+  function showPreviousYear() {
+    currentYear--;
+    displayCurrentMonth();
+  }
+
+  // Function to show the next year
+  function showNextYear() {
+    currentYear++;
+    displayCurrentMonth();
+  }
+
+  // Function to show the current month
+  function showCurrentMonth() {
+    currentMonth = currentDate.getMonth();
+    currentYear = currentDate.getFullYear();
+    displayCurrentMonth();
+  }
 }
 
-renderCalendar();
+// Call the createCalendar
+createCalendar()
 
 
+//Show calendar on click on today 
+//how to hide everything elsee
+let showCalendar = document.getElementById('todayBtn');
+showCalendar.addEventListener('click', toggleCalendar);
+
+function toggleCalendar() {
+  let calendar = document.getElementById('card');
+  if (calendar.style.display === 'none') {
+    calendar.style.display = 'block';
+  } else {
+    calendar.style.display = 'none';
+  }
+}
