@@ -175,6 +175,13 @@ toggleAddButton = function (toggle) {
 }
 
 //#region  timer 
+let task={name: "task1",
+workTime: 300,
+longTime:230,
+shortTime:22};
+let workStarted = false;
+let longStarted =false;
+let shortStarted =false;
 
 let elements = {
     page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
@@ -183,29 +190,35 @@ let elements = {
     work: document.querySelector("#workSession").
         addEventListener("click", () => {
             timer.stop();
+            updateTaskTime();
+            workStarted = true;
             document.querySelector('#start').innerHTML=`Start`;
-            timer.time = 45 * 60;
-            elements.min.innerHTML = "45";
-            elements.sec.innerHTML = "00";
+            timer.time = task.workTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
             document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
         }
         ),
     long: document.querySelector("#longBreakSession").
         addEventListener("click", () => {
             timer.stop();
+            updateTaskTime();
+            longStarted= true;
             document.querySelector('#start').innerHTML=`Start`;
-            elements.min.innerHTML = "15";
-            elements.sec.innerHTML = "00";
-            timer.time = 15 * 60;
+            timer.time = task.longTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
             document.querySelector("body").style.backgroundColor = "#3f6c51";
         }),
     short: document.querySelector("#shortBreakSession").
         addEventListener("click", () => {
             timer.stop();
+            updateTaskTime();
+            shortStarted=true;
             document.querySelector('#start').innerHTML=`Start`;
-            timer.time = 5 * 60;
-            elements.min.innerHTML = "05";
-            elements.sec.innerHTML = "00";
+            timer.time = task.shortTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
             document.querySelector("body").style.backgroundColor = "#498467"
         }),
     start: document.querySelector("#start").
@@ -218,12 +231,11 @@ let elements = {
                 timer.stop();
                 document.querySelector('#start').innerHTML=`Start`
             }
-        }),
-
+        })
 }
 
 let timer = {
-    time: 2700,
+    time: (task.workTime),
     interval: null,
     start: function () {
         this.interval = setInterval(() => {
@@ -246,5 +258,21 @@ function convertFromSeconds() {
     elements.min.textContent = minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
 }
-
+function updateTaskTime(){
+    if(workStarted==true){
+        task.workTime=timer.time;
+      workStarted=false;
+    }
+   else if(longStarted==true){
+        task.longTime=timer.time;
+       longStarted=false;
+    }
+   else if(shortStarted==true){
+        task.shortTime=timer.time;
+        shortStarted=false;
+    }
+    else{
+        console.log("Press start!")
+    }
+}
 //#endregion
