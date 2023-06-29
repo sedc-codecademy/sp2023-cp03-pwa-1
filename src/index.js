@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showButtonById('navBarButton');
         showButtonById('timerDisplay');
         showButtonById('taskBar');
+        hideButtonById('carouselExampleAutoplaying'); //SLIDESHOW
         currentUser = username;
         mpl.style.display = "inline-block";
     });
@@ -264,6 +265,9 @@ document.addEventListener('DOMContentLoaded',function(){
         hideButtonById('navBarButton');
         hideButtonById('timerDisplay');
         hideButtonById('taskBar');
+        hideButtonById('displayReminders'); //reminders hide
+        hideButtonById('reminderList');
+        showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
     })
@@ -590,7 +594,7 @@ function createReminderItem(reminder) {
 function createEditButtonForModal(reminderItem, editReminder) {
     //Modal for edit button on reminders
     let modalEdit = document.getElementById('editModal');
-    modalEdit.style.display = 'block'
+    showButtonById('editModal');
 
 
     let reminderToUpdate = reminders.find(el => el.id === editReminder.id)
@@ -609,13 +613,14 @@ function createEditButtonForModal(reminderItem, editReminder) {
         }
 
 
-        modalEdit.style.display = 'none';
+        hideButtonById('editModal');
         reminderToUpdate = null;
     });
 
     let cancelButton = document.getElementById("cancelButton");
     cancelButton.addEventListener('click', function () {
-        modalEdit.style.display = 'none';
+        hideButtonById('editModal');
+        reminderToUpdate = null;
     })
 }
 
@@ -629,7 +634,7 @@ function renderReminders() {
     })
 }
 
-
+let messageReminder = document.getElementById('messageReminder');
 // Event listener for form submission
 document.getElementById('reminderForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -643,25 +648,41 @@ document.getElementById('reminderForm').addEventListener('submit', function (eve
         // Clear the input
         reminderInput.value = '';
     }
+    messageReminder.innerHTML = 'Succesfully added reminder'
+    setTimeout(function() {
+        messageReminder.innerHTML = '';
+    }, 3000);
 
 });
 //Set/Edit reminder button 
 let addMenuReminder = document.getElementById('addMenuReminder');
+//Timer and taskBar div 
+let timerAndTaskBarDiv = document.getElementsByClassName('centered-container')[0];
 //View reminders button
 let displayMainDiv = document.getElementById('displayReminders');
 // Add the reminder item to the list
 let allReminders = document.getElementById("allReminders");
 allReminders.addEventListener("click", () => {
     renderReminders()
-    displayMainDiv.style.display = "none";
+    hideButtonById('displayReminders')
     reminderList.style.display = 'flex';
+    timerAndTaskBarDiv.style.display = 'none';
 })
 let reminderList = document.getElementById('reminderList');
 //Add Menu reminder to show main div when the button from mennu is clicked
 addMenuReminder.addEventListener('click', function () {
-    displayMainDiv.style.display = "block"
-    reminderList.style.display = 'none';
+    showButtonById('displayReminders');
+    hideButtonById('reminderList');
+    timerAndTaskBarDiv.style.display = 'none';
 });
+
+//Productivio from the menu to show task bar and the timer -Aleksandar
+let productivioMenuButton = document.getElementById('titleNavBar');
+productivioMenuButton.addEventListener('click', function(){
+    timerAndTaskBarDiv.style.display = 'flex';
+    hideButtonById('displayReminders');
+    hideButtonById('reminderList');
+})
 
 //Start of Music Player
 //MP DOM
