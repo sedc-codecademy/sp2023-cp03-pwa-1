@@ -1,3 +1,5 @@
+
+
 var i = 0;
 let tasks = [];
 let selectedTaskId = "";
@@ -83,51 +85,6 @@ const renderTasks = () => {
         appendSettingsButton(li);
         li.addEventListener("click",() => {
             selectedTaskId = task.taskId;
-            let elements = {
-                page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
-                min: document.querySelector("#minutes"),
-                sec: document.querySelector("#seconds"),
-                work: document.querySelector("#workSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML=`Start`;
-                        timer.time = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        elements.min.innerHTML = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        elements.sec.innerHTML = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
-                    }
-                    ),
-                long: document.querySelector("#longBreakSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML=`Start`;
-                        elements.min.innerHTML = "15";
-                        elements.sec.innerHTML = "00";
-                        timer.time = 15 * 60;
-                        document.querySelector("body").style.backgroundColor = "#3f6c51";
-                    }),
-                short: document.querySelector("#shortBreakSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML=`Start`;
-                        timer.time = 5 * 60;
-                        elements.min.innerHTML = "05";
-                        elements.sec.innerHTML = "00";
-                        document.querySelector("body").style.backgroundColor = "#498467"
-                    }),
-                start: document.querySelector("#start").
-                    addEventListener("click", () => { 
-                        if(timer.interval===null){
-                        timer.start();
-                        document.querySelector('#start').innerHTML=`Pause`
-                        }
-                        else {
-                            timer.stop();
-                            document.querySelector('#start').innerHTML=`Start`
-                        }
-                    }),
-            
-            }
         })
 
         taskList.appendChild(li);
@@ -249,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showButtonById('navBarButton');
         showButtonById('timerDisplay');
         showButtonById('taskBar');
+        hideButtonById('carouselExampleAutoplaying'); //SLIDESHOW
         currentUser = username;
         mpl.style.display = "inline-block";
     });
@@ -264,6 +222,9 @@ document.addEventListener('DOMContentLoaded',function(){
         hideButtonById('navBarButton');
         hideButtonById('timerDisplay');
         hideButtonById('taskBar');
+        hideButtonById('displayReminders'); //reminders hide
+        hideButtonById('reminderList');
+        showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
     })
@@ -308,7 +269,7 @@ var j = 0;
     } 
     else {
         console.log('Error: Incorrect username or password');
-        return false;
+        return true;
     }
 }
 //Nikola logic for register
@@ -506,11 +467,69 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-//fix this part
+//fix this par
+let task={name: "task1",
+workTime: 300,
+longTime:230,
+shortTime:22};
+let workStarted = false;
+let longStarted =false;
+let shortStarted =false;
+
+let elements = {
+    page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
+    min: document.querySelector("#minutes"),
+    sec: document.querySelector("#seconds"),
+    work: document.querySelector("#workSession").
+        addEventListener("click", () => {
+            timer.stop();
+            updateTaskTime();
+            workStarted = true;
+            document.querySelector('#start').innerHTML=`Start`;
+            timer.time = task.workTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
+            document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
+        }
+        ),
+    long: document.querySelector("#longBreakSession").
+        addEventListener("click", () => {
+            timer.stop();
+            updateTaskTime();
+            longStarted= true;
+            document.querySelector('#start').innerHTML=`Start`;
+            timer.time = task.longTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
+            document.querySelector("body").style.backgroundColor = "#3f6c51";
+        }),
+    short: document.querySelector("#shortBreakSession").
+        addEventListener("click", () => {
+            timer.stop();
+            updateTaskTime();
+            shortStarted=true;
+            document.querySelector('#start').innerHTML=`Start`;
+            timer.time = task.shortTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2,0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2,0)}`;
+            document.querySelector("body").style.backgroundColor = "#498467"
+        }),
+    start: document.querySelector("#start").
+        addEventListener("click", () => { 
+            if(timer.interval===null){
+            timer.start();
+            document.querySelector('#start').innerHTML=`Pause`
+            }
+            else {
+                timer.stop();
+                document.querySelector('#start').innerHTML=`Start`
+            }
+        })
+}
 
 
 let timer = {
-    time: 2700,
+    time: (task.workTime),
     interval: null,
     start: function () {
         this.interval = setInterval(() => {
@@ -533,9 +552,23 @@ function convertFromSeconds() {
     elements.min.textContent = minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
 }
-
-
-
+function updateTaskTime(){
+    if(workStarted==true){
+        task.workTime=timer.time;
+      workStarted=false;
+    }
+   else if(longStarted==true){
+        task.longTime=timer.time;
+       longStarted=false;
+    }
+   else if(shortStarted==true){
+        task.shortTime=timer.time;
+        shortStarted=false;
+    }
+    else{
+        console.log("Press start!")
+    }
+}
 // REMINDERS
 let reminders = [];
 
@@ -590,7 +623,7 @@ function createReminderItem(reminder) {
 function createEditButtonForModal(reminderItem, editReminder) {
     //Modal for edit button on reminders
     let modalEdit = document.getElementById('editModal');
-    modalEdit.style.display = 'block'
+    showButtonById('editModal');
 
 
     let reminderToUpdate = reminders.find(el => el.id === editReminder.id)
@@ -609,13 +642,14 @@ function createEditButtonForModal(reminderItem, editReminder) {
         }
 
 
-        modalEdit.style.display = 'none';
+        hideButtonById('editModal');
         reminderToUpdate = null;
     });
 
     let cancelButton = document.getElementById("cancelButton");
     cancelButton.addEventListener('click', function () {
-        modalEdit.style.display = 'none';
+        hideButtonById('editModal');
+        reminderToUpdate = null;
     })
 }
 
@@ -629,7 +663,7 @@ function renderReminders() {
     })
 }
 
-
+let messageReminder = document.getElementById('messageReminder');
 // Event listener for form submission
 document.getElementById('reminderForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -643,25 +677,41 @@ document.getElementById('reminderForm').addEventListener('submit', function (eve
         // Clear the input
         reminderInput.value = '';
     }
+    messageReminder.innerHTML = 'Succesfully added reminder'
+    setTimeout(function() {
+        messageReminder.innerHTML = '';
+    }, 3000);
 
 });
 //Set/Edit reminder button 
 let addMenuReminder = document.getElementById('addMenuReminder');
+//Timer and taskBar div 
+let timerAndTaskBarDiv = document.getElementsByClassName('centered-container')[0];
 //View reminders button
 let displayMainDiv = document.getElementById('displayReminders');
 // Add the reminder item to the list
 let allReminders = document.getElementById("allReminders");
 allReminders.addEventListener("click", () => {
     renderReminders()
-    displayMainDiv.style.display = "none";
+    hideButtonById('displayReminders')
     reminderList.style.display = 'flex';
+    timerAndTaskBarDiv.style.display = 'none';
 })
 let reminderList = document.getElementById('reminderList');
 //Add Menu reminder to show main div when the button from mennu is clicked
 addMenuReminder.addEventListener('click', function () {
-    displayMainDiv.style.display = "block"
-    reminderList.style.display = 'none';
+    showButtonById('displayReminders');
+    hideButtonById('reminderList');
+    timerAndTaskBarDiv.style.display = 'none';
 });
+
+//Productivio from the menu to show task bar and the timer -Aleksandar
+let productivioMenuButton = document.getElementById('titleNavBar');
+productivioMenuButton.addEventListener('click', function(){
+    timerAndTaskBarDiv.style.display = 'flex';
+    hideButtonById('displayReminders');
+    hideButtonById('reminderList');
+})
 
 //Start of Music Player
 //MP DOM
