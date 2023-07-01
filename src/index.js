@@ -39,13 +39,12 @@ addTask = function () {
         taskName: taskName,
         taskEst: taskEst,
         taskDesc: taskDesc,
-        workTime: 45 * 60,
+        worktime: 45 * 60,
         longbreak: 15 * 60,
-        shortBreak: 5 * 60
+        shortbreak: 5 * 60
     }
     i++;
     tasks.push(newTask);
-    console.log(tasks)
     renderTasks();
 }
 
@@ -96,51 +95,14 @@ const renderTasks = () => {
         li.appendChild(div);
         appendSettingsButton(li);
         li.addEventListener("click", () => {
-            let elements = {
-                page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
-                min: document.querySelector("#minutes"),
-                sec: document.querySelector("#seconds"),
-                work: document.querySelector("#workSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML = `Start`;
-                        timer.time = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        elements.min.innerHTML = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        elements.sec.innerHTML = tasks.find(task => task.taskId === selectedTaskId).workTime;
-                        document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
-                    }
-                    ),
-                long: document.querySelector("#longBreakSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML = `Start`;
-                        elements.min.innerHTML = "15";
-                        elements.sec.innerHTML = "00";
-                        timer.time = 15 * 60;
-                        document.querySelector("body").style.backgroundColor = "#3f6c51";
-                    }),
-                short: document.querySelector("#shortBreakSession").
-                    addEventListener("click", () => {
-                        timer.stop();
-                        document.querySelector('#start').innerHTML = `Start`;
-                        timer.time = 5 * 60;
-                        elements.min.innerHTML = "05";
-                        elements.sec.innerHTML = "00";
-                        document.querySelector("body").style.backgroundColor = "#498467"
-                    }),
-                start: document.querySelector("#start").
-                    addEventListener("click", () => {
-                        if (timer.interval === null) {
-                            timer.start();
-                            document.querySelector('#start').innerHTML = `Pause`
-                        }
-                        else {
-                            timer.stop();
-                            document.querySelector('#start').innerHTML = `Start`
-                        }
-                    }),
-
-            }
+            timer.stop();
+            updateTaskTime();
+            updateTasks();
+            selectedTaskId = task.taskId;
+            search();
+            elements.min.innerHTML="--";
+            elements.sec.innerHTML="--";
+            document.querySelector("#start").disabled=true;
         })
 
         taskList.appendChild(li);
@@ -568,9 +530,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //fix this part
 
+let task1= {
+    name: "task1",
+    workTime: 0,
+    longTime: 0,
+    shortTime: 0
+};
+let workStarted = false;
+let longStarted = false;
+let shortStarted = false;
+
+let elements = {
+    page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
+    min: document.querySelector("#minutes"),
+    sec: document.querySelector("#seconds"),
+    work: document.querySelector("#workSession").
+        addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
+            timer.stop();
+            updateTaskTime();
+            workStarted = true;
+            document.querySelector('#start').innerHTML = `Start`;
+            timer.time = task1.workTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
+            document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
+        }
+        ),
+    long: document.querySelector("#longBreakSession").
+        addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
+            timer.stop();
+            updateTaskTime();
+            longStarted = true;
+            document.querySelector('#start').innerHTML = `Start`;
+            timer.time = task1.longTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
+            document.querySelector("body").style.backgroundColor = "#3f6c51";
+        }),
+    short: document.querySelector("#shortBreakSession").
+        addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
+            timer.stop();
+            updateTaskTime();
+            shortStarted = true;
+            document.querySelector('#start').innerHTML = `Start`;
+            timer.time = task1.shortTime;
+            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
+            document.querySelector("body").style.backgroundColor = "#498467"
+        }),
+        start: 
+        document.querySelector("#start").
+        addEventListener("click", () => {
+            if (timer.interval === null) {
+                document.querySelector('#start').disabled=false;
+                timer.start();
+                document.querySelector('#start').innerHTML = `Pause`
+            }
+            else {
+                document.querySelector('#start').disabled=false;
+                timer.stop();
+                document.querySelector('#start').innerHTML = `Start`
+            }
+        })
+}
+
 
 let timer = {
-    time: 2700,
+    time: task1.workTime,
     interval: null,
     start: function () {
         this.interval = setInterval(() => {
@@ -593,6 +622,46 @@ function convertFromSeconds() {
     elements.min.textContent = minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
 }
+function updateTaskTime() {
+    if (workStarted == true) {
+        task1.workTime = timer.time;
+        workStarted = false;
+    }
+    else if (longStarted == true) {
+        task1.longTime = timer.time;
+        longStarted = false;
+    }
+    else if (shortStarted == true) {
+        task1.shortTime = timer.time;
+        shortStarted = false;
+    }
+    else {
+        console.log("Press start!")
+    }
+}
+
+
+function search() {
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].taskId === selectedTaskId) {
+            task1.workTime = tasks[i].worktime;
+            task1.longTime = tasks[i].longbreak;
+            task1.shortTime = tasks[i].shortbreak;
+            task1.name = tasks[i].taskName
+        }
+    }
+};
+
+function updateTasks() {
+       for(i=0;i<tasks.length;i++){
+        if(tasks[i].taskName===task1.name){
+            index=tasks[i];
+            tasks[i].worktime=task1.workTime;
+           tasks[i].longbreak=task1.longTime;
+            tasks[i].shortbreak=task1.shortTime;
+        }
+       }
+    }
 
 
 
