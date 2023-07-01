@@ -42,7 +42,13 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
 }
+  
+  #titleNavBar:hover {
+    color: greenyellow;
+    cursor: pointer;
+  }
 
 
 .my-sessions-container {
