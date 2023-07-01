@@ -1,5 +1,4 @@
 
-
 var i = 0;
 let tasks = [];
 let selectedTaskId = "";
@@ -21,6 +20,7 @@ closeModal = function () {
     document.getElementById("taskEst").value = "";
     document.getElementById("modal").style.display = "none";
 }
+
 
 
 addTask = function () {
@@ -90,7 +90,10 @@ const renderTasks = () => {
             console.log(task1.workTime);
             selectedTaskId = task.taskId;
             search();
-            console.log(selectedTaskId);
+            elements.min.innerHTML="--";
+            elements.sec.innerHTML="--";
+            document.querySelector("#start").disabled=true;
+                   
         })
 
         taskList.appendChild(li);
@@ -492,6 +495,7 @@ let elements = {
     sec: document.querySelector("#seconds"),
     work: document.querySelector("#workSession").
         addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
             timer.stop();
             updateTaskTime();
             workStarted = true;
@@ -504,6 +508,7 @@ let elements = {
         ),
     long: document.querySelector("#longBreakSession").
         addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
             timer.stop();
             updateTaskTime();
             longStarted = true;
@@ -515,6 +520,7 @@ let elements = {
         }),
     short: document.querySelector("#shortBreakSession").
         addEventListener("click", () => {
+            document.querySelector('#start').disabled=false;
             timer.stop();
             updateTaskTime();
             shortStarted = true;
@@ -524,13 +530,16 @@ let elements = {
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
             document.querySelector("body").style.backgroundColor = "#498467"
         }),
-    start: document.querySelector("#start").
+        start: 
+        document.querySelector("#start").
         addEventListener("click", () => {
             if (timer.interval === null) {
+                document.querySelector('#start').disabled=false;
                 timer.start();
                 document.querySelector('#start').innerHTML = `Pause`
             }
             else {
+                document.querySelector('#start').disabled=false;
                 timer.stop();
                 document.querySelector('#start').innerHTML = `Start`
             }
@@ -1185,3 +1194,9 @@ function updateTasks() {
        }
     }
 
+function block(){
+    if(elements.min.innerHTML==="--"){
+       document.querySelector("#start").disabled=true;
+    }
+    document.querySelector("#start").disabled=false;
+} 
