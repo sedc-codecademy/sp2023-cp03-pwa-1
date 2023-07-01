@@ -6,8 +6,10 @@ nav {
     border-right: none;
 }
 
+
 #body {
     background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
 }
 

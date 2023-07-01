@@ -10,8 +10,93 @@ const settingsButtons = {
 
 openModal = function () {
     document.getElementById("modal").style.display = "block";
-    sessions.push({ name: currentUser, taskDescription: "Testing", duration: "testing hours" })
+    //Add to show Sessions
+    // console.log(tasks[0].taskDesc)
+    
+    
 }
+
+//Nikola logic for sessions
+//Username 
+//Task name
+//Task description
+
+var sessions = [];
+var selectedId = null;
+document.addEventListener('DOMContentLoaded', function () {
+    var currentSessionsBtn = document.getElementById('currentSessionBtn');
+
+    currentSessionsBtn.addEventListener('click',function(){
+        for(let i = 0;  i <= tasks.length - 1; i++ ){
+            
+            sessions.push({ name: currentUser, taskDescription: tasks[i].taskDesc, duration: tasks[i].worktime / 60 + " Min"})
+        }
+        tasks.forEach(task => {
+        if(selectedId === task.taskId){
+            var sessionElement = document.createElement('div');
+            sessionElement.classList.add('session');
+            sessionElement.classList.add('my-sessions-container');
+
+            var nameElement = document.createElement('h3');
+            nameElement.textContent = "User: " + session.name;
+            nameElement.classList.add('session-text');
+            sessionElement.appendChild(nameElement);
+
+            var dateElement = document.createElement('p');
+            dateElement.textContent = 'Task Description: ' + session.taskDescription;
+            dateElement.classList.add('session-text');
+            sessionElement.appendChild(dateElement);
+
+            var durationElement = document.createElement('p');
+            durationElement.textContent = 'Duration: ' + session.duration;
+            durationElement.classList.add('session-text');
+            sessionElement.appendChild(durationElement);
+            document.body.appendChild(sessionElement);  
+        }
+    })
+    })
+});
+    
+document.addEventListener('DOMContentLoaded', function () {
+    var allSessionsBtn = document.getElementById('allSessionsBtn');
+  
+    allSessionsBtn.addEventListener('click', function () {
+      var sessionElements = document.querySelectorAll('.session');
+  
+      sessionElements.forEach(function (sessionElement) {
+        sessionElement.remove();
+      });
+  
+      for (let i = 0; i <= tasks.length - 1; i++) {
+        sessions.push({ name: currentUser, taskDescription: tasks[i].taskDesc, duration: tasks[i].worktime / 60 + " Min" });
+      }
+  
+      sessions.forEach(function (session) {
+        var sessionElement = document.createElement('div');
+        sessionElement.classList.add('session');
+        sessionElement.classList.add('my-sessions-container');
+  
+        var nameElement = document.createElement('h3');
+        nameElement.textContent = "User: " + session.name;
+        nameElement.classList.add('session-text');
+        sessionElement.appendChild(nameElement);
+  
+        var dateElement = document.createElement('p');
+        dateElement.textContent = 'Task Description: ' + session.taskDescription;
+        dateElement.classList.add('session-text');
+        sessionElement.appendChild(dateElement);
+  
+        var durationElement = document.createElement('p');
+        durationElement.textContent = 'Duration: ' + session.duration;
+        durationElement.classList.add('session-text');
+        sessionElement.appendChild(durationElement);
+  
+        document.body.appendChild(sessionElement);
+      });
+      sessions = [];
+    });
+  });
+  
 
 closeModal = function () {
     document.getElementById("taskName").value = "";
@@ -34,11 +119,13 @@ addTask = function () {
     const taskName = document.getElementById("taskName").value;
     const taskEst = document.getElementById("taskEst").value;
     const taskDesc = document.getElementById("taskDesc").value;
+    let taskCurrentName = currentUser;
     const newTask = {
         taskId: generateUID(),
         taskName: taskName,
         taskEst: taskEst,
         taskDesc: taskDesc,
+        taskCurrentUser: taskCurrentName,
         worktime: 45 * 60,
         longbreak: 15 * 60,
         shortbreak: 5 * 60
@@ -111,14 +198,15 @@ const renderTasks = () => {
         if (i == 5) {
             toggleAddButton(true);
         }
+        div.addEventListener("click",() =>{
+            selectedId = div.id;
+        })
     })
 
     console.log(selectedTaskId)
 }
 
 makeElementClickable = function (div) {
-    
-
     div.addEventListener("click", function () {
         deselectElements(div);
 
@@ -501,40 +589,7 @@ function showSignupSuccessMessage() {
 
 
 
-//Nikola logic for sessions
 
-//test sessions
-var sessions = [];
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    var currentSessionBtn = document.getElementById('allSessionsBtn');
-
-    currentSessionBtn.addEventListener('click', function () {
-        sessions.forEach(function (session) {
-            var sessionElement = document.createElement('div');
-            sessionElement.classList.add('session');
-            sessionElement.classList.add('my-sessions-container');
-
-            var nameElement = document.createElement('h3');
-            nameElement.textContent = "User: " + session.name;
-            nameElement.classList.add('session-text');
-            sessionElement.appendChild(nameElement);
-
-            var dateElement = document.createElement('p');
-            dateElement.textContent = 'Date: ' + session.taskDescription;
-            dateElement.classList.add('session-text');
-            sessionElement.appendChild(dateElement);
-
-            var durationElement = document.createElement('p');
-            durationElement.textContent = 'Duration: ' + session.duration;
-            durationElement.classList.add('session-text');
-            sessionElement.appendChild(durationElement);
-
-            document.body.appendChild(sessionElement);
-        });
-    });
-});
 
 //fix this part
 
@@ -549,7 +604,6 @@ let longStarted = false;
 let shortStarted = false;
 
 let elements = {
-    page: document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)",
     min: document.querySelector("#minutes"),
     sec: document.querySelector("#seconds"),
     work: document.querySelector("#workSession").
@@ -562,7 +616,6 @@ let elements = {
             timer.time = task1.workTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-            document.querySelector("body").style.backgroundColor = "rgb(17, 54, 3)"
         }
         ),
     long: document.querySelector("#longBreakSession").
@@ -575,7 +628,7 @@ let elements = {
             timer.time = task1.longTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-            document.querySelector("body").style.backgroundColor = "#3f6c51";
+            
         }),
     short: document.querySelector("#shortBreakSession").
         addEventListener("click", () => {
@@ -587,7 +640,7 @@ let elements = {
             timer.time = task1.shortTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-            document.querySelector("body").style.backgroundColor = "#498467"
+            
         }),
         start: 
         document.querySelector("#start").
