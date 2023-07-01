@@ -28,7 +28,7 @@
 
 <body id="body">
     <nav class="navbar navbar-dark bg-primary" id="navBarMain">
-        <div class="container-fluid">
+        <div class="container-fluid" id ="navBarId" >
             <!-- Log in button -->
             <button class="navbar-toggler" type="button" id="loginButton" data-bs-toggle="modal" data-bs-target="#loginModal">
                 Log in
@@ -146,7 +146,7 @@
                                 <li>
                                     <button class="dropdown-item" id="allSessionsBtn" href="#">
                                         All sessions
-                                    </button>var i
+                                    </button>
                                 </li>
                             </ul>
                         </li>
@@ -234,7 +234,7 @@
         <div class="toast-body">Wrong Username or Password!</div>
     </div>
     <!--Timer Display-->
-    <div class="centered-container">
+    <div class="centered-container" id="centeredContainer">
         <div id="timerDisplay" style="display: none">
             <div class="buttons">
                 <button class="sessions" id="workSession">Work</button>

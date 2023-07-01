@@ -1092,3 +1092,6 @@ button {
     background-color: #5b26733f;
 }
 /* End of Music Player */
+#navBarId {
+    justify-content: end;
+}

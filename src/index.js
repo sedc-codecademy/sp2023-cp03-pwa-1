@@ -238,6 +238,7 @@ mpl.style.display = "none";
 var currentUser = null;
 //Nikola logic for login to store pass/user
 document.addEventListener('DOMContentLoaded', function () {
+
     var innerLoginButton = document.getElementById('innerLoginButton');
     innerLoginButton.addEventListener('click', function () {
         var username = document.getElementById('username').value;
@@ -263,10 +264,12 @@ document.addEventListener('DOMContentLoaded', function () {
         showButtonById('navBarButton');
         showButtonById('timerDisplay');
         showButtonById('taskBar');
+        showButtonByIdFlex('centeredContainer')
         hideButtonById('carouselExampleAutoplaying'); //SLIDESHOW
         currentUser = username;
         mpl.style.display = "inline-block";
         renderTasks();
+        document.getElementById("navBarId").style.justifyContent = "space-between";
     });
 });
 
@@ -286,6 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
+        document.getElementById("navBarId").style.justifyContent = "end"
     })
 })
 
@@ -303,6 +307,10 @@ function hideButtonById(button) {
 function showButtonById(button) {
     var showButton = document.getElementById(button);
     showButton.style.display = 'block';
+}
+function showButtonByIdFlex(button){
+    var showButtonFlex = document.getElementById(button);
+    showButtonFlex.style.display = 'flex';
 }
 
 //test credentials
@@ -1238,3 +1246,4 @@ window.addEventListener("resize", function () {
 //End of Music Player
 
 renderTasks();
+function workss(){}
