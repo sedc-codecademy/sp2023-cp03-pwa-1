@@ -372,33 +372,19 @@ document.addEventListener('DOMContentLoaded', function () {
         mpl.style.display = "inline-block";
         renderTasks();
         document.getElementById("navBarId").style.justifyContent = "space-between";
-        // allUserTasks.forEach(task => {
-        //     tasks.push(task);
-        // })
+
         let x = 0;
         console.log("before while");
-        while(x < allUserTasks.lenth){
+        while(x < allUserTasks.length){
             console.log("in-while;")
             if(allUserTasks[x].taskCurrentUser == currentUser){
                 tasks.push(allUserTasks[x]);
                 allUserTasks.splice(x, 1);
                 x = 0;
-                console.log(`x = ${x} (if)`);
             } else {
                 x++;
-                console.log(`x = ${x} (else)`);
             }
         } 
-        console.log("after while");
-        //////////////////////////////////////////////////////
-        for (i = allUserTasks.lenght - 1; i >=0; i--) {
-            console.log("inside for-loop");
-            // if(allUserTasks[i].taskCurrentUser == currentUser){
-            //     console.log("inside if");
-            //     tasks.push(allUserTasks[i]);
-            //     allUserTasks.splice(i,1);
-            // };
-        };
         renderTasks();
     });
 });
