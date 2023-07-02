@@ -202,7 +202,7 @@ const renderTasks = () => {
         taskList.appendChild(li);
         displayList(true);
         closeModal();
-        if (i == 5) {
+        if (tasks.length == 5) {
             toggleAddButton(true);
         }
         div.addEventListener("click",() =>{
@@ -419,6 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
           sessionElements.forEach(function (sessionElement) {
             sessionElement.remove();
           });
+          toggleAddButton(false);
     })
 })
 
