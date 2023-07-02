@@ -424,6 +424,15 @@ document.addEventListener('DOMContentLoaded', function () {
             allUserTasks.push(task);
         })
         tasks = [];
+        var currentSessionElements = document.querySelectorAll('.session');
+        currentSessionElements.forEach(function (currentSessionElement) {
+            currentSessionElement.remove();
+          });
+          var sessionElements = document.querySelectorAll('.session');
+  
+          sessionElements.forEach(function (sessionElement) {
+            sessionElement.remove();
+          });
     })
 })
 
