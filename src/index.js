@@ -34,12 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentSessionElements.forEach(function (currentSessionElement) {
             currentSessionElement.remove();
           });
-        // for(let i = 0;  i <= tasks.length - 1; i++ ){
-            // if(){}
-            // sessions.push({ name: currentUser, taskDescription: tasks[i].taskDesc, duration: tasks[i].worktime / 60 + " Min"})
-        // }
         currentSessionArr.forEach(task => {
-        // if(selectedId === task.taskId){
             var sessionElement = document.createElement('div');
             sessionElement.classList.add('session');
             sessionElement.classList.add('my-sessions-container');
@@ -55,14 +50,67 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionElement.appendChild(dateElement);
 
             var durationElement = document.createElement('p');
-            durationElement.textContent = 'Duration: ' + task.worktime / 60 + "Min";
+            durationElement.textContent = 'Duration: ' + (task.worktime / 60 + " Min");
             durationElement.classList.add('session-text');
             sessionElement.appendChild(durationElement);
             document.body.appendChild(sessionElement);  
-        // }
     })
     })
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var nextSessionBtn = document.getElementById('nextSessionBtn');
+    var previousSessionElement = null;
+
+    nextSessionBtn.addEventListener('click', function () {
+        var currentTask = currentSessionArr[0];
+        var nextLargestTask = null;
+        var currentTaskEst = parseInt(currentTask.taskEst);
+
+        for (var i = 0; i < tasks.length; i++) {
+            var task = tasks[i];
+            var taskEst = parseInt(task.taskEst);
+
+            if (taskEst > currentTaskEst) {
+                if (!nextLargestTask || taskEst < parseInt(nextLargestTask.taskEst)) {
+                    nextLargestTask = task;
+                }
+            }
+        }
+
+        if (previousSessionElement) {
+            previousSessionElement.remove();
+        }
+
+        if (nextLargestTask) {
+            var sessionElement = document.createElement('div');
+            sessionElement.id = 'session-' + nextLargestTask.taskId;
+            sessionElement.classList.add('session');
+            sessionElement.classList.add('my-sessions-container');
+
+            var nameElement = document.createElement('h3');
+            nameElement.textContent = "User: " + nextLargestTask.taskCurrentUser;
+            nameElement.classList.add('session-text');
+            sessionElement.appendChild(nameElement);
+
+            var dateElement = document.createElement('p');
+            dateElement.textContent = 'Task Description: ' + nextLargestTask.taskDesc;
+            dateElement.classList.add('session-text');
+            sessionElement.appendChild(dateElement);
+
+            var durationElement = document.createElement('p');
+            durationElement.textContent = 'Duration: ' + (nextLargestTask.worktime / 60 + " Min");
+            durationElement.classList.add('session-text');
+            sessionElement.appendChild(durationElement);
+
+            document.body.appendChild(sessionElement);
+            previousSessionElement = sessionElement; // Store the current session element
+        }
+    });
+});
+
+
     
 document.addEventListener('DOMContentLoaded', function () {
     var allSessionsBtn = document.getElementById('allSessionsBtn');
@@ -906,6 +954,10 @@ let allReminders = document.getElementById("allReminders");
 allReminders.addEventListener("click", () => {
     renderReminders()
     hideButtonById('displayReminders')
+    var currentSessionElements = document.querySelectorAll('.session');
+        currentSessionElements.forEach(function (currentSessionElement) {
+            currentSessionElement.remove();
+          });
     reminderList.style.display = 'flex';
     timerAndTaskBarDiv.style.display = 'none';
 })
@@ -914,6 +966,10 @@ let reminderList = document.getElementById('reminderList');
 addMenuReminder.addEventListener('click', function () {
     showButtonById('displayReminders');
     hideButtonById('reminderList');
+    var currentSessionElements = document.querySelectorAll('.session');
+        currentSessionElements.forEach(function (currentSessionElement) {
+            currentSessionElement.remove();
+          });
     timerAndTaskBarDiv.style.display = 'none';
 });
 
