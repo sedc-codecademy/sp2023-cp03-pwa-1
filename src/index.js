@@ -386,6 +386,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         } 
         renderTasks();
+        index_no = 0;
+        load_track(index_no);
+        mainButtons.style.display = "none";
+        bottomContainer.style.display = "none";
+        noteIconContainer.style.borderRadius = "40px";
+        noteIconContainer.style.borderRight = "none";
+        mp.style.width = "113.25px";
+        mp.style.left = "20px";
+        mp.style.top = "170px";
+        mp.style.padding = "0px";
+        expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>';
     });
 });
 
@@ -420,6 +431,8 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionElement.remove();
           });
           toggleAddButton(false);
+          pausesong();
+          track.currentTime = 0;
     })
 })
 
@@ -955,8 +968,8 @@ noteBtn.addEventListener("click", function () {
         }, 200);
         noteIconContainer.style.borderRadius = "40px";
         noteIconContainer.style.borderRight = "none";
-        expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>'
-        mp.style.width = "113.25px"
+        expandBtn.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true" id="expand_btn_content" ></i>';
+        mp.style.width = "113.25px";
         mp.style.left = "20px";
         mp.style.top = "170px";
         mp.style.padding = "0px";
