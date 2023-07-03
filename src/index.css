@@ -1102,3 +1102,120 @@ button {
 #navBarId {
   justify-content: end;
 }
+/* Calendar */
+.card {
+  margin-top: 50px;
+  width: 500px;
+  height: fit-content;
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin: 150px auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #efefef;
+  background-image: linear-gradient(120deg, #248a68 0%, #0f3025 100%);
+}
+.calendar-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #efefef;
+}
+.calendar-toolbar > .current-month {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+}
+.calendar-toolbar > [class$="month-btn"] {
+  width: 50px;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 30px;
+  font-size: 18px;
+  color: #000000;
+  box-shadow: 0px 0px 10px #efefef;
+  border: 1px;
+  border-radius: 15px;
+}
+.weekdays,
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline: 18px;
+}
+.weekdays {
+  padding-top: 15px;
+}
+.calendar-days {
+  padding-bottom: 15px;
+}
+.weekday-name,
+[class$="-day"] {
+  width: 60px;
+  height: 50px;
+  color: #0a0a0a;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.weekday-name {
+  color: #000000;
+  font-weight: 700;
+}
+.padding-day {
+  color: #a5a5a5;
+  user-select: none;
+}
+.calendar-toolbar > [class$="month-btn"]:hover,
+.month-day:hover,
+.btn:hover {
+  border-radius: 15px;
+  background-color: rgb(10, 212, 212);
+  color: rgb(7, 2, 20);
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px 1.5px rgb(10, 212, 212);
+}
+.calendar-toolbar > [class$="month-btn"]:focus,
+.month-day:focus,
+.btn:focus {
+  border-radius: 15px;
+  background-color: rgb(10, 212, 212);
+  color: #f8f7fa;
+}
+#closeCalendarBtn {
+  border-radius: 15px;
+  background-color: rgb(212, 10, 10);
+  color: rgb(7, 2, 20);
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px 1.5px rgb(212, 10, 10);
+  top: 10px;
+  right: 10px;
+}
+.goto-buttons {
+  border-top: 1px solid #efefef;
+  padding-block: 18px;
+  font-size: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.btn {
+  background: #f8f7fa;
+  border: none;
+  border-radius: 15px;
+  padding: 11px 13px;
+  color: #000000;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-right: 1px;
+  box-shadow: 0px 0px 0px #efefef;
+}
+#todayDate{
+  display: flex;
+  justify-content: center;
+  color: #000000;
+}
