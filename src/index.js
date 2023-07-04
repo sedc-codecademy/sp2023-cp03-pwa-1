@@ -703,7 +703,8 @@ let task1= {
     name: "task1",
     workTime: 0,
     longTime: 0,
-    shortTime: 0
+    shortTime: 0,
+    id:""
 };
 let workStarted = false;
 let longStarted = false;
@@ -817,14 +818,14 @@ function search() {
             task1.longTime = tasks[i].longbreak;
             task1.shortTime = tasks[i].shortbreak;
             task1.name = tasks[i].taskName
+            task1.id =tasks[i].taskId
         }
     }
 };
 
 function updateTasks() {
        for(i=0;i<tasks.length;i++){
-        if(tasks[i].taskName===task1.name){
-            index=tasks[i];
+        if(tasks[i].taskId===task1.id){
             tasks[i].worktime=task1.workTime;
            tasks[i].longbreak=task1.longTime;
             tasks[i].shortbreak=task1.shortTime;
