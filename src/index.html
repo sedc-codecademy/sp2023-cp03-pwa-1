@@ -406,9 +406,9 @@
           <button class="sessions" id="longBreakSession">Long Break</button>
         </div>
         <div class="timer">
-          <span id="minutes">--</span>
+          <span class="minutes" id="minutes">--</span>
           <span>:</span>
-          <span id="seconds">--</span>
+          <span class="seconds" id="seconds">--</span>
         </div>
         <button id="start" disabled>Start</button>
       </div>
@@ -443,7 +443,9 @@
             max="5"
             name="taskEst"
           /><br />
-
+          <label for="inputTime">Enter work time</label>
+          <input type="text" id="inputTime" name="inputTime" />
+          <p>*Default work time is 45 min</p>
           <div class="modal-buttons">
             <button
               id="cancel"
@@ -691,6 +693,11 @@
         <button type="button" style="color: black;" class="btn thisWeek">This Week</button>
         <button type="button" style="color: black;" class="btn next-year">Next Year</button>
       </div>
+    </div>
+    <div class="timer" id="timer2" hidden>                        
+      <span class="minutes" id="minutes2">--</span>
+      <span>:</span>
+      <span class="seconds" id="seconds2">--</span>
     </div>
     <script src="index.js"></script>
   </body>

@@ -174,6 +174,8 @@ addTask = function () {
     const taskName = document.getElementById("taskName").value;
     const taskEst = document.getElementById("taskEst").value;
     const taskDesc = document.getElementById("taskDesc").value;
+    let taskWorkTime = document.getElementById("inputTime").value;
+    let parsedWorkTime= parseInt(taskWorkTime) || 45;
     let taskCurrentName = currentUser;
     const newTask = {
         taskId: generateUID(),
@@ -181,9 +183,9 @@ addTask = function () {
         taskEst: taskEst,
         taskDesc: taskDesc,
         taskCurrentUser: taskCurrentName,
-        worktime: 45 * 60,
-        longbreak: 15 * 60,
-        shortbreak: 5 * 60
+        worktime: parsedWorkTime * 60,
+        longbreak: Math.floor(parsedWorkTime/3 * 60),
+        shortbreak: Math.floor(parsedWorkTime/9 * 60)
     }
     i++;
     tasks.push(newTask);
@@ -461,6 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hideButtonById('taskBar');
         hideButtonById('displayReminders'); //reminders hide
         hideButtonById('reminderList');
+        hideButtonById('timer2');
         showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
@@ -717,7 +720,7 @@ let elements = {
             workStarted = true;
             document.querySelector('#start').innerHTML = `Start`;
             timer.time = task1.workTime;
-            elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
+            elements.min.innerText = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
         }
         ),
@@ -784,7 +787,9 @@ function convertFromSeconds() {
     const minutes = Math.floor(timer.time / 60);
     const seconds = timer.time % 60;
     elements.min.textContent = minutes.toString().padStart(2, 0);
+    minutess2.textContent =minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
+    seconds2.textContent = seconds.toString().padStart(2, 0);
 }
 function updateTaskTime() {
     if (workStarted == true) {
@@ -828,7 +833,15 @@ function updateTasks() {
     }
 
 
+    let minutess2=document.querySelector("#minutes2");
+    minutess2.innerHTML=`${(timer.time % 60).toString().padStart(2, 0)}`;
+    let seconds2 =document.querySelector("#seconds2");
+    seconds2.innerHTML= `${(timer.time % 60).toString().padStart(2, 0)}`;
 
+//     let dns= document.createElement("span");
+//     dns.innerHTML=`${document.querySelector('#minutes').innerText}`;
+//     document.body.append(dns);
+// console.log(elements.sec)
 // REMINDERS
 let reminders = [];
 
@@ -960,6 +973,10 @@ allReminders.addEventListener("click", () => {
           });
     reminderList.style.display = 'flex';
     timerAndTaskBarDiv.style.display = 'none';
+    if(document.getElementById("start").textContent!="Start"){
+        timer2.hidden =false;
+    showButtonById('timer2');
+}
 })
 let reminderList = document.getElementById('reminderList');
 //Add Menu reminder to show main div when the button from mennu is clicked
@@ -971,15 +988,26 @@ addMenuReminder.addEventListener('click', function () {
             currentSessionElement.remove();
           });
     timerAndTaskBarDiv.style.display = 'none';
+    if(document.getElementById("start").textContent!="Start"){
+    timer2.hidden =false;
+    showButtonById('timer2');
+    }
 });
-
+let timer2 = document.getElementById("timer2");
+timer2.addEventListener('click', function () {
+    timerAndTaskBarDiv.style.display = 'flex';
+    hideButtonById('displayReminders');
+    hideButtonById('reminderList');
+    hideButtonById('timer2');
+})
 //Productivio from the menu to show task bar and the timer -Aleksandar
 let productivioMenuButton = document.getElementById('titleNavBar');
 productivioMenuButton.addEventListener('click', function () {
     timerAndTaskBarDiv.style.display = 'flex';
     hideButtonById('displayReminders');
     hideButtonById('reminderList');
-})
+    hideButtonById('timer2');
+});
 
 //Start of Music Player
 //MP DOM

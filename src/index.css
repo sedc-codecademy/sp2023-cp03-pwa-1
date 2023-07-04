@@ -373,6 +373,14 @@ button {
   text-align: center;
   color: #ffffff;
 }
+#timer2 {
+  border: #0a0a0a solid 1px;
+  font-size: 20px;
+  text-align:left;
+  color: #ffffff;
+  position:absolute;
+  bottom: 20px;;
+}
 
 #start {
   box-shadow: 0px 7px 8px 1px #1c1d1b;
