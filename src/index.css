@@ -634,23 +634,33 @@ button {
 /* SLIDESHOW */
 #carouselExampleAutoplaying {
     position: fixed;
-    top: 5%;
+    top: 6%;
     width: 100%;
 }
 
 .pageInfo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 1;
+    background-color: #000000;
 }
 
 .carousel-item {
-    height: 900px;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
     margin-top: 5px;
 }
 
     .carousel-item img {
-        object-fit: contain;
+        object-fit: cover;
         height: 100%;
         width: 100%;
+
     }
 
 .carousel-control-prev,
