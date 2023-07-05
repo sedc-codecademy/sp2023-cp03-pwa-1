@@ -1,1229 +1,1250 @@
 nav {
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  border: 1px solid black;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 
 #body {
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  background-attachment: fixed;
-  font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#errorMessage {
+    display: none;
 }
 
 .offcanvas-body {
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 
 .nav-link.dropdown-toggle:hover {
-  background-color: #134434;
+    background-color: #134434;
 }
 
 .nav-link.dropdown-toggle:focus,
 .nav-link.dropdown-toggle:active {
-  background-color: #134434;
+    background-color: #134434;
 }
 
 .dropdown-menu.dropdown-menu-dark {
-  background-color: #134434;
+    background-color: #134434;
 }
 
 
 .offcanvas-header {
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 
 #titleNavBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-#titleNavBar:hover {
-  color: greenyellow;
-  cursor: pointer;
-}
+    #titleNavBar:hover {
+        color: greenyellow;
+        cursor: pointer;
+    }
 
 
 .my-sessions-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid white;
-  padding: 5px;
-  width: fit-content;
-  background-color: #134434;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+    padding: 5px;
+    width: fit-content;
+    background-color: #134434;
 }
 
 
 .taskbar {
-  color: white;
-  display: inline-block;
+    color: white;
+    display: inline-block;
 }
 
 .add-task-btn {
-  margin-left: 10px;
-  float: right;
+    margin-left: 10px;
+    float: right;
 }
 
 .modal {
-  display: none;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  position: fixed;
-  background-color: rgb(0, 0, 0, 0.7);
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.7);
 }
 
 /*TODO Make the session look like Kire's taskbar border/style*/
 .session {
-  font-family: Helvetica, sans-serif;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
+    font-family: Helvetica, sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .session-text {
-  color: white;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  justify-content: flex-start;
-  display: flex;
-  height: 30px;
-  width: 250px;
-  border-radius: 5px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    display: flex;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
 }
 
 .session h3 {
-  font-family: Helvetica, sans-serif;
-  font-size: 20px;
-  margin-bottom: 5px;
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 .session p {
-  font-family: Helvetica, sans-serif;
-  font-size: 16px;
-  margin-bottom: 3px;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 3px;
 }
 
 .btn-outline-success {
-  color: white !important;
+    color: white !important;
 }
 
 .modal-content-new-task {
-  width: 25% !important;
-  background-color: #134434;
+    width: 25% !important;
+    background-color: #134434;
 }
 
 .modal-content {
-  font-family: Helvetica, sans-serif;
-  border-radius: 10px;
-  color: white !important;
-  background-color: #134434 !important;
-  margin: 15% auto;
-  padding: 25px;
-  border: 1px solid black;
+    font-family: Helvetica, sans-serif;
+    border-radius: 10px;
+    color: white !important;
+    background-color: #134434 !important;
+    margin: 15% auto;
+    padding: 25px;
+    border: 1px solid black;
 }
 
-  .modal-content > h1 {
-      text-align: center;
-      margin-bottom: 25px;
-  }
+    .modal-content > h1 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
-  .modal-content input {
-      border: 1px solid black;
-      margin-top: px;
-      margin-bottom: 5px;
-      justify-content: flex-end;
-      display: flex;
-      height: 30px;
-      ;
-      width: 250px;
-      border-radius: 5px;
-  }
+    .modal-content input {
+        border: 1px solid black;
+        margin-top: px;
+        margin-bottom: 5px;
+        justify-content: flex-end;
+        display: flex;
+        height: 30px;
+        ;
+        width: 250px;
+        border-radius: 5px;
+    }
 
-  .modal-content label {
-      font-size: 16px;
-      font-family: Verdana, sans-serif;
-  }
+    .modal-content label {
+        font-size: 16px;
+        font-family: Verdana, sans-serif;
+    }
 
 .modal-buttons {
-  margin-top: 20px;
-  text-align: right;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  display: inherit;
-  font-family: Verdana, sans-serif;
+    margin-top: 20px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: inherit;
+    font-family: Verdana, sans-serif;
 }
 
-  .modal-buttons button {
-      width: 150px;
-  }
+    .modal-buttons button {
+        width: 150px;
+    }
 
 
 .settingsButton {
-  line-height: 40px;
-  transition: ease-in-out .2s;
-  padding: 0 16px;
+    line-height: 40px;
+    transition: ease-in-out .2s;
+    padding: 0 16px;
 }
 
 #tasks {
-  display: none;
-  margin-top: 10px;
+    display: none;
+    margin-top: 10px;
 }
 
 #taskList {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .actionButtons {
-  display: flex;
-  width: 200px;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .isSelected {
-  border: 1px solid white;
-  border-radius: 8px;
-  background-color: #638261;
+    border: 1px solid white;
+    border-radius: 8px;
+    background-color: #638261;
 }
 
 #taskList li {
-  display: flex;
-  cursor: pointer;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 35rem;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 35rem;
 }
 
-  #taskList li > div {
-      cursor: pointer;
-      padding: 5px 10px 5px 10px;
-  }
+    #taskList li > div {
+        cursor: pointer;
+        padding: 5px 10px 5px 10px;
+    }
 
-  #taskList li span {
-      margin-right: 10px;
-      color: white;
-      max-width: 300px;
-  }
+    #taskList li span {
+        margin-right: 10px;
+        color: white;
+        max-width: 300px;
+    }
 
-  #taskList li p {
-      width: -moz-fit-content;
-      width: fit-content;
-  }
+    #taskList li p {
+        width: -moz-fit-content;
+        width: fit-content;
+    }
 
 #taskName {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 #taskDesc {
-  color: lightgray;
-  font-size: 15px;
-  text-align: left !important;
+    color: lightgray;
+    font-size: 15px;
+    text-align: left !important;
 }
 
-#taskEst {
-  font-weight: bold;
-  font-size: 17px;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 3px 7px 3px 7px;
+#taskPrio {
+    font-weight: bold;
+    font-size: 17px;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 3px 7px 3px 7px;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .tooltip-text {
-  visibility: hidden;
-  position: absolute;
-  z-index: 1;
-  width: 400px;
-  color: white;
-  font-size: 15px;
-  background-color: #121a21;
-  border-radius: 10px;
-  padding: 10px 15px 10px 15px;
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    color: white;
+    font-size: 15px;
+    background-color: #121a21;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
 }
 
 .hover-text:hover .tooltip-text {
-  visibility: visible;
+    visibility: visible;
 }
 
 .hover-text {
-  position: relative;
-  display: inline-block;
-  font-family: Arial;
+    position: relative;
+    display: inline-block;
+    font-family: Arial;
 }
 
 .modal-backdrop {
-  z-index: 9 !important;
+    z-index: 9 !important;
 }
 
 .centered-container {
-  margin-top: 100px !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    margin-top: 100px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .container {
-  margin-top: 100px !important;
-  background-color: #134434;
-  width: 600px !important;
-  border: 0.5px solid lightgray;
-  border-radius: 5px !important;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
+    margin-top: 100px !important;
+    background-color: #134434;
+    width: 600px !important;
+    border: 0.5px solid lightgray;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
 }
 
 /* timer */
 #timerDisplay {
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 20px;
-  background-color: #134434;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #134434;
 }
 
 #workSession {
-  box-shadow: 7px 7px 8px -2px #1c1d1b;
-  background-color: transparent;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  padding: 9px 36px;
-  text-decoration: none;
-  border: #ffffff
+    box-shadow: 7px 7px 8px -2px #1c1d1b;
+    background-color: transparent;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 9px 36px;
+    text-decoration: none;
+    border: #ffffff
 }
 
-  #workSession:hover {
-      background-color: transparent;
-  }
+    #workSession:hover {
+        background-color: transparent;
+    }
 
-  #workSession:active {
-      position: relative;
-      top: 1px;
-  }
+    #workSession:active {
+        position: relative;
+        top: 1px;
+    }
 
 #shortBreakSession {
-  box-shadow: 0px 7px 8px 1px #1c1d1b;
-  background-color: transparent;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  padding: 9px 36px;
-  text-decoration: none;
-  border: #0c5900
+    box-shadow: 0px 7px 8px 1px #1c1d1b;
+    background-color: transparent;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 9px 36px;
+    text-decoration: none;
+    border: #0c5900
 }
 
-  #shortBreakSession:hover {
-      background-color: transparent;
-  }
+    #shortBreakSession:hover {
+        background-color: transparent;
+    }
 
-  #shortBreakSession:active {
-      position: relative;
-      top: 1px;
-  }
+    #shortBreakSession:active {
+        position: relative;
+        top: 1px;
+    }
 
 #longBreakSession {
-  box-shadow: -7px 7px 8px -2px #1c1d1b;
-  background-color: transparent;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  padding: 9px 36px;
-  text-decoration: none;
-  border: #0c5900
+    box-shadow: -7px 7px 8px -2px #1c1d1b;
+    background-color: transparent;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 9px 36px;
+    text-decoration: none;
+    border: #0c5900
 }
 
-  #longBreakSession:hover {
-      background-color: transparent;
-  }
+    #longBreakSession:hover {
+        background-color: transparent;
+    }
 
-  #longBreakSession:active {
-      position: relative;
-      top: 1px;
-  }
+    #longBreakSession:active {
+        position: relative;
+        top: 1px;
+    }
 
 .timer {
-  font-size: 100px;
-  text-align: center;
-  color: #ffffff;
+    font-size: 100px;
+    text-align: center;
+    color: #ffffff;
 }
+
 #timer2 {
-  border: #0a0a0a solid 1px;
-  font-size: 20px;
-  text-align:left;
-  color: #ffffff;
-  position:absolute;
-  bottom: 20px;;
+    border: #0a0a0a solid 1px;
+    font-size: 20px;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    bottom: 20px;
+    ;
 }
 
 #start {
-  box-shadow: 0px 7px 8px 1px #1c1d1b;
-  background-color: transparent;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  padding: 9px 36px;
-  text-decoration: none;
-  border: #0c5900;
-  width: 180px;
-  margin: 0 auto;
+    box-shadow: 0px 7px 8px 1px #1c1d1b;
+    background-color: transparent;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 9px 36px;
+    text-decoration: none;
+    border: #0c5900;
+    width: 180px;
+    margin: 0 auto;
 }
 
-  #start:hover {
-      background-color: transparent;
-  }
+    #start:hover {
+        background-color: transparent;
+    }
 
-  #start:active {
-      position: relative;
-      top: 1px;
-  }
+    #start:active {
+        position: relative;
+        top: 1px;
+    }
 
 /* Reminders */
 
 #displayReminders {
-  margin-top: 100px !important;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  width: 600px !important;
-  border: 0.5px solid lightgray;
-  border-radius: 5px !important;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  display: none;
+    margin-top: 100px !important;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    width: 600px !important;
+    border: 0.5px solid lightgray;
+    border-radius: 5px !important;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    display: none;
 }
 
 #reminderHeader {
-  text-align: center;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  color: white;
+    text-align: center;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    color: white;
 }
 
 #reminderForm {
-  text-align: center;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    text-align: center;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 
 #reminderInput[type="text"] {
-  padding: 5px;
-  width: 200px;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  color: white;
+    padding: 5px;
+    width: 200px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    color: white;
 }
 
 #addReminder {
-  padding: 5px 10px;
-  margin: 5px;
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: solid black;
-  border: none;
-  border-radius: 15px;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 
-  #addReminder:hover {
-      background-color: #25a511;
-  }
+    #addReminder:hover {
+        background-color: #25a511;
+    }
 
 #reminderList {
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .reminderDivElement:hover {
-  box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2)
+    box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2)
 }
 
 .reminderDivElement {
-  width: 50%;
-  height: 50%;
-  margin: 5px;
-  display: flex;
-  padding: 20px;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  overflow-wrap: anywhere;
+    width: 50%;
+    height: 50%;
+    margin: 5px;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    overflow-wrap: anywhere;
 }
 
 .buttonDiv {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .headerText {
-  display: flex;
-  white-space: normal;
-  align-items: center;
-  color: white;
+    display: flex;
+    white-space: normal;
+    align-items: center;
+    color: white;
 }
 
 .deleteButton {
-  background-color: red;
-  margin: 5px;
-  margin: 5px;
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 10px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: solid black;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
-  .deleteButton:hover {
-      background-color: rgb(158, 39, 34);
-  }
+    .deleteButton:hover {
+        background-color: rgb(158, 39, 34);
+    }
 
-  .deleteButton:active {
-      background-color: rgb(158, 39, 34);
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-  }
+    .deleteButton:active {
+        background-color: rgb(158, 39, 34);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 
 .editButton {
-  background-color: yellow;
-  margin: 5px;
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 10px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: solid black;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    background-color: yellow;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
-  .editButton:hover {
-      background-color: rgb(139, 139, 16);
-  }
+    .editButton:hover {
+        background-color: rgb(139, 139, 16);
+    }
 
-  .editButton:active {
-      background-color: rgb(139, 139, 16);
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-  }
+    .editButton:active {
+        background-color: rgb(139, 139, 16);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 
 .modalReminder {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  width: 619px;
-  height: 387px;
-  overflow: auto;
-  margin: auto;
-  transform: translate(-50%, -50%);
-  border: 1px solid #888;
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 619px;
+    height: 387px;
+    overflow: auto;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    border: 1px solid #888;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
 }
 
 .mainDivForModalReminder {
-  background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
-  margin: 15% auto;
-  padding: 20px;
-  width: 600px;
-  height: 200px;
-  display: grid;
-  align-content: space-around;
-  justify-content: center;
-  align-items: center;
-  justify-items: stretch;
-  color: white;
+    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    margin: 15% auto;
+    padding: 20px;
+    width: 600px;
+    height: 200px;
+    display: grid;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    justify-items: stretch;
+    color: white;
 }
 
 #saveButton {
-  background-color: green;
-  margin: 5px;
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 10px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: solid black;
-  border: none;
-  border-radius: 15px;
+    background-color: green;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
 }
 
-  #saveButton:hover {
-      background-color: #27d110;
-  }
+    #saveButton:hover {
+        background-color: #27d110;
+    }
 
 #cancelButton {
-  background-color: red;
-  margin: 5px;
-  margin: 5px;
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 10px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: solid black;
-  border: none;
-  border-radius: 15px;
+    background-color: red;
+    margin: 5px;
+    margin: 5px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: solid black;
+    border: none;
+    border-radius: 15px;
 }
 
-  #cancelButton:hover {
-      background-color: rgb(158, 39, 34);
-  }
+    #cancelButton:hover {
+        background-color: rgb(158, 39, 34);
+    }
 
 #messageReminder {
-  color: #27d110;
+    color: #27d110;
 }
 
 /* SLIDESHOW */
 #carouselExampleAutoplaying {
-  position: fixed;
-  top: 5%;
-  width: 100%;
+    position: fixed;
+    top: 5%;
+    width: 100%;
 }
 
 .pageInfo {
-  text-align: center;
+    text-align: center;
 }
 
 .carousel-item {
-  height: 900px;
-  margin-top: 5px;
+    height: 900px;
+    margin-top: 5px;
 }
 
-  .carousel-item img {
-      object-fit: contain;
-      height: 100%;
-      width: 100%;
-  }
+    .carousel-item img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 10%;
+    width: 10%;
 }
 
 /* Start of Music Player */
 /* Top Part */
 #music_player_container {
-  position: absolute;
-  left: 20px;
-  top: 170px;
-  display: inline-block;
-  width: 113.25px;
+    position: absolute;
+    left: 20px;
+    top: 170px;
+    display: inline-block;
+    width: 113.25px;
 }
 
 #top_part_container {
-  width: 100%;
-  display: inline-block;
+    width: 100%;
+    display: inline-block;
 }
 
 #top_part_content {
-  height: 110px;
-  width: 100%;
-  display: flex;
+    height: 110px;
+    width: 100%;
+    display: flex;
 }
 
 #main_icon_container {
-  opacity: 1;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  display: flex;
-  border-radius: 40px;
-  background: linear-gradient(180deg, rgba(86,59,129,0.9) 0%, rgba(94,44,107,0.9) 74%, rgba(98,41,157, 0.9) 1000%);
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    display: flex;
+    border-radius: 40px;
+    background: linear-gradient(180deg, rgba(86,59,129,0.9) 0%, rgba(94,44,107,0.9) 74%, rgba(98,41,157, 0.9) 1000%);
 }
 
 #main_icon_child {
-  margin-bottom: 10px;
-  margin-right: 10px;
-  color: white;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    color: white;
 }
 
 #note_btn {
-  width: 100px;
-  cursor: pointer;
-  color: white;
-  border: none;
-  background-color: transparent;
+    width: 100px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    background-color: transparent;
 }
 
 #note_icon {
-  font-size: 60px;
+    font-size: 60px;
 }
 
 #main_controls_container {
-  opacity: 0;
-  flex: 3;
-  display: none;
-  flex-direction: column;
-  transition: opacity .2s;
+    opacity: 0;
+    flex: 3;
+    display: none;
+    flex-direction: column;
+    transition: opacity .2s;
 }
 
 #main_buttons_container {
-  flex: 1;
-  display: flex;
-  border-radius: 0px 11px 0px 0px;
-  background: rgb(86,59,129);
-  background: rgb(86,59,129);
-  background: linear-gradient(193deg, rgb(62 45 90) 0%, rgb(99 34 116 / 82%) 74%, rgb(79 44 110 / 97%) 100%);
+    flex: 1;
+    display: flex;
+    border-radius: 0px 11px 0px 0px;
+    background: rgb(86,59,129);
+    background: rgb(86,59,129);
+    background: linear-gradient(193deg, rgb(62 45 90) 0%, rgb(99 34 116 / 82%) 74%, rgb(79 44 110 / 97%) 100%);
 }
 
 #scale {
-  display: flex;
-  flex: 1;
-  background-color: rgba(67, 22, 94,0.7);
-  flex-direction: row;
-  border-radius: 0px 0px 11px 0px;
+    display: flex;
+    flex: 1;
+    background-color: rgba(67, 22, 94,0.7);
+    flex-direction: row;
+    border-radius: 0px 0px 11px 0px;
 }
 
 #song_time_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 221px;
-  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 221px;
+    text-align: center;
 }
 
 #song_time_range {
-  width: 95%;
-  outline: none;
-  height: 4px;
-  cursor: pointer;
-  accent-color: #6e60ba;
+    width: 95%;
+    outline: none;
+    height: 4px;
+    cursor: pointer;
+    accent-color: #6e60ba;
 }
 
 #volume_icon_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  width: 23.57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 23.57px;
 }
 
 #volume_range_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    padding-left: 5px;
 }
 
 #volume_range {
-  width: 60px;
-  height: 4px;
-  outline: none;
-  cursor: pointer;
-  accent-color: #6e60ba;
+    width: 60px;
+    height: 4px;
+    outline: none;
+    cursor: pointer;
+    accent-color: #6e60ba;
 }
 
-  #volume_range:hover {
-      background-color: black;
-  }
+    #volume_range:hover {
+        background-color: black;
+    }
 
 .button_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
 }
 
 .mp_btn {
-  border: 0;
-  height: 65px;
-  width: 65px;
-  color: #ffffff;
-  background-color: transparent;
+    border: 0;
+    height: 65px;
+    width: 65px;
+    color: #ffffff;
+    background-color: transparent;
 }
 
-  .mp_btn:hover {
-      font-weight: bold;
-      cursor: pointer;
-  }
+    .mp_btn:hover {
+        font-weight: bold;
+        cursor: pointer;
+    }
 
 #prev_btn:hover #prev_btn_content, #next_btn:hover #next_btn_content {
-  color: #c3afc7d9;
-  transform: scale(1.1);
+    color: #c3afc7d9;
+    transform: scale(1.1);
 }
 
 #play_btn:hover #play_btn_content {
-  color: #c3afc7d9;
-  transform: scale(1.1);
+    color: #c3afc7d9;
+    transform: scale(1.1);
 }
 
 #play_btn:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 #prev_btn:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 #next_btn:active {
-  transform: scale(0.9)
+    transform: scale(0.9)
 }
 
 #expand_btn:hover #expand_btn_content {
-  color: #c3afc7d9;
+    color: #c3afc7d9;
 }
 
 #expand_btn:hover #expand_btn_content2 {
-  color: #c3afc7d9;
+    color: #c3afc7d9;
 }
 
 #expand_btn:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 #prev_btn_content {
-  font-size: large;
+    font-size: large;
 }
 
 #play_btn_content {
-  font-size: large;
+    font-size: large;
 }
 
 #next_btn_content {
-  font-size: large;
+    font-size: large;
 }
 
 #expand_btn_container {
-  flex: 2;
+    flex: 2;
 }
 
 #expand_btn_child {
-  margin: 0 auto;
-  padding: 10px;
-  position: relative;
-  text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
 }
 
 #expand_btn {
-  height: 55px;
-  width: 60px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: white;
-  padding-bottom: 5px;
+    height: 55px;
+    width: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding-bottom: 5px;
 }
 
 #expand_btn_content {
-  font-size: 45px;
+    font-size: 45px;
 }
 
 #expand_btn_content2 {
-  font-size: 45px;
+    font-size: 45px;
 }
 
 #volume_icon {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-  #volume_icon:hover {
-      color: #b2afb4;
-      cursor: pointer;
-  }
+    #volume_icon:hover {
+        color: #b2afb4;
+        cursor: pointer;
+    }
 
 #volume_icon2 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-  #volume_icon2:hover {
-      color: #b2afb4;
-      cursor: pointer;
-  }
+    #volume_icon2:hover {
+        color: #b2afb4;
+        cursor: pointer;
+    }
 
 #volume_icon3 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-  #volume_icon3:hover {
-      color: #b2afb4;
-      cursor: pointer;
-  }
+    #volume_icon3:hover {
+        color: #b2afb4;
+        cursor: pointer;
+    }
 
 #prev_btn i, #next_btn i {
-  font-size: 22px
+    font-size: 22px
 }
 
 #play_btn, #next_btn, #prev_btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-  #play_btn i {
-      font-size: 32px
-  }
+    #play_btn i {
+        font-size: 32px
+    }
 
 /* Bottom Part */
 
 #bottom_part_container {
-  border-radius: 0px 0px 11px 11px;
-  display: none;
-  width: 100%;
-  height: 300px;
-  flex-direction: column;
+    border-radius: 0px 0px 11px 11px;
+    display: none;
+    width: 100%;
+    height: 300px;
+    flex-direction: column;
 }
 
 #currently_playing_child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
 }
 
 #p_currently_playing {
-  width: 100%;
-  margin: 0;
-  font-family: fantasy;
+    width: 100%;
+    margin: 0;
+    font-family: fantasy;
 }
 
 #loop_btn_container {
-  padding-right: 27px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    padding-right: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 #loop_btn {
-  background-color: #00000096;
-  border-radius: 7px;
-  border: black;
-  color: white;
-  width: 66px;
-  height: 22px;
-  font-size: 13px;
+    background-color: #00000096;
+    border-radius: 7px;
+    border: black;
+    color: white;
+    width: 66px;
+    height: 22px;
+    font-size: 13px;
 }
 
-  #loop_btn:hover {
-      color: rgb(199, 199, 199);
-  }
+    #loop_btn:hover {
+        color: rgb(199, 199, 199);
+    }
 
-  #loop_btn:active {
-      color: rgb(255, 255, 255);
-  }
+    #loop_btn:active {
+        color: rgb(255, 255, 255);
+    }
 
 #autoplay_btn:hover {
-  color: rgb(199, 199, 199);
+    color: rgb(199, 199, 199);
 }
 
 #autoplay_btn:active {
-  color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 #autoplay_btn_container {
-  padding-right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    padding-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 #autoplay_btn {
-  background-color: #00000096;
-  border-radius: 7px;
-  border: black;
-  color: white;
-  width: 83px;
-  height: 22px;
-  font-size: 13px;
+    background-color: #00000096;
+    border-radius: 7px;
+    border: black;
+    color: white;
+    width: 83px;
+    height: 22px;
+    font-size: 13px;
 }
 
 #currently_playing_container {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(240,255,255,0.9);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(240,255,255,0.9);
 }
 
 #current_song_container {
-  flex: 1.2;
-  display: flex;
+    flex: 1.2;
+    display: flex;
 }
 
 #current_song_img {
-  flex: 1;
+    flex: 1;
 }
 
 #song_img {
-  height: 71.31px;
-  width: 100%;
+    height: 71.31px;
+    width: 100%;
 }
 
 #current_song_name {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
-  flex: 4
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
+    flex: 4
 }
 
 #up_next_container {
-  justify-content: space-between;
-  display: flex;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  background-color: rgba(240,255,255,0.9);
+    justify-content: space-between;
+    display: flex;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: rgba(240,255,255,0.9);
 }
 
 #up_next_Text_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
 }
 
 #p_up_next {
-  width: 100%;
-  margin: 0;
-  font-family: fantasy;
+    width: 100%;
+    margin: 0;
+    font-family: fantasy;
 }
 
 #up_next_songs_container {
-  overflow: hidden;
-  overflow-y: scroll;
-  background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
-  border-radius: 0px 0px 11px 11px;
-  flex: 3;
+    overflow: hidden;
+    overflow-y: scroll;
+    background: linear-gradient(0deg, rgba(52,32,76,0.9) 0%, rgba(106,70,127,0.9) 100%);
+    border-radius: 0px 0px 11px 11px;
+    flex: 3;
 }
 
 #songs_container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .p_mp {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #up_next_songs_container::-webkit-scrollbar {
-  width: 12px;
+    width: 12px;
 }
 
 #up_next_songs_container::-webkit-scrollbar-track {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 #up_next_songs_container::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #e7e7e7;
-  border: 1px solid rgb(64, 64, 64);
+    border-radius: 10px;
+    background-color: #e7e7e7;
+    border: 1px solid rgb(64, 64, 64);
 }
 
-  #up_next_songs_container::-webkit-scrollbar-thumb:hover {
-      background-color: #b0b0b0;
-  }
+    #up_next_songs_container::-webkit-scrollbar-thumb:hover {
+        background-color: #b0b0b0;
+    }
 
 .songs_div {
-  padding: 0 20px 0 20px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  height: 67.56px;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+    padding: 0 20px 0 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 67.56px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #p_song_name_id {
-  text-align: center;
-  margin: 0;
-  color: #ffffff;
-  font-size: 20px;
-  padding-bottom: 7px;
+    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+    padding-bottom: 7px;
 }
 
 .p_song_name_class {
-  padding-bottom: 7px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-  color: #ffffff;
-  font-size: 20px;
+    padding-bottom: 7px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
 }
 
 .songs_div:hover {
-  background-color: rgba(0, 0, 0, 0.044);
+    background-color: rgba(0, 0, 0, 0.044);
 }
 
 .songs_div:active {
-  background-color: #5b26733f;
+    background-color: #5b26733f;
 }
 /* End of Music Player */
 #navBarId {
-  justify-content: end;
+    justify-content: end;
 }
 /* Calendar */
 .card {
-  margin-top: 50px;
-  width: 500px;
-  height: fit-content;
-  background-color: #FFFFFF;
-  padding: 10px;
-  margin: 150px auto;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px #efefef;
-  background-image: linear-gradient(120deg, #248a68 0%, #0f3025 100%);
+    margin-top: 50px;
+    width: 500px;
+    height: fit-content;
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin: 150px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #efefef;
+    background-image: linear-gradient(120deg, #248a68 0%, #0f3025 100%);
 }
+
 .calendar-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #efefef;
 }
-.calendar-toolbar > .current-month {
-  font-size: 30px;
-  font-weight: bold;
-  color: #000000;
-}
-.calendar-toolbar > [class$="month-btn"] {
-  width: 50px;
-  aspect-ratio: 1;
-  text-align: center;
-  line-height: 30px;
-  font-size: 18px;
-  color: #000000;
-  box-shadow: 0px 0px 10px #efefef;
-  border: 1px;
-  border-radius: 15px;
-}
+
+    .calendar-toolbar > .current-month {
+        font-size: 30px;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    .calendar-toolbar > [class$="month-btn"] {
+        width: 50px;
+        aspect-ratio: 1;
+        text-align: center;
+        line-height: 30px;
+        font-size: 18px;
+        color: #000000;
+        box-shadow: 0px 0px 10px #efefef;
+        border: 1px;
+        border-radius: 15px;
+    }
+
 .weekdays,
 .calendar-days {
-  display: flex;
-  flex-wrap: wrap;
-  padding-inline: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-inline: 18px;
 }
+
 .weekdays {
-  padding-top: 15px;
+    padding-top: 15px;
 }
+
 .calendar-days {
-  padding-bottom: 15px;
+    padding-bottom: 15px;
 }
+
 .weekday-name,
 [class$="-day"] {
-  width: 60px;
-  height: 50px;
-  color: #0a0a0a;
-  text-align: center;
-  line-height: 40px;
-  font-weight: 500;
-  font-size: 20px;
+    width: 60px;
+    height: 50px;
+    color: #0a0a0a;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 500;
+    font-size: 20px;
 }
+
 .weekday-name {
-  color: #000000;
-  font-weight: 700;
+    color: #000000;
+    font-weight: 700;
 }
+
 .padding-day {
-  color: #a5a5a5;
-  user-select: none;
+    color: #a5a5a5;
+    user-select: none;
 }
+
 .calendar-toolbar > [class$="month-btn"]:hover,
 .month-day:hover,
 .btn:hover {
-  border-radius: 15px;
-  background-color: rgb(10, 212, 212);
-  color: rgb(7, 2, 20);
-  transition: 0.3s;
-  cursor: pointer;
-  box-shadow: inset 0px 0px 0px 1.5px rgb(10, 212, 212);
+    border-radius: 15px;
+    background-color: rgb(10, 212, 212);
+    color: rgb(7, 2, 20);
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 0px 1.5px rgb(10, 212, 212);
 }
+
 .calendar-toolbar > [class$="month-btn"]:focus,
 .month-day:focus,
 .btn:focus {
-  border-radius: 15px;
-  background-color: rgb(10, 212, 212);
-  color: #f8f7fa;
+    border-radius: 15px;
+    background-color: rgb(10, 212, 212);
+    color: #f8f7fa;
 }
+
 #closeCalendarBtn {
-  border-radius: 15px;
-  background-color: rgb(212, 10, 10);
-  color: rgb(7, 2, 20);
-  transition: 0.3s;
-  cursor: pointer;
-  box-shadow: inset 0px 0px 0px 1.5px rgb(212, 10, 10);
-  top: 10px;
-  right: 10px;
+    border-radius: 15px;
+    background-color: rgb(212, 10, 10);
+    color: rgb(7, 2, 20);
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 0px 1.5px rgb(212, 10, 10);
+    top: 10px;
+    right: 10px;
 }
+
 .goto-buttons {
-  border-top: 1px solid #efefef;
-  padding-block: 18px;
-  font-size: 50px;
-  display: flex;
-  justify-content: space-evenly;
+    border-top: 1px solid #efefef;
+    padding-block: 18px;
+    font-size: 50px;
+    display: flex;
+    justify-content: space-evenly;
 }
+
 .btn {
-  background: #f8f7fa;
-  border: none;
-  border-radius: 15px;
-  padding: 11px 13px;
-  color: #000000;
-  font-family: "Quicksand", sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  margin-right: 1px;
-  box-shadow: 0px 0px 0px #efefef;
+    background: #f8f7fa;
+    border: none;
+    border-radius: 15px;
+    padding: 11px 13px;
+    color: #000000;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 1px;
+    box-shadow: 0px 0px 0px #efefef;
 }
-#todayDate{
-  display: flex;
-  justify-content: center;
-  color: #000000;
+
+#todayDate {
+    display: flex;
+    justify-content: center;
+    color: #000000;
 }

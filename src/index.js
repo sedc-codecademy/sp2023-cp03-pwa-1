@@ -8,12 +8,30 @@ const settingsButtons = {
     COMPLETE: "Complete"
 };
 
+validateNewTaskForm = function (taskPrioField) {
+    let x = taskPrioField.value;
+    // If x is Not a Number or less than one or greater than 5
+    let message = null;
+    if (isNaN(x) || x < 1 || x > 5) {
+        message = "Priority number must be between 1 and 5";
+    }
+    let errorSpan = document.getElementById("errorMessage");
+    let saveBtn = document.getElementById("save");
+
+    if (message) {
+        errorSpan.innerHTML = message;
+        errorSpan.style.display = "inline-block";
+        saveBtn.disabled = true;
+    } else {
+        errorSpan.style.display = "none";
+        saveBtn.disabled = false;
+    }
+}
+
 openModal = function () {
     document.getElementById("modal").style.display = "block";
     //Add to show Sessions
     // console.log(tasks[0].taskDesc)
-    
-    
 }
 
 //Nikola logic for sessions
@@ -29,11 +47,11 @@ let allUserTasks = [];
 document.addEventListener('DOMContentLoaded', function () {
     var currentSessionsBtn = document.getElementById('currentSessionBtn');
 
-    currentSessionsBtn.addEventListener('click',function(){
+    currentSessionsBtn.addEventListener('click', function () {
         var currentSessionElements = document.querySelectorAll('.session');
         currentSessionElements.forEach(function (currentSessionElement) {
             currentSessionElement.remove();
-          });
+        });
         currentSessionArr.forEach(task => {
             var sessionElement = document.createElement('div');
             sessionElement.classList.add('session');
@@ -53,11 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
             durationElement.textContent = 'Duration: ' + (task.worktime / 60 + " Min");
             durationElement.classList.add('session-text');
             sessionElement.appendChild(durationElement);
-            document.body.appendChild(sessionElement);  
+            document.body.appendChild(sessionElement);
+        })
     })
+    let taskPrioiField = document.getElementById("taskPrio");
+    taskPrioiField.addEventListener("keyup", function () {
+        validateNewTaskForm(taskPrioiField);
     })
 });
-
 
 document.addEventListener('DOMContentLoaded', function () {
     var nextSessionBtn = document.getElementById('nextSessionBtn');
@@ -66,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
     nextSessionBtn.addEventListener('click', function () {
         var currentTask = currentSessionArr[0];
         var nextLargestTask = null;
-        var currentTaskEst = parseInt(currentTask.taskEst);
+        var currenttaskPrio = parseInt(currentTask.taskPrio);
 
         for (var i = 0; i < tasks.length; i++) {
             var task = tasks[i];
-            var taskEst = parseInt(task.taskEst);
+            var taskPrio = parseInt(task.taskPrio);
 
-            if (taskEst > currentTaskEst) {
-                if (!nextLargestTask || taskEst < parseInt(nextLargestTask.taskEst)) {
+            if (taskPrio > currenttaskPrio) {
+                if (!nextLargestTask || taskPrio < parseInt(nextLargestTask.taskPrio)) {
                     nextLargestTask = task;
                 }
             }
@@ -111,52 +132,52 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-    
+
 document.addEventListener('DOMContentLoaded', function () {
     var allSessionsBtn = document.getElementById('allSessionsBtn');
-  
+
     allSessionsBtn.addEventListener('click', function () {
-      var sessionElements = document.querySelectorAll('.session');
-  
-      sessionElements.forEach(function (sessionElement) {
-        sessionElement.remove();
-      });
-  
-      for (let i = 0; i <= tasks.length - 1; i++) {
-        sessions.push({ name: currentUser, taskDescription: tasks[i].taskDesc, duration: tasks[i].worktime / 60 + " Min" });
-      }
-  
-      sessions.forEach(function (session) {
-        var sessionElement = document.createElement('div');
-        sessionElement.classList.add('session');
-        sessionElement.classList.add('my-sessions-container');
-  
-        var nameElement = document.createElement('h3');
-        nameElement.textContent = "User: " + session.name;
-        nameElement.classList.add('session-text');
-        sessionElement.appendChild(nameElement);
-  
-        var dateElement = document.createElement('p');
-        dateElement.textContent = 'Task Description: ' + session.taskDescription;
-        dateElement.classList.add('session-text');
-        sessionElement.appendChild(dateElement);
-  
-        var durationElement = document.createElement('p');
-        durationElement.textContent = 'Duration: ' + session.duration;
-        durationElement.classList.add('session-text');
-        sessionElement.appendChild(durationElement);
-  
-        document.body.appendChild(sessionElement);
-      });
-      sessions = [];
+        var sessionElements = document.querySelectorAll('.session');
+
+        sessionElements.forEach(function (sessionElement) {
+            sessionElement.remove();
+        });
+
+        for (let i = 0; i <= tasks.length - 1; i++) {
+            sessions.push({ name: currentUser, taskDescription: tasks[i].taskDesc, duration: tasks[i].worktime / 60 + " Min" });
+        }
+
+        sessions.forEach(function (session) {
+            var sessionElement = document.createElement('div');
+            sessionElement.classList.add('session');
+            sessionElement.classList.add('my-sessions-container');
+
+            var nameElement = document.createElement('h3');
+            nameElement.textContent = "User: " + session.name;
+            nameElement.classList.add('session-text');
+            sessionElement.appendChild(nameElement);
+
+            var dateElement = document.createElement('p');
+            dateElement.textContent = 'Task Description: ' + session.taskDescription;
+            dateElement.classList.add('session-text');
+            sessionElement.appendChild(dateElement);
+
+            var durationElement = document.createElement('p');
+            durationElement.textContent = 'Duration: ' + session.duration;
+            durationElement.classList.add('session-text');
+            sessionElement.appendChild(durationElement);
+
+            document.body.appendChild(sessionElement);
+        });
+        sessions = [];
     });
-  });
-  
+});
+
 
 closeModal = function () {
     document.getElementById("taskName").value = "";
     document.getElementById("taskDesc").value = "";
-    document.getElementById("taskEst").value = "";
+    document.getElementById("taskPrio").value = "";
     document.getElementById("modal").style.display = "none";
 }
 
@@ -172,20 +193,20 @@ generateUID = function () {
 
 addTask = function () {
     const taskName = document.getElementById("taskName").value;
-    const taskEst = document.getElementById("taskEst").value;
+    const taskPrio = document.getElementById("taskPrio").value;
     const taskDesc = document.getElementById("taskDesc").value;
     let taskWorkTime = document.getElementById("inputTime").value;
-    let parsedWorkTime= parseInt(taskWorkTime) || 45;
+    let parsedWorkTime = parseInt(taskWorkTime) || 45;
     let taskCurrentName = currentUser;
     const newTask = {
         taskId: generateUID(),
         taskName: taskName,
-        taskEst: taskEst,
+        taskPrio: taskPrio,
         taskDesc: taskDesc,
         taskCurrentUser: taskCurrentName,
         worktime: parsedWorkTime * 60,
-        longbreak: Math.floor(parsedWorkTime/3 * 60),
-        shortbreak: Math.floor(parsedWorkTime/9 * 60)
+        longbreak: Math.floor(parsedWorkTime / 3 * 60),
+        shortbreak: Math.floor(parsedWorkTime / 9 * 60)
     }
     i++;
     tasks.push(newTask);
@@ -198,14 +219,14 @@ const renderTasks = () => {
     taskList.innerHTML = "";
     tasks.forEach(task => {
         const taskName = task.taskName;
-        const taskEst = task.taskEst;
+        const taskPrio = task.taskPrio;
         const taskDesc = task.taskDesc;
         const spanName = createElement("span");
         spanName.id = "taskName";
         spanName.textContent = taskName;
-        let spanEst = createElement("span", taskEst);
-        spanEst.id = "taskEst";
-        spanEst.textContent = taskEst;
+        let spanEst = createElement("span", taskPrio);
+        spanEst.id = "taskPrio";
+        spanEst.textContent = taskPrio;
         let spanDesc = createElement("div");
         spanDesc.id = "taskDesc";
         spanDesc.textContent = taskDesc;
@@ -238,15 +259,15 @@ const renderTasks = () => {
         li.id = i + 1;
         li.appendChild(div);
         appendSettingsButton(li);
-        li.addEventListener("click", () => {
+        div.addEventListener("click", () => {
             timer.stop();
             updateTaskTime();
             updateTasks();
             selectedTaskId = task.taskId;
             search();
-            elements.min.innerHTML="--";
-            elements.sec.innerHTML="--";
-            document.querySelector("#start").disabled=true;
+            elements.min.innerHTML = "--";
+            elements.sec.innerHTML = "--";
+            document.querySelector("#start").disabled = true;
         })
 
         taskList.appendChild(li);
@@ -255,11 +276,11 @@ const renderTasks = () => {
         if (tasks.length == 5) {
             toggleAddButton(true);
         }
-        div.addEventListener("click",() =>{
+        div.addEventListener("click", () => {
             selectedId = div.id;
             currentSessionArr = [];
-            for(i = 0; i < tasks.length; i++){
-                if(tasks[i].taskId == div.id){
+            for (i = 0; i < tasks.length; i++) {
+                if (tasks[i].taskId == div.id) {
                     currentSessionArr.push(tasks[i]);
                 }
             }
@@ -280,7 +301,7 @@ makeElementClickable = function (div) {
             selectedTaskId = div.id;
             div.classList.add("isSelected");
             div.isClicked = true;
-        }        
+        }
     })
 }
 
@@ -425,16 +446,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let x = 0;
         console.log("before while");
-        while(x < allUserTasks.length){
+        while (x < allUserTasks.length) {
             console.log("in-while;")
-            if(allUserTasks[x].taskCurrentUser == currentUser){
+            if (allUserTasks[x].taskCurrentUser == currentUser) {
                 tasks.push(allUserTasks[x]);
                 allUserTasks.splice(x, 1);
                 x = 0;
             } else {
                 x++;
             }
-        } 
+        }
         renderTasks();
         index_no = 0;
         load_track(index_no);
@@ -464,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hideButtonById('displayReminders'); //reminders hide
         hideButtonById('reminderList');
         hideButtonById('timer2');
+        hideCalendar();
         showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
@@ -475,17 +497,21 @@ document.addEventListener('DOMContentLoaded', function () {
         var currentSessionElements = document.querySelectorAll('.session');
         currentSessionElements.forEach(function (currentSessionElement) {
             currentSessionElement.remove();
-          });
-          var sessionElements = document.querySelectorAll('.session');
-  
-          sessionElements.forEach(function (sessionElement) {
+        });
+        var sessionElements = document.querySelectorAll('.session');
+
+        sessionElements.forEach(function (sessionElement) {
             sessionElement.remove();
-          });
-          toggleAddButton(false);          
-          pausesong();
-          track.currentTime = 0;
+        });
+        toggleAddButton(false);
+        pausesong();
+        track.currentTime = 0;
     })
 })
+
+function hideCalendar() {
+    document.getElementById("card").style.display = "none";
+}
 
 
 function hideBootstrapModal(modalId) {
@@ -502,7 +528,7 @@ function showButtonById(button) {
     var showButton = document.getElementById(button);
     showButton.style.display = 'block';
 }
-function showButtonByIdFlex(button){
+function showButtonByIdFlex(button) {
     var showButtonFlex = document.getElementById(button);
     showButtonFlex.style.display = 'flex';
 }
@@ -699,12 +725,12 @@ function showSignupSuccessMessage() {
 
 //fix this part
 
-let task1= {
+let task1 = {
     name: "task1",
     workTime: 0,
     longTime: 0,
     shortTime: 0,
-    id:""
+    id: ""
 };
 let workStarted = false;
 let longStarted = false;
@@ -715,7 +741,7 @@ let elements = {
     sec: document.querySelector("#seconds"),
     work: document.querySelector("#workSession").
         addEventListener("click", () => {
-            document.querySelector('#start').disabled=false;
+            document.querySelector('#start').disabled = false;
             timer.stop();
             updateTaskTime();
             workStarted = true;
@@ -727,7 +753,7 @@ let elements = {
         ),
     long: document.querySelector("#longBreakSession").
         addEventListener("click", () => {
-            document.querySelector('#start').disabled=false;
+            document.querySelector('#start').disabled = false;
             timer.stop();
             updateTaskTime();
             longStarted = true;
@@ -735,11 +761,11 @@ let elements = {
             timer.time = task1.longTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-            
+
         }),
     short: document.querySelector("#shortBreakSession").
         addEventListener("click", () => {
-            document.querySelector('#start').disabled=false;
+            document.querySelector('#start').disabled = false;
             timer.stop();
             updateTaskTime();
             shortStarted = true;
@@ -747,22 +773,22 @@ let elements = {
             timer.time = task1.shortTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-            
+
         }),
-        start: 
+    start:
         document.querySelector("#start").
-        addEventListener("click", () => {
-            if (timer.interval === null) {
-                document.querySelector('#start').disabled=false;
-                timer.start();
-                document.querySelector('#start').innerHTML = `Pause`
-            }
-            else {
-                document.querySelector('#start').disabled=false;
-                timer.stop();
-                document.querySelector('#start').innerHTML = `Start`
-            }
-        })
+            addEventListener("click", () => {
+                if (timer.interval === null) {
+                    document.querySelector('#start').disabled = false;
+                    timer.start();
+                    document.querySelector('#start').innerHTML = `Pause`
+                }
+                else {
+                    document.querySelector('#start').disabled = false;
+                    timer.stop();
+                    document.querySelector('#start').innerHTML = `Start`
+                }
+            })
 }
 
 
@@ -788,7 +814,7 @@ function convertFromSeconds() {
     const minutes = Math.floor(timer.time / 60);
     const seconds = timer.time % 60;
     elements.min.textContent = minutes.toString().padStart(2, 0);
-    minutess2.textContent =minutes.toString().padStart(2, 0);
+    minutess2.textContent = minutes.toString().padStart(2, 0);
     elements.sec.textContent = seconds.toString().padStart(2, 0);
     seconds2.textContent = seconds.toString().padStart(2, 0);
 }
@@ -818,26 +844,26 @@ function search() {
             task1.longTime = tasks[i].longbreak;
             task1.shortTime = tasks[i].shortbreak;
             task1.name = tasks[i].taskName
-            task1.id =tasks[i].taskId
+            task1.id = tasks[i].taskId
         }
     }
 };
 
 function updateTasks() {
-       for(i=0;i<tasks.length;i++){
-        if(tasks[i].taskId===task1.id){
-            tasks[i].worktime=task1.workTime;
-           tasks[i].longbreak=task1.longTime;
-            tasks[i].shortbreak=task1.shortTime;
+    for (i = 0; i < tasks.length; i++) {
+        if (tasks[i].taskId === task1.id) {
+            tasks[i].worktime = task1.workTime;
+            tasks[i].longbreak = task1.longTime;
+            tasks[i].shortbreak = task1.shortTime;
         }
-       }
     }
+}
 
 
-    let minutess2=document.querySelector("#minutes2");
-    minutess2.innerHTML=`${(timer.time % 60).toString().padStart(2, 0)}`;
-    let seconds2 =document.querySelector("#seconds2");
-    seconds2.innerHTML= `${(timer.time % 60).toString().padStart(2, 0)}`;
+let minutess2 = document.querySelector("#minutes2");
+minutess2.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
+let seconds2 = document.querySelector("#seconds2");
+seconds2.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
 
 //     let dns= document.createElement("span");
 //     dns.innerHTML=`${document.querySelector('#minutes').innerText}`;
@@ -969,15 +995,15 @@ allReminders.addEventListener("click", () => {
     renderReminders()
     hideButtonById('displayReminders')
     var currentSessionElements = document.querySelectorAll('.session');
-        currentSessionElements.forEach(function (currentSessionElement) {
-            currentSessionElement.remove();
-          });
+    currentSessionElements.forEach(function (currentSessionElement) {
+        currentSessionElement.remove();
+    });
     reminderList.style.display = 'flex';
     timerAndTaskBarDiv.style.display = 'none';
-    if(document.getElementById("start").textContent!="Start"){
-        timer2.hidden =false;
-    showButtonById('timer2');
-}
+    if (document.getElementById("start").textContent != "Start") {
+        timer2.hidden = false;
+        showButtonById('timer2');
+    }
 })
 let reminderList = document.getElementById('reminderList');
 //Add Menu reminder to show main div when the button from mennu is clicked
@@ -985,13 +1011,13 @@ addMenuReminder.addEventListener('click', function () {
     showButtonById('displayReminders');
     hideButtonById('reminderList');
     var currentSessionElements = document.querySelectorAll('.session');
-        currentSessionElements.forEach(function (currentSessionElement) {
-            currentSessionElement.remove();
-          });
+    currentSessionElements.forEach(function (currentSessionElement) {
+        currentSessionElement.remove();
+    });
     timerAndTaskBarDiv.style.display = 'none';
-    if(document.getElementById("start").textContent!="Start"){
-    timer2.hidden =false;
-    showButtonById('timer2');
+    if (document.getElementById("start").textContent != "Start") {
+        timer2.hidden = false;
+        showButtonById('timer2');
     }
 });
 let timer2 = document.getElementById("timer2");
@@ -1005,6 +1031,7 @@ timer2.addEventListener('click', function () {
 let productivioMenuButton = document.getElementById('titleNavBar');
 productivioMenuButton.addEventListener('click', function () {
     timerAndTaskBarDiv.style.display = 'flex';
+    hideCalendar();
     hideButtonById('displayReminders');
     hideButtonById('reminderList');
     hideButtonById('timer2');
@@ -1439,13 +1466,13 @@ window.addEventListener("resize", function () {
 //End of Music Player
 
 renderTasks();
-function workss(){}
+function workss() { }
 
 // Calendar Functions
 
 // Function to create a calendar
 function createCalendar() {
-  
+
     const calendar = document.querySelector('.calendar');
     const currentMonthElement = document.querySelector('.current-month');
     const calendarDays = document.querySelector('.calendar-days');
@@ -1456,182 +1483,185 @@ function createCalendar() {
     const nextYearBtn = document.querySelector('.next-year');
     const todayDate = document.getElementById('todayDate');
     // const navbarToday = document.getElementById('today');
-  
-  
+
+
     // Get the current date
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-  
+
     // Event listener for "thisWeek" button
-   let thisWeekButton = document.querySelector('.thisWeek');
-   thisWeekButton.addEventListener('click', showDaysOfWeek);
-  
+    let thisWeekButton = document.querySelector('.thisWeek');
+    thisWeekButton.addEventListener('click', showDaysOfWeek);
+
     // Event listeners for month navigation buttons
     prevMonthBtn.addEventListener('click', showPreviousMonth);
     nextMonthBtn.addEventListener('click', showNextMonth);
-  
+
     // Event listeners for year navigation buttons
     prevYearBtn.addEventListener('click', showPreviousYear);
     todayBtn.addEventListener('click', showCurrentMonth);
     todayBtn.addEventListener('click', toggleTodayDate);
     nextYearBtn.addEventListener('click', showNextYear);
     // navbarToday.addEventListener('click', createCalendar);
-  
+
     // Display the current month and year
     displayCurrentMonth();
-  
+
     // Function to display the current month and year
     function displayCurrentMonth() {
-      const monthNames = [
-        'January', 
-        'February',
-        'March', 
-        'April',
-        'May', 
-        'June',
-        'July', 
-        'August',
-        'September', 
-        'October', 
-        'November',
-        'December'
-      ];
-      
-    currentMonthElement.textContent = monthNames[currentMonth] + ' ' + currentYear;
-    
-    calendarDays.innerHTML = '';
-        
-    let firstDay = new Date(currentYear, currentMonth, 1).getDay();
-    let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  
-      // Create calendar days
-      for (let day = 1; day <= daysInMonth; day++) {
-        const calendarDay = document.createElement('div');
-        calendarDay.classList.add('calendar-day');
-        calendarDay.textContent = day;
-        calendarDay.setAttribute('data-day', day); // Add data-day attribute
-      
-        calendarDays.appendChild(calendarDay);
-      }
-      
-  
-      // Add empty cells for the days before the first day of the month
-      for (let i = 0; i < firstDay; i++) {
-        const emptyCell = document.createElement('div');
-        emptyCell.classList.add('empty-cell');
-        calendarDays.appendChild(emptyCell);
-      }
-    }
-  
-     //function to show only days of one week
-      
-     function showDaysOfWeek() {
-        
+        const monthNames = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
+
+        currentMonthElement.textContent = monthNames[currentMonth] + ' ' + currentYear;
+
         calendarDays.innerHTML = '';
-        
+
+        let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+        // Create calendar days
+        for (let day = 1; day <= daysInMonth; day++) {
+            const calendarDay = document.createElement('div');
+            calendarDay.classList.add('calendar-day');
+            calendarDay.textContent = day;
+            calendarDay.setAttribute('data-day', day); // Add data-day attribute
+
+            calendarDays.appendChild(calendarDay);
+        }
+
+
+        // Add empty cells for the days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.classList.add('empty-cell');
+            calendarDays.appendChild(emptyCell);
+        }
+    }
+
+    //function to show only days of one week
+
+    function showDaysOfWeek() {
+
+        calendarDays.innerHTML = '';
+
         let currentDate = new Date();
-    
+
         // Get the first day of the current week
         let firstDayOfWeek = new Date(
-          currentDate.getFullYear(),
-          currentDate.getMonth(),
-          currentDate.getDate() - currentDate.getDay()
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate() - currentDate.getDay()
         );
-    
+
         // Get the days of the week
         for (let i = 0; i < 7; i++) {
-          let date = new Date(
-            firstDayOfWeek.getFullYear(),
-            firstDayOfWeek.getMonth(),
-            firstDayOfWeek.getDate() + i
-          );
-          let calendarDay = document.createElement('div');
-          calendarDay.classList.add('calendar-day');
-          calendarDay.textContent = date.getDate();
-          calendarDays.appendChild(calendarDay);
+            let date = new Date(
+                firstDayOfWeek.getFullYear(),
+                firstDayOfWeek.getMonth(),
+                firstDayOfWeek.getDate() + i
+            );
+            let calendarDay = document.createElement('div');
+            calendarDay.classList.add('calendar-day');
+            calendarDay.textContent = date.getDate();
+            calendarDays.appendChild(calendarDay);
         }
-      }
+    }
     //Get today date
-    
+
     function toggleTodayDate() {
-  let todayDateElement = document.getElementById('todayDate');
-  let currentDate = new Date();
-  let currentDay = currentDate.getDate();
-  let currentMonth = currentDate.getMonth() + 1;
-  let currentYear = currentDate.getFullYear();
-  let formattedDate = "Date: " + currentDay + '/' + currentMonth + '/' + currentYear;
-  todayDateElement.textContent = formattedDate;
+        let todayDateElement = document.getElementById('todayDate');
+        let currentDate = new Date();
+        let currentDay = currentDate.getDate();
+        let currentMonth = currentDate.getMonth() + 1;
+        let currentYear = currentDate.getFullYear();
+        let formattedDate = "Date: " + currentDay + '/' + currentMonth + '/' + currentYear;
+        todayDateElement.textContent = formattedDate;
 
-  let currentCalendarDay = document.querySelector(`[data-day="${currentDay}"]`);
-  currentCalendarDay.style.border = '2px solid black';
-  currentCalendarDay.style.borderRadius = '15px';
-  currentCalendarDay.style.backgroundColor = 'rgb(10, 212, 212)';
-  currentCalendarDay.style.color = 'rgb(7, 2, 20)';
-  currentCalendarDay.style.transition = '0.3s';
-  currentCalendarDay.style.cursor = 'pointer';
-  currentCalendarDay.style.boxShadow = 'inset 0px 0px 0px 1.5px rgb(10, 212, 212)';
-}
+        let currentCalendarDay = document.querySelector(`[data-day="${currentDay}"]`);
+        currentCalendarDay.style.border = '2px solid black';
+        currentCalendarDay.style.borderRadius = '15px';
+        currentCalendarDay.style.backgroundColor = 'rgb(10, 212, 212)';
+        currentCalendarDay.style.color = 'rgb(7, 2, 20)';
+        currentCalendarDay.style.transition = '0.3s';
+        currentCalendarDay.style.cursor = 'pointer';
+        currentCalendarDay.style.boxShadow = 'inset 0px 0px 0px 1.5px rgb(10, 212, 212)';
+    }
 
-      
-    
+
+
     // Function to show the previous month
     function showPreviousMonth() {
-      currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-      }
-      displayCurrentMonth();
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        displayCurrentMonth();
     }
-  
+
     // Function to show the next month
     function showNextMonth() {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
-      displayCurrentMonth();
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        displayCurrentMonth();
     }
-  
+
     // Function to show the previous year
     function showPreviousYear() {
-      currentYear--;
-      displayCurrentMonth();
+        currentYear--;
+        displayCurrentMonth();
     }
-  
+
     // Function to show the next year
     function showNextYear() {
-      currentYear++;
-      displayCurrentMonth();
+        currentYear++;
+        displayCurrentMonth();
     }
-  
+
     // Function to show the current month
     function showCurrentMonth() {
-      currentMonth = currentDate.getMonth();
-      currentYear = currentDate.getFullYear();
-      displayCurrentMonth();
+        currentMonth = currentDate.getMonth();
+        currentYear = currentDate.getFullYear();
+        displayCurrentMonth();
     }
-  }
-  
-  // Call the createCalendar
-  createCalendar()
-  
-  //add event listener for close button
+}
 
-  
-  //Show calendar on click on today 
-  //how to hide everything elsee
-  let showCalendar = document.getElementById('showCallendarBtn');
-  showCalendar.addEventListener('click', toggleCalendar);
-  
-  function toggleCalendar() {
+// Call the createCalendar
+createCalendar()
+
+//add event listener for close button
+
+
+//Show calendar on click on today 
+//how to hide everything elsee
+let showCalendar = document.getElementById('showCallendarBtn');
+showCalendar.addEventListener('click', toggleCalendar);
+
+function toggleCalendar() {
     let calendar = document.getElementById('card');
     if (calendar.style.display === 'none') {
-      calendar.style.display = 'block';
+        calendar.style.display = 'block';
+        document.getElementById("centeredContainer").style.display = "none";
     } else {
-      calendar.style.display = 'none';
+        calendar.style.display = 'none';
+        document.getElementById("centeredContainer").style.display = "flex";
+
     }
-  }
+}
 
