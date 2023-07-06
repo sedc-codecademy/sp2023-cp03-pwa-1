@@ -11,10 +11,10 @@ const settingsButtons = {
 
 validateNewTaskForm = function (taskPrioField) {
     let x = taskPrioField.value;
-    
+
     // If x is Not a Number or less than one or greater than 5
     let message = null;
-    
+
     if (isNaN(x) || x < 1 || x > 5) {
         message = "Priority number must be between 1 and 5";
     }
@@ -26,7 +26,7 @@ validateNewTaskForm = function (taskPrioField) {
         errorSpan.style.display = "inline-block";
         saveBtn.disabled = true;
     }
-     else {
+    else {
         errorSpan.style.display = "none";
         saveBtn.disabled = false;
     }
@@ -34,10 +34,10 @@ validateNewTaskForm = function (taskPrioField) {
 
 validateNewTaskForm2 = function (taskWorkTime) {
     let x = taskWorkTime.value;
-    
+
     // If x is Not a Number or less than one or greater than 60
     let message = null;
-    
+
     if (isNaN(x) || x < 1 || x > 60) {
         message = "Work time must be between 1 and 60 min";
     }
@@ -47,10 +47,10 @@ validateNewTaskForm2 = function (taskWorkTime) {
     if (message) {
         errorSpan.innerHTML = message;
         errorSpan.style.display = "inline-block";
-        errorSpan.style.color= "red"
+        errorSpan.style.color = "red"
         saveBtn.disabled = true;
     }
-     else {
+    else {
         errorSpan.style.display = "none";
         saveBtn.disabled = false;
     }
@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
             currentSessionElement.remove();
         });
         currentSessionArr.forEach(task => {
+            // var sessionContainer = document.createElement("div");
+            // sessionContainer.classList.add("sessionContainerClass");
             var sessionElement = document.createElement('div');
             sessionElement.classList.add('session');
             sessionElement.classList.add('my-sessions-container');
@@ -99,15 +101,22 @@ document.addEventListener('DOMContentLoaded', function () {
             durationElement.textContent = 'Duration: ' + (task.worktime / 60 + " Min");
             durationElement.classList.add('session-text');
             sessionElement.appendChild(durationElement);
-            document.body.appendChild(sessionElement);
+            // sessionContainer.appendChild(sessionElement);
+            document.body.appendChild(sessionElement)
+            // document.body.appendChild(sessionContainer); 
+            
         })
+        hideButtonById('displayReminders')
+        hideButtonById('reminderList')
+        hideCalendar();
+        showButtonByIdFlex('centeredContainer');
     })
     let taskPrioiField = document.getElementById("taskPrio");
     taskPrioiField.addEventListener("keyup", function () {
         validateNewTaskForm(taskPrioiField);
     })
     let taskWorkTimeField = document.getElementById("inputTime");
-    taskWorkTimeField.addEventListener("keyup", function (){
+    taskWorkTimeField.addEventListener("keyup", function () {
         validateNewTaskForm2(taskWorkTimeField);
     })
 });
@@ -135,9 +144,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (previousSessionElement) {
             previousSessionElement.remove();
         }
-
+        // var sessionContainer = document.createElement("div");
+        // sessionContainer.classList.add("sessionContainerClass");
         if (nextLargestTask) {
             var sessionElement = document.createElement('div');
+           
             sessionElement.id = 'session-' + nextLargestTask.taskId;
             sessionElement.classList.add('session');
             sessionElement.classList.add('my-sessions-container');
@@ -156,10 +167,15 @@ document.addEventListener('DOMContentLoaded', function () {
             durationElement.textContent = 'Duration: ' + (nextLargestTask.worktime / 60 + " Min");
             durationElement.classList.add('session-text');
             sessionElement.appendChild(durationElement);
-
             document.body.appendChild(sessionElement);
             previousSessionElement = sessionElement; // Store the current session element
         }
+        // document.body.appendChild(sessionContainer); 
+        
+        hideButtonById('displayReminders')
+        hideButtonById('reminderList')
+        hideCalendar();
+        showButtonByIdFlex('centeredContainer')
     });
 });
 
@@ -170,7 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     allSessionsBtn.addEventListener('click', function () {
         var sessionElements = document.querySelectorAll('.session');
-
+        hideButtonById('displayReminders')
+        hideButtonById('reminderList')
+        hideCalendar();
+        showButtonByIdFlex('centeredContainer')
         sessionElements.forEach(function (sessionElement) {
             sessionElement.remove();
         });
@@ -230,7 +249,7 @@ addTask = function () {
     let taskWorkTime = document.getElementById("inputTime").value;
 
     let parsedWorkTime = parseInt(taskWorkTime) || 45;
-    if(taskName.length<1 || taskPrio.length<1 || taskWorkTime.length<1){
+    if (taskName.length < 1 || taskPrio.length < 1 || taskWorkTime.length < 1) {
         alert("Enter values");
         return;
     }
@@ -305,9 +324,9 @@ const renderTasks = () => {
             elements.min.innerHTML = "--";
             elements.sec.innerHTML = "--";
             document.querySelector("#start").disabled = true;
-            document.querySelector("#shortBreakSession").disabled=false;
-            document.querySelector("#longBreakSession").disabled=false;
-            document.querySelector("#workSession").disabled=false;
+            document.querySelector("#shortBreakSession").disabled = false;
+            document.querySelector("#longBreakSession").disabled = false;
+            document.querySelector("#workSession").disabled = false;
         })
 
         taskList.appendChild(li);
@@ -484,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
         renderTasks();
         document.getElementById("navBarId").style.justifyContent = "space-between";
         blockButtons();
-        
+
 
         let x = 0;
         console.log("before while");
@@ -533,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTasks();
         elements.min.innerHTML = "--";
         elements.sec.innerHTML = "--";
-        selectedTaskId="";
+        selectedTaskId = "";
         showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
@@ -1043,6 +1062,7 @@ let allReminders = document.getElementById("allReminders");
 allReminders.addEventListener("click", () => {
     renderReminders()
     hideButtonById('displayReminders')
+    hideCalendar();
     var currentSessionElements = document.querySelectorAll('.session');
     currentSessionElements.forEach(function (currentSessionElement) {
         currentSessionElement.remove();
@@ -1059,6 +1079,7 @@ let reminderList = document.getElementById('reminderList');
 addMenuReminder.addEventListener('click', function () {
     showButtonById('displayReminders');
     hideButtonById('reminderList');
+    hideCalendar();
     var currentSessionElements = document.querySelectorAll('.session');
     currentSessionElements.forEach(function (currentSessionElement) {
         currentSessionElement.remove();
@@ -1085,6 +1106,10 @@ productivioMenuButton.addEventListener('click', function () {
     hideButtonById('displayReminders');
     hideButtonById('reminderList');
     hideButtonById('timer2');
+    var currentSessionElements = document.querySelectorAll('.session');
+    currentSessionElements.forEach(function (currentSessionElement) {
+        currentSessionElement.remove();
+    });
 });
 
 //Start of Music Player
@@ -1701,30 +1726,45 @@ createCalendar()
 //Show calendar on click on today 
 //how to hide everything elsee
 let showCalendar = document.getElementById('showCallendarBtn');
-showCalendar.addEventListener('click', toggleCalendar);
-
-function toggleCalendar() {
-    let calendar = document.getElementById('card');
-    if (calendar.style.display === 'none') {
-        calendar.style.display = 'block';
-        document.getElementById("centeredContainer").style.display = "none";
-        if (document.getElementById("start").textContent != "Start") {
-            timer2.hidden = false;
-            showButtonById('timer2');
-        };
-    } else {
-        calendar.style.display = 'none';
-        hideButtonById('timer2');
-
-        document.getElementById("centeredContainer").style.display = "flex";
-
+showCalendar.addEventListener('click', function () {
+    showButtonById('card')
+    hideButtonById('displayReminders')
+    hideButtonById('reminderList')
+    document.getElementById("centeredContainer").style.display = "none";
+    if (document.getElementById("start").textContent != "Start") {
+        timer2.hidden = false;
+        showButtonById('timer2');
     }
-}
+    });
+document.getElementById('closeCalendarBtn').addEventListener('click', function(){
+    hideCalendar();
+    timerAndTaskBarDiv.style.display = 'flex';
+    hideButtonById('timer2')
 
-function blockButtons(){
-    document.querySelector("#shortBreakSession").disabled=true;
-        document.querySelector("#longBreakSession").disabled=true;
-        document.querySelector("#workSession").disabled=true;
-        document.querySelector("#start").disabled=true;
-        document.querySelector("#start").innerHTML="Start";
+})
+
+// function toggleCalendar() {
+//     let calendar = document.getElementById('card');
+//     if (calendar.style.display === 'none') {
+//         calendar.style.display = 'block';
+//         document.getElementById("centeredContainer").style.display = "none";
+//         if (document.getElementById("start").textContent != "Start") {
+//             timer2.hidden = false;
+//             showButtonById('timer2');
+//         };
+//     } else {
+//         calendar.style.display = 'none';
+//         hideButtonById('timer2');
+
+//         document.getElementById("centeredContainer").style.display = "flex";
+
+//     }
+// }
+
+function blockButtons() {
+    document.querySelector("#shortBreakSession").disabled = true;
+    document.querySelector("#longBreakSession").disabled = true;
+    document.querySelector("#workSession").disabled = true;
+    document.querySelector("#start").disabled = true;
+    document.querySelector("#start").innerHTML = "Start";
 }

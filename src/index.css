@@ -63,6 +63,10 @@ nav {
     width: fit-content;
     background-color: #134434;
 }
+.sessionContainerClass{
+    position: absolute;
+    top: 62%;
+}
 
 
 .taskbar {
@@ -148,7 +152,7 @@ nav {
         justify-content: flex-end;
         display: flex;
         height: 30px;
-        ;
+        font-weight: bold;
         width: 250px;
         border-radius: 5px;
     }
@@ -233,7 +237,8 @@ nav {
 }
 
 #taskDesc {
-    color: lightgray;
+    color: black;
+    font-weight: bold;
     font-size: 15px;
     text-align: left !important;
 }
@@ -260,6 +265,11 @@ button {
     background-color: #121a21;
     border-radius: 10px;
     padding: 10px 15px 10px 15px;
+}
+
+.toast {
+    position: absolute;
+    z-index: 1;
 }
 
 .hover-text:hover .tooltip-text {
@@ -644,13 +654,13 @@ button {
 
 .pageInfo {
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     color: white;
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 1;
-    background-color: #000000;
+    background-color: rgba(116, 116, 116, 0.3);
 }
 
 .carousel-item {
