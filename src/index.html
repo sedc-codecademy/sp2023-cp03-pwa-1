@@ -326,9 +326,9 @@
     <div class="centered-container" id="centeredContainer">
         <div id="timerDisplay" style="display: none">
             <div class="buttons">
-                <button class="sessions" id="workSession">Work</button>
-                <button class="sessions" id="shortBreakSession">Short Break</button>
-                <button class="sessions" id="longBreakSession">Long Break</button>
+                <button class="sessions" id="workSession" disabled>Work</button>
+                <button class="sessions" id="shortBreakSession" disabled>Short Break</button>
+                <button class="sessions" id="longBreakSession" disabled>Long Break</button>
             </div>
             <div class="timer">
                 <span class="minutes" id="minutes">--</span>
@@ -365,9 +365,9 @@
                        max="5"
                        name="taskPrio" />
                 <span id="errorMessage" class="text-danger"></span><br />
-                <label for="inputTime">Enter work time</label>
+                <label for="inputTime">Enter work time:</label>
                 <input type="text" id="inputTime" name="inputTime" />
-                <p>*Default work time is 45 min</p>
+                <p id="errorMessage2">*Default work time is 45 min</p>
                 <div class="modal-buttons">
                     <button id="cancel"
                             class="btn btn-outline-secondary"

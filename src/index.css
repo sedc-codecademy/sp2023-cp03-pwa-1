@@ -379,13 +379,17 @@ button {
 }
 
 #timer2 {
-    border: #0a0a0a solid 1px;
-    font-size: 20px;
+    border: 2px solid white; 
+    border-radius: 30px;
+    box-shadow: whitesmoke 4px 4px 0 0;
+    font-size: 40px;
+    font-weight: 600; 
+    padding: 0 18px; 
     text-align: left;
-    color: #ffffff;
+    color: white;
     position: absolute;
     bottom: 20px;
-    ;
+    cursor: pointer; 
 }
 
 #start {

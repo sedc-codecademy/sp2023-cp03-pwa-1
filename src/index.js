@@ -8,10 +8,13 @@ const settingsButtons = {
     COMPLETE: "Complete"
 };
 
+
 validateNewTaskForm = function (taskPrioField) {
     let x = taskPrioField.value;
+    
     // If x is Not a Number or less than one or greater than 5
     let message = null;
+    
     if (isNaN(x) || x < 1 || x > 5) {
         message = "Priority number must be between 1 and 5";
     }
@@ -22,7 +25,32 @@ validateNewTaskForm = function (taskPrioField) {
         errorSpan.innerHTML = message;
         errorSpan.style.display = "inline-block";
         saveBtn.disabled = true;
-    } else {
+    }
+     else {
+        errorSpan.style.display = "none";
+        saveBtn.disabled = false;
+    }
+}
+
+validateNewTaskForm2 = function (taskWorkTime) {
+    let x = taskWorkTime.value;
+    
+    // If x is Not a Number or less than one or greater than 60
+    let message = null;
+    
+    if (isNaN(x) || x < 1 || x > 60) {
+        message = "Work time must be between 1 and 60 min";
+    }
+    let errorSpan = document.getElementById("errorMessage2");
+    let saveBtn = document.getElementById("save");
+
+    if (message) {
+        errorSpan.innerHTML = message;
+        errorSpan.style.display = "inline-block";
+        errorSpan.style.color= "red"
+        saveBtn.disabled = true;
+    }
+     else {
         errorSpan.style.display = "none";
         saveBtn.disabled = false;
     }
@@ -77,6 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let taskPrioiField = document.getElementById("taskPrio");
     taskPrioiField.addEventListener("keyup", function () {
         validateNewTaskForm(taskPrioiField);
+    })
+    let taskWorkTimeField = document.getElementById("inputTime");
+    taskWorkTimeField.addEventListener("keyup", function (){
+        validateNewTaskForm2(taskWorkTimeField);
     })
 });
 
@@ -196,7 +228,12 @@ addTask = function () {
     const taskPrio = document.getElementById("taskPrio").value;
     const taskDesc = document.getElementById("taskDesc").value;
     let taskWorkTime = document.getElementById("inputTime").value;
+
     let parsedWorkTime = parseInt(taskWorkTime) || 45;
+    if(taskName.length<1 || taskPrio.length<1 || taskWorkTime.length<1){
+        alert("Enter values");
+        return;
+    }
     let taskCurrentName = currentUser;
     const newTask = {
         taskId: generateUID(),
@@ -268,6 +305,9 @@ const renderTasks = () => {
             elements.min.innerHTML = "--";
             elements.sec.innerHTML = "--";
             document.querySelector("#start").disabled = true;
+            document.querySelector("#shortBreakSession").disabled=false;
+            document.querySelector("#longBreakSession").disabled=false;
+            document.querySelector("#workSession").disabled=false;
         })
 
         taskList.appendChild(li);
@@ -443,6 +483,8 @@ document.addEventListener('DOMContentLoaded', function () {
         mpl.style.display = "inline-block";
         renderTasks();
         document.getElementById("navBarId").style.justifyContent = "space-between";
+        blockButtons();
+        
 
         let x = 0;
         console.log("before while");
@@ -486,9 +528,16 @@ document.addEventListener('DOMContentLoaded', function () {
         hideButtonById('reminderList');
         hideButtonById('timer2');
         hideCalendar();
+        timer.stop();
+        updateTaskTime();
+        updateTasks();
+        elements.min.innerHTML = "--";
+        elements.sec.innerHTML = "--";
+        selectedTaskId="";
         showButtonById('carouselExampleAutoplaying');
         signOutMessage();
         mpl.style.display = "none";
+
         document.getElementById("navBarId").style.justifyContent = "end"
         tasks.forEach(task => {
             allUserTasks.push(task);
@@ -1025,6 +1074,7 @@ timer2.addEventListener('click', function () {
     timerAndTaskBarDiv.style.display = 'flex';
     hideButtonById('displayReminders');
     hideButtonById('reminderList');
+    hideCalendar();
     hideButtonById('timer2');
 })
 //Productivio from the menu to show task bar and the timer -Aleksandar
@@ -1658,10 +1708,23 @@ function toggleCalendar() {
     if (calendar.style.display === 'none') {
         calendar.style.display = 'block';
         document.getElementById("centeredContainer").style.display = "none";
+        if (document.getElementById("start").textContent != "Start") {
+            timer2.hidden = false;
+            showButtonById('timer2');
+        };
     } else {
         calendar.style.display = 'none';
+        hideButtonById('timer2');
+
         document.getElementById("centeredContainer").style.display = "flex";
 
     }
 }
 
+function blockButtons(){
+    document.querySelector("#shortBreakSession").disabled=true;
+        document.querySelector("#longBreakSession").disabled=true;
+        document.querySelector("#workSession").disabled=true;
+        document.querySelector("#start").disabled=true;
+        document.querySelector("#start").innerHTML="Start";
+}
