@@ -1,5 +1,5 @@
 nav {
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #bde0fe 100%);
     border: 1px solid black;
     border-top: none;
     border-left: none;
@@ -8,9 +8,10 @@ nav {
 
 
 #body {
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #bde0fe 100%);
     background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 #errorMessage {
@@ -18,25 +19,26 @@ nav {
 }
 
 .offcanvas-body {
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #669bbc 100%);
+    color: #ee6c4d !important
 }
 
 .nav-link.dropdown-toggle:hover {
-    background-color: #134434;
+    background-color: #a2d2ff;
 }
 
 .nav-link.dropdown-toggle:focus,
 .nav-link.dropdown-toggle:active {
-    background-color: #134434;
+    background-color: #a2d2ff;
 }
 
 .dropdown-menu.dropdown-menu-dark {
-    background-color: #134434;
+    background-color: #a2d2ff;
 }
 
 
 .offcanvas-header {
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #f19c86 100%);
 }
 
 #titleNavBar {
@@ -49,11 +51,16 @@ nav {
 }
 
     #titleNavBar:hover {
-        color: greenyellow;
+        color: #ee6c4d;
         cursor: pointer;
     }
-
-
+.navbar-toggler{
+    color: #ee6c4d;
+    border-color: #c7573b;
+}
+.navbar-toggler-icon{
+    color: #ee6c4d
+}
 .my-sessions-container {
     display: flex;
     flex-direction: column;
@@ -61,7 +68,7 @@ nav {
     border: 1px solid white;
     padding: 5px;
     width: fit-content;
-    background-color: #134434;
+    background-color: #a2d2ff;
 }
 .sessionContainerClass{
     position: absolute;
@@ -70,8 +77,9 @@ nav {
 
 
 .taskbar {
-    color: white;
+    color: #ee6c4d;
     display: inline-block;
+
 }
 
 .add-task-btn {
@@ -127,14 +135,14 @@ nav {
 
 .modal-content-new-task {
     width: 25% !important;
-    background-color: #134434;
+    background-color: #a2d2ff;
 }
 
 .modal-content {
     font-family: Helvetica, sans-serif;
     border-radius: 10px;
     color: white !important;
-    background-color: #134434 !important;
+    background-color: #a2d2ff !important;
     margin: 15% auto;
     padding: 25px;
     border: 1px solid black;
@@ -182,7 +190,10 @@ nav {
     transition: ease-in-out .2s;
     padding: 0 16px;
 }
-
+#taskBtn{
+    background-color: #ee6c4d;
+    border:#ee6c4d
+}
 #tasks {
     display: none;
     margin-top: 10px;
@@ -204,7 +215,8 @@ nav {
 .isSelected {
     border: 1px solid white;
     border-radius: 8px;
-    background-color: #638261;
+    background-color: #bde0fe;
+    
 }
 
 #taskList li {
@@ -237,7 +249,7 @@ nav {
 }
 
 #taskDesc {
-    color: black;
+    color: #ee6c4d;
     font-weight: bold;
     font-size: 15px;
     text-align: left !important;
@@ -297,9 +309,9 @@ button {
 
 .container {
     margin-top: 100px !important;
-    background-color: #134434;
+    background-color: #a2d2ff;
     width: 600px !important;
-    border: 0.5px solid lightgray;
+    border: 0.5px solid #ee6c4d;
     border-radius: 5px !important;
     padding: 10px;
     display: flex;
@@ -313,12 +325,12 @@ button {
     border: 1px solid white;
     border-radius: 5px;
     padding: 20px;
-    background-color: #134434;
+    background-color: #ee6c4d;
 }
 
 #workSession {
     box-shadow: 7px 7px 8px -2px #1c1d1b;
-    background-color: transparent;
+    background-color: #a2d2ff;
     border-radius: 5px;
     display: inline-block;
     cursor: pointer;
@@ -340,7 +352,7 @@ button {
 
 #shortBreakSession {
     box-shadow: 0px 7px 8px 1px #1c1d1b;
-    background-color: transparent;
+    background-color: #a2d2ff;
     border-radius: 5px;
     display: inline-block;
     cursor: pointer;
@@ -362,7 +374,7 @@ button {
 
 #longBreakSession {
     box-shadow: -7px 7px 8px -2px #1c1d1b;
-    background-color: transparent;
+    background-color: #a2d2ff;
     border-radius: 5px;
     display: inline-block;
     cursor: pointer;
@@ -385,18 +397,18 @@ button {
 .timer {
     font-size: 100px;
     text-align: center;
-    color: #ffffff;
+    color: #e9fbff;
 }
 
 #timer2 {
-    border: 2px solid white; 
+    border: 2px solid #ee6c4d; 
     border-radius: 30px;
     box-shadow: whitesmoke 4px 4px 0 0;
     font-size: 40px;
     font-weight: 600; 
     padding: 0 18px; 
     text-align: left;
-    color: white;
+    color: #ee6c4d;
     position: absolute;
     bottom: 20px;
     cursor: pointer; 
@@ -404,7 +416,7 @@ button {
 
 #start {
     box-shadow: 0px 7px 8px 1px #1c1d1b;
-    background-color: transparent;
+    background-color: #a2d2ff;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -414,13 +426,13 @@ button {
     font-size: 17px;
     padding: 9px 36px;
     text-decoration: none;
-    border: #0c5900;
+    border: #86b7e6;
     width: 180px;
     margin: 0 auto;
 }
 
     #start:hover {
-        background-color: transparent;
+        background-color: #86b7e6;
     }
 
     #start:active {
@@ -432,7 +444,7 @@ button {
 
 #displayReminders {
     margin-top: 100px !important;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #ee6c4d 0%, #f7896e 100%);
     width: 600px !important;
     border: 0.5px solid lightgray;
     border-radius: 5px !important;
@@ -446,19 +458,19 @@ button {
 
 #reminderHeader {
     text-align: center;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #ee6c4d 0%, #f7896e 100%);
     color: white;
 }
 
 #reminderForm {
     text-align: center;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #ee6c4d 0%, #f7896e 100%);
 }
 
 #reminderInput[type="text"] {
     padding: 5px;
     width: 200px;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #ee6c4d 0%, #f7896e 100%);
     color: white;
 }
 
@@ -475,11 +487,11 @@ button {
     color: solid black;
     border: none;
     border-radius: 15px;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #f3491f 0%, #ee6c4d 100%);
 }
 
     #addReminder:hover {
-        background-color: #25a511;
+        background-color: #f7896e;
     }
 
 #reminderList {
@@ -505,7 +517,7 @@ button {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #ee6c4d 0%, #f7896e 100%);
     overflow-wrap: anywhere;
 }
 
@@ -585,11 +597,11 @@ button {
     margin: auto;
     transform: translate(-50%, -50%);
     border: 1px solid #888;
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #1d7a5b 100%);
 }
 
 .mainDivForModalReminder {
-    background-image: linear-gradient(120deg, #134434 0%, #1d7a5b 100%);
+    background-image: linear-gradient(120deg, #a2d2ff 0%, #1d7a5b 100%);
     margin: 15% auto;
     padding: 20px;
     width: 600px;
@@ -602,6 +614,9 @@ button {
     color: white;
 }
 
+#save{
+    background-color: #ee6c4d;
+}
 #saveButton {
     background-color: green;
     margin: 5px;
@@ -620,6 +635,7 @@ button {
     #saveButton:hover {
         background-color: #27d110;
     }
+
 
 #cancelButton {
     background-color: red;
@@ -1138,8 +1154,13 @@ button {
 }
 /* End of Music Player */
 #navBarId {
-    justify-content: end;
+    justify-content: end; 
 }
+#signOutButton, #navBarButton, #loginButton, #registerButton {
+    border-color: #ee6c4d;
+    color: #ee6c4d
+}
+
 /* Calendar */
 .card {
     margin-top: 50px;
@@ -1150,7 +1171,7 @@ button {
     margin: 150px auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px #efefef;
-    background-image: linear-gradient(120deg, #248a68 0%, #0f3025 100%);
+    background-image: linear-gradient(120deg, #f5967e 0%, #ee6c4d 100%);
 }
 
 .calendar-toolbar {
