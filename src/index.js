@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // sessionContainer.appendChild(sessionElement);
             document.body.appendChild(sessionElement)
             // document.body.appendChild(sessionContainer); 
-            
+
         })
         hideButtonById('displayReminders')
         hideButtonById('reminderList')
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // sessionContainer.classList.add("sessionContainerClass");
         if (nextLargestTask) {
             var sessionElement = document.createElement('div');
-           
+
             sessionElement.id = 'session-' + nextLargestTask.taskId;
             sessionElement.classList.add('session');
             sessionElement.classList.add('my-sessions-container');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
             previousSessionElement = sessionElement; // Store the current session element
         }
         // document.body.appendChild(sessionContainer); 
-        
+
         hideButtonById('displayReminders')
         hideButtonById('reminderList')
         hideCalendar();
@@ -229,6 +229,7 @@ closeModal = function () {
     document.getElementById("taskName").value = "";
     document.getElementById("taskDesc").value = "";
     document.getElementById("taskPrio").value = "";
+    document.getElementById("inputTime").value = "";
     document.getElementById("modal").style.display = "none";
 }
 
@@ -321,12 +322,15 @@ const renderTasks = () => {
             updateTasks();
             selectedTaskId = task.taskId;
             search();
-            elements.min.innerHTML = "--";
-            elements.sec.innerHTML = "--";
-            document.querySelector("#start").disabled = true;
+            workStarted = true;
+            document.querySelector('#start').innerHTML = `Start`;
+            timer.time = task1.workTime;
+            elements.min.innerText = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
+            elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
             document.querySelector("#shortBreakSession").disabled = false;
             document.querySelector("#longBreakSession").disabled = false;
             document.querySelector("#workSession").disabled = false;
+            document.querySelector("#start").disabled = false;
         })
 
         taskList.appendChild(li);
@@ -420,6 +424,10 @@ addButton = function (li, buttonType) {
                 i--;
                 const currentTaskId = li.querySelector("div").id;
                 removeElementAtIndex(currentTaskId);
+                timer.stop();
+                elements.min.innerHTML = "--";
+        elements.sec.innerHTML = "--";
+        blockButtons();
                 if (ul.childElementCount == 0) {
                     displayList(false);
                 }
@@ -437,6 +445,8 @@ addButton = function (li, buttonType) {
                 li.prepend(checkImg);
                 li.querySelector("#taskName").style.textDecoration = "line-through";
                 button.style.display = "none";
+                timer.stop();
+                blockButtons();
             }
             break;
     }
@@ -1735,8 +1745,8 @@ showCalendar.addEventListener('click', function () {
         timer2.hidden = false;
         showButtonById('timer2');
     }
-    });
-document.getElementById('closeCalendarBtn').addEventListener('click', function(){
+});
+document.getElementById('closeCalendarBtn').addEventListener('click', function () {
     hideCalendar();
     timerAndTaskBarDiv.style.display = 'flex';
     hideButtonById('timer2')
