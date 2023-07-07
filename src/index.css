@@ -160,6 +160,7 @@ nav {
         margin-bottom: 5px;
         justify-content: flex-end;
         display: flex;
+        color: #ee6c4d;
         height: 30px;
         font-weight: bold;
         width: 250px;
@@ -251,7 +252,7 @@ nav {
 }
 
 #taskDesc {
-    color: #828ed3;
+    color: #ee6c4d;
     font-weight: bold;
     font-size: 15px;
     text-align: left !important;
@@ -259,6 +260,7 @@ nav {
 
 #taskPrio {
     font-weight: bold;
+    color: #ee6c4d;
     font-size: 17px;
     border: 2px solid #ee6c4d;
     border-radius: 10px;
