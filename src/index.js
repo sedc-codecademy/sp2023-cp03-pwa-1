@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hideButtonById('displayReminders')
         hideButtonById('reminderList')
         hideCalendar();
+        hideButtonById('timer2');
         showButtonByIdFlex('centeredContainer');
     })
     let taskPrioiField = document.getElementById("taskPrio");
@@ -174,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         hideButtonById('displayReminders')
         hideButtonById('reminderList')
+        hideButtonById('timer2');
         hideCalendar();
         showButtonByIdFlex('centeredContainer')
     });
@@ -189,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hideButtonById('displayReminders')
         hideButtonById('reminderList')
         hideCalendar();
+        hideButtonById("timer2");
         showButtonByIdFlex('centeredContainer')
         sessionElements.forEach(function (sessionElement) {
             sessionElement.remove();
@@ -839,7 +842,6 @@ let elements = {
             timer.time = task1.longTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-
         }),
     short: document.querySelector("#shortBreakSession").
         addEventListener("click", () => {
@@ -851,7 +853,6 @@ let elements = {
             timer.time = task1.shortTime;
             elements.min.innerHTML = `${Math.floor(timer.time / 60).toString().padStart(2, 0)}`;
             elements.sec.innerHTML = `${(timer.time % 60).toString().padStart(2, 0)}`;
-
         }),
     start:
         document.querySelector("#start").
@@ -1778,3 +1779,4 @@ function blockButtons() {
     document.querySelector("#start").disabled = true;
     document.querySelector("#start").innerHTML = "Start";
 }
+

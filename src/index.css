@@ -1,5 +1,5 @@
 nav {
-    background-image: linear-gradient(120deg, #a2d2ff 0%, #bde0fe 100%);
+    background-image: linear-gradient(120deg, #3575b1 0%, #94c8f7 100%);
     border: 1px solid black;
     border-top: none;
     border-left: none;
@@ -48,10 +48,11 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    color: #ee6c4d;
 }
 
     #titleNavBar:hover {
-        color: #ee6c4d;
+        color: #5f8beb;
         cursor: pointer;
     }
 .navbar-toggler{
@@ -107,7 +108,7 @@ nav {
 }
 
 .session-text {
-    color: white;
+    color: #ee6c4d;
     margin-top: 5px;
     margin-bottom: 5px;
     justify-content: flex-start;
@@ -141,7 +142,7 @@ nav {
 .modal-content {
     font-family: Helvetica, sans-serif;
     border-radius: 10px;
-    color: white !important;
+    color:  #ee6c4d !important;
     background-color: #a2d2ff !important;
     margin: 15% auto;
     padding: 25px;
@@ -235,7 +236,7 @@ nav {
 
     #taskList li span {
         margin-right: 10px;
-        color: white;
+        color: #ee6c4d;
         max-width: 300px;
     }
 
@@ -246,10 +247,11 @@ nav {
 
 #taskName {
     font-weight: bold;
+    color: #ee6c4d;
 }
 
 #taskDesc {
-    color: #ee6c4d;
+    color: #828ed3;
     font-weight: bold;
     font-size: 15px;
     text-align: left !important;
@@ -258,7 +260,7 @@ nav {
 #taskPrio {
     font-weight: bold;
     font-size: 17px;
-    border: 2px solid white;
+    border: 2px solid #ee6c4d;
     border-radius: 10px;
     padding: 3px 7px 3px 7px;
 }
@@ -349,6 +351,7 @@ button {
         position: relative;
         top: 1px;
     }
+ 
 
 #shortBreakSession {
     box-shadow: 0px 7px 8px 1px #1c1d1b;
@@ -388,6 +391,7 @@ button {
     #longBreakSession:hover {
         background-color: transparent;
     }
+
 
     #longBreakSession:active {
         position: relative;
@@ -440,6 +444,7 @@ button {
         top: 1px;
     }
 
+    
 /* Reminders */
 
 #displayReminders {
@@ -658,7 +663,7 @@ button {
     }
 
 #messageReminder {
-    color: #27d110;
+    color: #a2d2ff;
 }
 
 /* SLIDESHOW */
@@ -1125,6 +1130,7 @@ button {
     height: 67.56px;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+    cursor: pointer;
 }
 
 #p_song_name_id {
@@ -1293,3 +1299,15 @@ button {
     justify-content: center;
     color: #000000;
 }
+#offcanvasDarkNavbarLabel{
+    color:#ee6c4d
+}
+a{
+    color: #5f8beb !important
+}
+
+#currentSessionBtn, #nextSessionBtn, #allSessionsBtn, #showCallendarBtn, #addMenuReminder, #allReminders{
+    color:#ee6c4d
+}
+#navBarButton {
+    background-color: #ee6c4d}
